@@ -25,13 +25,15 @@ while read oldrev newrev refspec; do
   git checkout "${newrev}"
 
   echo "===> Sanity checking..."
-  source "${PUSH_REPO}/nebula_config"
+  if [[ -f "${PUSH_REPO}/nebula_config" ]]; then
+    source "${PUSH_REPO}/nebula_config"
+  else
+    echo "FATAL: project config file not found, something is badly wrong."
+    exit 1
+  fi
 
   echo "===> Creating new Deployment with Nebula"
   curl -X "POST" "${NEBULA_URL}/api/v1/deployment?project_id=${NEBULA_PROJECT_ID}&rev=${newrev}&ref=${refspec}"
-
-  echo "===> Registering Job with Nebula"
-  # Post the nomad job to the deployment endpoint
 
   echo "===> Registering Job for Deployment"
   # Post the nomad job to the deployment endpoint
