@@ -1,0 +1,31 @@
+{
+  "variables": {
+    "packer-ap-southeast-2-base": ""
+  },
+  "builders": [
+    {
+      "name": "nat",
+      "type": "amazon-ebs",
+      "region": "ap-southeast-2",
+      "source_ami": "{{user `packer-ap-southeast-2-base`}}",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "ap-southeast-2-ubuntu-nat-{{isotime | clean_ami_name}}",
+      "ami_description": "NAT image."
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "{{template_dir}}/scripts/nat.bash"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "tfvars",
+      "output": "{{template_dir}}/amis.json"
+    }
+  ]
+}

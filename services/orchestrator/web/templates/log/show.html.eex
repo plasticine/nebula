@@ -1,0 +1,18 @@
+<h2>Show log</h2>
+
+<ul>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @log.body %>
+  </li>
+
+  <li>
+    <strong>Project:</strong>
+    <%= @log.project_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: log_path(@conn, :edit, @log) %>
+<%= link "Back", to: log_path(@conn, :index) %>

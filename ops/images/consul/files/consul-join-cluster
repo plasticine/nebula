@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+readonly REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
+readonly PRIVATE_IPV4=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .privateIp)
+readonly PEERS=$(aws --region $REGION ec2 describe-instances \
+  --filters \
+    "Name=tag:role,Values=consul" \
+    "Name=tag:aws:cloudformation:stack-name,Values=consul" \
+    "Name=instance-state-name,Values=running" \
+  | jq -r '.Reservations[].Instances[].PrivateIpAddress' \
+  | xargs)
+
+wait_for_local_agent() {
+  echo "[consul-join-cluster]" "Waiting for local Consul agent to come online..."
+  for attempt in {1..30}; do
+    echo "[consul-join-cluster]" "Connection attempt #$attempt..."
+    set +e
+    nc -zv 127.0.0.1 8301
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 5
+  done
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[consul-join-cluster]" "Timed out waiting for local Consul agent to come online..."
+    exit $exit_code
+  fi
+}
+
+wait_for_peers() {
+  local exit_code;
+
+  echo "[consul-join-cluster]" "Waiting for Consul servers to come online..."
+  for attempt in {1..30}; do
+    echo "[consul-join-cluster]" "Connection attempt #$attempt..."
+    set +e
+    for peer in $PEERS; do
+      nc -zv "$peer" 8301
+    done
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 5
+  done
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[consul-join-cluster]" "Timed out waiting for Consul servers to come online..."
+    exit $exit_code
+  fi
+}
+
+join_cluster() {
+  local exit_code;
+
+  echo "[consul-join-cluster]" "Attempting join consul servers: ${PEERS}"
+  consul join ${PEERS}
+  exit_code="$?"
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[consul-join-cluster]" "There was a problem joining the Consul servers..."
+    exit $exit_code
+  fi
+
+  consul members
+}
+
+notify_success() {
+  while ! curl -s http://localhost:8500/v1/status/peers | grep -q "$PRIVATE_IPV4":;
+  do
+    echo "[consul-join-cluster]" "Waiting for current node to be a peer..."
+    sleep 1
+  done
+  cfn-signal --resource Consul --stack consul --region "$REGION"
+}
+
+main() {
+  echo "[consul-join-cluster]" "REGION: ${REGION}"
+  echo "[consul-join-cluster]" "PEERS:  ${PEERS}"
+
+  wait_for_local_agent
+  wait_for_peers
+  join_cluster
+  notify_success
+}
+
+main

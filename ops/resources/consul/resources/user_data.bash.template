@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+configure_consul() {
+  echo "Configuring Consul options"
+  echo "CONSUL_OPTIONS=-server -dc=${aws_region} -bootstrap-expect=${server_count}" -recursor=${recursor} | sudo tee /etc/systemd/system/consul.d/consul.env
+}
+
+start_consul() {
+  echo "Starting Consul service"
+  sudo systemctl start consul.service
+}
+
+join_cluster() {
+  echo "Joining Consul server peers"
+  consul-join-cluster
+}
+
+main() {
+  configure_consul
+  start_consul
+  join_cluster
+}
+
+main

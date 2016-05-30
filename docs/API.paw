@@ -1,0 +1,171 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
+
+<database>
+    <databaseInfo>
+        <version>134481920</version>
+        <UUID>CC1D7BFA-DFE8-4BD8-8C66-931DE9BC2098</UUID>
+        <nextObjectID>112</nextObjectID>
+        <metadata>
+            <plist version="1.0">
+                <dict>
+                    <key>NSPersistenceFrameworkVersion</key>
+                    <integer>641</integer>
+                    <key>NSStoreModelVersionHashes</key>
+                    <dict>
+                        <key>LMCookieJar</key>
+                        <data>
+		Fttmf2L4PrGvKUF496+nqgVVGek45TjOe7sUMtjNg8I=
+		</data>
+                        <key>LMEnvironment</key>
+                        <data>
+		uzBoVFcO4YvR9/3ej4AJ1UOOsA/u5DKY2aemusoIseU=
+		</data>
+                        <key>LMEnvironmentDomain</key>
+                        <data>
+		yM1GPGHdquS8IWLtuczlNoqKhIhD9FW6IReSfFffJgs=
+		</data>
+                        <key>LMEnvironmentVariable</key>
+                        <data>
+		P8e0lYd5JZKRabS/eXVSOJ4oitilz67xtv+pLqW1Jqg=
+		</data>
+                        <key>LMEnvironmentVariableValue</key>
+                        <data>
+		my5hNPJ51oDCSa8EgdNxWAnRcDLcERUGjtuXnzhSxQ0=
+		</data>
+                        <key>LMKeyValue</key>
+                        <data>
+		bIXXbyYF2xAv2MXg8JTVFsslmMKuvsfnR86QdUcFkdM=
+		</data>
+                        <key>LMRequest</key>
+                        <data>
+		vcehD1+Y0zJEqCmgqlTWLscXXTAat5YQbsUJSVqwTq0=
+		</data>
+                        <key>LMRequestGroup</key>
+                        <data>
+		MnZKiG/nHZ2bvbULv2vfzH+0tXd5w+NuuMPlNJjBAMw=
+		</data>
+                        <key>LMRequestTreeItem</key>
+                        <data>
+		Ae5GlAcsXxZOGKCPQgemYbXQ3+KUtHlsprrqBD+V81o=
+		</data>
+                    </dict>
+                    <key>NSStoreModelVersionHashesVersion</key>
+                    <integer>3</integer>
+                    <key>NSStoreModelVersionIdentifiers</key>
+                    <array>
+                        <string>LMDocumentVersion4</string>
+                    </array>
+                </dict>
+            </plist>
+        </metadata>
+    </databaseInfo>
+    <object type="LMENVIRONMENT" id="z102">
+        <attribute name="uuid" type="string">0695D441-792D-4F98-908A-C1AC27F4AFBC</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Default Environment</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z103"></relationship>
+        <relationship name="variablesvalues" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z108"></relationship>
+    </object>
+    <object type="LMENVIRONMENTDOMAIN" id="z103">
+        <attribute name="uuid" type="string">AF04FAE7-A23E-4273-A7C9-294B740466E1</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Default Domain</attribute>
+        <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z102"></relationship>
+        <relationship name="variables" type="0/0" destination="LMENVIRONMENTVARIABLE" idrefs="z107"></relationship>
+    </object>
+    <object type="LMCOOKIEJAR" id="z104">
+        <attribute name="uuid" type="string">B9BEFDD3-ECC2-45EC-A03F-300ED0946548</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">Default Jar</attribute>
+    </object>
+    <object type="LMREQUEST" id="z105">
+        <attribute name="uuid" type="string">D526A4C8-A1A5-4316-8DEC-E330EDE9B431</attribute>
+        <attribute name="url" type="string">https://127.0.0.1:5000/api/v1/deployment?project_id=1\u2600rev=abcd1234\u2600ref=master</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">My API</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z106"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z106">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z105"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLE" id="z107">
+        <attribute name="uuid" type="string">919DB83A-05E3-475E-A5C9-60F408F9D7F4</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z103"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z108"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z108">
+        <attribute name="value" type="string"></attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z102"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z107"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z109">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z110"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z110">
+        <attribute name="body" type="string">["{\\n    \\"Job\\": {\\n        \\"Region\\": \\"global\\",\\n        \\"ID\\": \\"example\\",\\n        \\"Name\\": \\"example\\",\\n        \\"Type\\": \\"service\\",\\n        \\"Priority\\": 50,\\n        \\"AllAtOnce\\": false,\\n        \\"Datacenters\\": [\\n            \\"dc1\\"\\n        ],\\n        \\"TaskGroups\\": [\\n            {\\n                \\"Name\\": \\"cache\\",\\n                \\"Count\\": 3,\\n                \\"Constraints\\": null,\\n                \\"Tasks\\": [\\n                    {\\n                        \\"Name\\": \\"redis\\",\\n                        \\"Driver\\": \\"docker\\",\\n                        \\"User\\": \\"\\",\\n                        \\"Config\\": {\\n                            \\"image\\": \\"redis:3.0.7-alpine\\",\\n                            \\"port_map\\": [\\n                                {\\n                                    \\"db\\": 6379\\n                                }\\n                            ]\\n                        },\\n                        \\"Constraints\\": null,\\n                        \\"Env\\": null,\\n                        \\"Services\\": [\\n                            {\\n                                \\"Id\\": \\"\\",\\n                                \\"Name\\": \\"cache-redis\\",\\n                                \\"Tags\\": [\\n                                    \\"global\\",\\n                                    \\"cache\\"\\n                                ],\\n                                \\"PortLabel\\": \\"db\\",\\n                                \\"Checks\\": [\\n                                    {\\n                                        \\"Id\\": \\"\\",\\n                                        \\"Name\\": \\"alive\\",\\n                                        \\"Type\\": \\"tcp\\",\\n                                        \\"Command\\": \\"\\",\\n                                        \\"Args\\": null,\\n                                        \\"Path\\": \\"\\",\\n                                        \\"Protocol\\": \\"\\",\\n                                        \\"Interval\\": 10000000000,\\n                                        \\"Timeout\\": 2000000000\\n                                    }\\n                                ]\\n                            }\\n                        ],\\n                        \\"Resources\\": {\\n                            \\"CPU\\": 256,\\n                            \\"MemoryMB\\": 256,\\n                            \\"DiskMB\\": 300,\\n                            \\"IOPS\\": 0,\\n                            \\"Networks\\": [\\n                                {\\n                                    \\"Public\\": false,\\n                                    \\"CIDR\\": \\"\\",\\n                                    \\"ReservedPorts\\": null,\\n                                    \\"DynamicPorts\\": [\\n                                        {\\n                                            \\"Label\\": \\"db\\",\\n                                            \\"Value\\": 0\\n                                        }\\n                                    ],\\n                                    \\"IP\\": \\"\\",\\n                                    \\"MBits\\": 10\\n                                }\\n                            ]\\n                        },\\n                        \\"Meta\\": null,\\n                        \\"KillTimeout\\": 5000000000,\\n                        \\"LogConfig\\": {\\n                            \\"MaxFiles\\": 10,\\n                            \\"MaxFileSizeMB\\": 10\\n                        },\\n                        \\"Artifacts\\": null\\n                    }\\n                ],\\n                \\"RestartPolicy\\": {\\n                    \\"Interval\\": 300000000000,\\n                    \\"Attempts\\": 10,\\n                    \\"Delay\\": 25000000000,\\n                    \\"Mode\\": \\"delay\\"\\n                },\\n                \\"Meta\\": null\\n            }\\n        ],\\n        \\"Update\\": {\\n            \\"Stagger\\": 10000000000,\\n            \\"MaxParallel\\": 1\\n        },\\n        \\"Periodic\\": null,\\n        \\"Meta\\": null,\\n        \\"Status\\": \\"\\",\\n        \\"StatusDescription\\": \\"\\",\\n        \\"CreateIndex\\": 0,\\n        \\"ModifyIndex\\": 0\\n    }\\n}\\n"]</attribute>
+        <attribute name="uuid" type="string">4D6B3977-D0F9-4A19-B916-A1EF9B979BFA</attribute>
+        <attribute name="url" type="string">http://172.20.10.10:4646/v1/jobs</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">Create Job</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z109"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z111">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z112"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z112">
+        <attribute name="uuid" type="string">78B66A8C-3499-4BB2-AA8D-CA1D91039AD9</attribute>
+        <attribute name="url" type="string">http://172.20.10.10:4646/v1/job/example</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">DELETE</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string"></attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">Delete Job</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z111"></relationship>
+    </object>
+</database>

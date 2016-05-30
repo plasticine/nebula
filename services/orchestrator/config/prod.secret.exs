@@ -1,0 +1,19 @@
+use Mix.Config
+
+# In this file, we keep production configuration that
+# you likely want to automate and keep it away from
+# your version control system.
+config :orchestrator, Orchestrator.Endpoint,
+  secret_key_base: "jX1SsYGb0uYaAFs74bSdiDcAVbFm58O5Tg16nMUEMVzEkgzcOxENcoWrSMhYUdl8"
+
+config :exsentry,
+  dsn: System.get_env("API_SENTRY_DSN")
+
+# Configure your database
+config :orchestrator, Orchestrator.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  hostname: System.get_env("POSTGRES_PORT_5432_TCP_ADDR"),
+  port: System.get_env("POSTGRES_PORT_5432_TCP_PORT"),
+  username: "postgres",
+  database: "orchestrator_prod",
+  pool_size: 20 # The amount of database connections in the pool

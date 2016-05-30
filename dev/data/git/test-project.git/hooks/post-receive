@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+unset GIT_DIR
+readonly PUSH_REPO="$PWD"
+readonly WORK_DIR="$(mktemp -d)"
+# TODO: should query consul for this...
+readonly AUTOFAC_URL="http://orchestrator:4000"
+EXIT_CODE="0"
+
+function on_exit {
+  echo "===> Cleaning up..."
+  rm -rf "${WORK_DIR}"
+
+  echo "===> Done"
+  exit "${EXIT_CODE}"
+}
+
+trap on_exit EXIT
+
+while read oldrev newrev refspec; do
+  cd "${WORK_DIR}"
+
+  # Clone project code and check out deployed revision
+  git clone "${PUSH_REPO}" "${WORK_DIR}"
+  git checkout "${newrev}"
+
+  echo "===> Sanity checking..."
+  source "${PUSH_REPO}/autofac_config"
+
+  echo "===> Creating new Deployment with Autofac"
+  curl -X "POST" "${AUTOFAC_URL}/api/v1/deployment?project_id=${PROJECT_ID}&rev=${newrev}&ref=${refspec}"
+  # create new deployment
+
+  echo "===> Running Project prepare phase"
+  # Here we check for the existence of a project build script, if it exists we run it!
+
+  echo "===> Registering Job with Autofac"
+  # Post the nomad job to the deployment endpoint
+
+  # unset GIT_DIR
+  # cd /var/pipelite
+  # git fetch hub
+  # git reset --hard hub/master
+  # git pull hub master
+  # echo
+  # echo "**** [Done! Running deploy script...] ****"
+  # echo
+  # ./ops/script/deploy "$oldrev" "$newrev" "$ref" 2>&1 | tee ./ops/script/deploy.log
+done

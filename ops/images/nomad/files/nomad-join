@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+wait_for_agent() {
+  local exit_code;
+
+  echo "[nomad-join]" "Waiting for local nomad agent to be available..."
+  for i in {1..20}; do
+    set +e
+    nc -zv 127.0.0.1 4646
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 10
+  done
+}
+
+join_servers() {
+  local exit_code;
+  local nomad_servers;
+  exit_code="-1"
+  nomad_servers="$@"
+
+  echo "[nomad-join]" "Attempting join nomad servers: ${nomad_servers}"
+  for i in {1..20}; do
+    set +e
+    nomad server-join ${nomad_servers}
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && nomad server-members && break
+    sleep 5
+  done
+}
+
+main() {
+  local nomad_servers;
+  nomad_servers="$@"
+
+  wait_for_agent
+  join_servers "${nomad_servers}"
+}
+
+main "$@"
