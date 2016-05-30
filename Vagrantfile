@@ -107,9 +107,6 @@ SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.box = 'geerlingguy/ubuntu1604'
   config.vm.boot_timeout = 600
-  config.hostmanager.enabled = true
-  config.hostmanager.manage_host = true
-  config.hostmanager.ignore_private_ip = false
 
   config.vm.provider :virtualbox do |provider|
     provider.memory = 2048
