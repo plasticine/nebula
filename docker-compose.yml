@@ -9,6 +9,8 @@ services:
     links:
       - web
       - git
+    volumes_from:
+      - haproxy_config
 
   web:
     build: "./services/web"
@@ -40,8 +42,6 @@ services:
     build: "./services/orchestrator"
     command: "phoenix.server"
     restart: always
-    depends_on:
-      - postgres
     expose:
       - "4000"
     links:
@@ -87,4 +87,10 @@ services:
     image: gliderlabs/alpine:3.3
     command: "true"
     volumes:
-      - "./data/postgresql:/container/postgresql/data"
+      - "/container/postgresql/data"
+
+  haproxy_config:
+    image: gliderlabs/alpine:3.3
+    command: "true"
+    volumes:
+      - "./services/haproxy/haproxy.cfg:/container/haproxy/conf/haproxy.cfg"

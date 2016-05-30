@@ -119,14 +119,14 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder '.', '/vagrant', disabled: true
   config.vm.provision 'shell', inline: BASE_SYSTEM, privileged: false
 
-  config.vm.define :infra do |infra|
-    infra.vm.hostname = 'infra'
-    infra.vm.network :private_network, ip: INFRA_SERVER_IP
-    infra.vm.provision :shell, inline: INSTALL_INFRASTRUCTURE
+  config.vm.define :nebula_node do |nebula_node|
+    nebula_node.vm.hostname = 'nebula_node'
+    nebula_node.vm.network :private_network, ip: INFRA_SERVER_IP
+    nebula_node.vm.provision :shell, inline: INSTALL_INFRASTRUCTURE
 
-    infra.vm.provision :shell, run: :always, inline: "echo DEFAULT_IPV4=#{INFRA_SERVER_IP} | sudo tee /etc/network-environment"
-    infra.vm.provision :shell, run: :always, inline: 'sudo systemctl restart docker'
-    infra.vm.provision :shell, run: :always, inline: 'sudo systemctl start consul'
-    infra.vm.provision :shell, run: :always, inline: 'sudo systemctl start nomad'
+    nebula_node.vm.provision :shell, run: :always, inline: "echo DEFAULT_IPV4=#{INFRA_SERVER_IP} | sudo tee /etc/network-environment"
+    nebula_node.vm.provision :shell, run: :always, inline: 'sudo systemctl restart docker'
+    nebula_node.vm.provision :shell, run: :always, inline: 'sudo systemctl start consul'
+    nebula_node.vm.provision :shell, run: :always, inline: 'sudo systemctl start nomad'
   end
 end
