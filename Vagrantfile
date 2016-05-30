@@ -120,7 +120,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision 'shell', inline: BASE_SYSTEM, privileged: false
 
   config.vm.define :nebula_node do |nebula_node|
-    nebula_node.vm.hostname = 'nebula_node'
+    nebula_node.vm.hostname = 'nebula-node'
     nebula_node.vm.network :private_network, ip: INFRA_SERVER_IP
     nebula_node.vm.provision :shell, inline: INSTALL_INFRASTRUCTURE
 

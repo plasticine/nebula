@@ -16,7 +16,7 @@ services:
     build: "./services/web"
     restart: always
     links:
-      - orchestrator
+      - nebula
     expose:
       - "80"
       - "443"
@@ -33,13 +33,13 @@ services:
     expose:
       - "6000"
     links:
-      - orchestrator
+      - nebula
     volumes_from:
       - git_data
       - certificates
 
-  orchestrator:
-    build: "./services/orchestrator"
+  nebula:
+    build: "./services/nebula"
     command: "phoenix.server"
     restart: always
     expose:
@@ -52,7 +52,7 @@ services:
     environment:
       MIX_ENV: dev
     volumes:
-      - ./services/orchestrator:/container/app
+      - ./services/nebula:/container/app
     volumes_from:
       - haproxy_config
       - git_data
