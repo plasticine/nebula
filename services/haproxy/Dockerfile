@@ -15,6 +15,8 @@ RUN wget --no-check-certificate https://releases.hashicorp.com/consul-template/0
 # Copy in self signed derp certificate
 ADD ssl/certificate.pem /container/haproxy/ssl/certificate.pem
 
+ADD haproxy.cfg /container/haproxy/conf/haproxy.cfg
+
 ADD entrypoint.bash /entrypoint.bash
 RUN chmod +x /entrypoint.bash
 ENTRYPOINT ["/entrypoint.bash"]

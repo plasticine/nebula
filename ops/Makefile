@@ -1,14 +1,14 @@
 SHELL = /bin/bash -o pipefail
 
-.PHONY: container images infrastructure destroy
+.PHONY: container images resources destroy
 
-all: images infrastructure
+all: images resources
 
 images:
 	$(MAKE) -C images
 
-infrastructure: images
-	$(MAKE) -C infrastructure
+resources: images
+	$(MAKE) -C resources
 
 destroy:
-		$(MAKE) -C infrastructure destroy
+		$(MAKE) -C resources destroy

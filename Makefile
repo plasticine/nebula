@@ -2,10 +2,8 @@ SHELL = /bin/bash -o pipefail
 
 .PHONY: vm bootstrap
 
-vm:
-	vagrant up --parallel
-
 bootstrap:
+	vagrant up --provision
 	docker-compose down --remove-orphans
 	docker-compose rm -fva
 	docker-compose build

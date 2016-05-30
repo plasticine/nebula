@@ -9,8 +9,6 @@ services:
     links:
       - web
       - git
-    volumes_from:
-      - haproxy_config
 
   web:
     build: "./services/web"
@@ -75,14 +73,14 @@ services:
     image: gliderlabs/alpine:3.3
     command: "true"
     volumes:
-      - ./dev/ssl/certificate.crt:/etc/ssl/certificate.crt:ro
-      - ./dev/ssl/certificate.key:/etc/ssl/certificate.key:ro
+      - ./conf/ssl/certificate.crt:/etc/ssl/certificate.crt:ro
+      - ./conf/ssl/certificate.key:/etc/ssl/certificate.key:ro
 
   git_data:
     image: gliderlabs/alpine:3.3
     command: "true"
     volumes:
-      - "./dev/data/git:/container/git/data"
+      - "./tmp/data/git:/container/git/data"
       - "/container/git/templates"
 
   postgres_data:
@@ -90,9 +88,3 @@ services:
     command: "true"
     volumes:
       - "/container/postgresql/data"
-
-  haproxy_config:
-    build: "./services/haproxy_config"
-    command: "true"
-    volumes:
-      - "./services/haproxy_config/haproxy.cfg:/container/haproxy/conf/haproxy.cfg"
