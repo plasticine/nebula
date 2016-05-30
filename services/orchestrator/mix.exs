@@ -32,12 +32,14 @@ defmodule Orchestrator.Mixfile do
         :cowboy,
         :exsentry,
         :gettext,
+        :graphql,
         :logger,
         :phoenix,
         :phoenix_ecto,
         :phoenix_html,
         :phoenix_pubsub_redis,
-        :postgrex
+        :plug_graphql,
+        :postgrex,
       ]
     ]
   end
@@ -55,11 +57,13 @@ defmodule Orchestrator.Mixfile do
       {:excoveralls, "~> 0.5", only: [:test, :dev]},
       {:exsentry, "~> 0.3.0"},
       {:gettext, "~> 0.9"},
+      {:graphql, "~> 0.3"},
       {:phoenix, "~> 1.1.4"},
       {:phoenix_ecto, "~> 2.0"},
       {:phoenix_html, "~> 2.4"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:phoenix_pubsub_redis, "~> 2.0.0"},
+      {:plug_graphql, "~> 0.3"},
       {:poolboy, "~> 1.5.1"},
       {:postgrex, ">= 0.0.0"},
     ]
