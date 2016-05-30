@@ -80,11 +80,11 @@ services:
     image: gliderlabs/alpine:3.3
     command: "true"
     volumes:
-      - "./tmp/data/git:/container/git/data"
+      - "./data/git:/container/git/data"
       - "/container/git/templates"
 
   postgres_data:
     image: gliderlabs/alpine:3.3
     command: "true"
     volumes:
-      - "/container/postgresql/data"
+      - "./data/postgresql:/container/postgresql/data"
