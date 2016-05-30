@@ -6,16 +6,13 @@ IFS=' '
 unset GIT_DIR
 readonly PUSH_REPO="$PWD"
 readonly WORK_DIR="$(mktemp -d)"
-# TODO: should query consul for this...
-readonly NEBULA_URL="http://nebula:4000"
-EXIT_CODE="0"
+readonly NEBULA_URL="http://nebula:4000"  # TODO: should query consul for this...
 
 function on_exit {
   echo "===> Cleaning up..."
   rm -rf "${WORK_DIR}"
 
   echo "===> Done"
-  exit "${EXIT_CODE}"
 }
 
 trap on_exit EXIT
@@ -31,22 +28,19 @@ while read oldrev newrev refspec; do
   source "${PUSH_REPO}/nebula_config"
 
   echo "===> Creating new Deployment with Nebula"
-  curl -X "POST" "${NEBULA_URL}/api/v1/deployment?project_id=${AUTOFAC_PROJECT_ID}&rev=${newrev}&ref=${refspec}"
-  # create new deployment
-
-  echo "===> Running Project prepare phase"
-  # Here we check for the existence of a project build script, if it exists we run it!
+  curl -X "POST" "${NEBULA_URL}/api/v1/deployment?project_id=${NEBULA_PROJECT_ID}&rev=${newrev}&ref=${refspec}"
 
   echo "===> Registering Job with Nebula"
   # Post the nomad job to the deployment endpoint
 
-  # unset GIT_DIR
-  # cd /var/pipelite
-  # git fetch hub
-  # git reset --hard hub/master
-  # git pull hub master
-  # echo
-  # echo "**** [Done! Running deploy script...] ****"
-  # echo
-  # ./ops/script/deploy "$oldrev" "$newrev" "$ref" 2>&1 | tee ./ops/script/deploy.log
+  echo "===> Registering Job for Deployment"
+  # Post the nomad job to the deployment endpoint
+  if [[ -f .nebula/job.nomad ]]; then
+    cat .nebula/job.nomad | curl -s --data-binary "@-" -X "POST" "${NEBULA_URL}/api/v1/deployment/${deploy_id}/job"
+  else
+    echo "FATAL: job file not found."
+    exit 1
+  fi
+
+  exit 0
 done
