@@ -20,6 +20,7 @@ trap on_exit EXIT
 while read oldrev newrev refspec; do
   cd "${WORK_DIR}"
 
+  echo "===> Setting up deployment environment"
   # Clone project code and check out deployed revision
   git clone "${PUSH_REPO}" "${WORK_DIR}"
   git checkout "${newrev}"
@@ -33,17 +34,45 @@ while read oldrev newrev refspec; do
   fi
 
   echo "===> Creating new Deployment with Nebula"
-  deployment="$(curl -X "POST" "${NEBULA_URL}/api/v1/deployment?project_id=${NEBULA_PROJECT_ID}&rev=${newrev}&ref=${refspec}")"
-  deploy_id="$(echo "$deployment" | jq ".id")"
-  deploy_slug="$(echo "$deployment" | jq ".slug")"
+  deployment="$(curl \
+    -sX "POST" \
+    "${NEBULA_URL}/api/v1/deployment" \
+    -H "Content-Type: application/json" \
+    -d "{\"deployment\":{\"project_id\":\"${NEBULA_PROJECT_ID}\",\"rev\":\"${newrev}\",\"ref\":\"${refspec}\"}}")"
+  deployment_id="$(echo $deployment | jq ".id")"
 
-  echo "$deploy_id"
-  echo "$deploy_slug"
+  # Post the nomad job to the deployment endpoint
+  if [[ -f .nebula/hooks/prepare ]]; then
+    echo "===> Running deploy prepare"
+    curl
+      -sX "PUT" \
+      "${NEBULA_URL}/api/v1/deployment/${deployment_id}" \
+      -H "Content-Type: application/json" \
+      -d "{\"deployment\":{\"state\":\"prepare\"}}"
+    if [[ .nebula/hooks/prepare ]]; then
+      curl
+        -sX "PUT" \
+        "${NEBULA_URL}/api/v1/deployment/${deployment_id}" \
+        -H "Content-Type: application/json" \
+        -d "{\"deployment\":{\"state\":\"prepare_success\"}}"
+    else
+      curl
+        -sX "PUT" \
+        "${NEBULA_URL}/api/v1/deployment/${deployment_id}" \
+        -H "Content-Type: application/json" \
+        -d "{\"deployment\":{\"state\":\"prepare_failed\"}}"
+      exit 1
+    fi
+  fi
 
   echo "===> Registering Job for Deployment"
   # Post the nomad job to the deployment endpoint
   if [[ -f .nebula/job.nomad ]]; then
-    cat .nebula/job.nomad | curl -s --data-binary "@-" -X "POST" "${NEBULA_URL}/api/v1/deployment/${deploy_id}/job"
+    curl \
+      -sX "POST" \
+      "${NEBULA_URL}/api/v1/deployment/${deployment_id}/job" \
+      -H "Content-Type: application/json" \
+      -d "{\"job\":{\"spec\":\"$(cat .nebula/job.nomad)\"}}"
   else
     echo "FATAL: job file not found."
     exit 1

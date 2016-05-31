@@ -33,5 +33,13 @@ defmodule Nebula.Repo.Migrations.CreateDeploy do
     create index(:deployment, [:slug], unique: true)
     create index(:deployment, [:ref], unique: false)
     create index(:deployment, [:rev], unique: false)
+
+    create table(:jobs) do
+      add :spec, :text
+      add :deployment_id, references(:deployment, on_delete: :nothing)
+
+      timestamps
+    end
+    create index(:jobs, [:deployment_id])
   end
 end

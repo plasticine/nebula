@@ -35,7 +35,9 @@ defmodule Nebula.Router do
 
     scope "/v1", V1, as: :v1 do
       scope "/deployment" do
-        resources "/", DeploymentController
+        resources "/", DeploymentController do
+          resources "/job", JobController, only: [:create, :show], singleton: true
+        end
       end
     end
   end
