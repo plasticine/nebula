@@ -20,10 +20,13 @@ defmodule Nebula.Router do
   end
 
   scope "/", Nebula do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", DashboardController, :index
+
     resources "/projects", ProjectController
+    post "/projects/:id/reinitialize", ProjectController, :reinitialize
+
     resources "/logs", LogController
   end
 

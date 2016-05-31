@@ -33,7 +33,12 @@ while read oldrev newrev refspec; do
   fi
 
   echo "===> Creating new Deployment with Nebula"
-  curl -X "POST" "${NEBULA_URL}/api/v1/deployment?project_id=${NEBULA_PROJECT_ID}&rev=${newrev}&ref=${refspec}"
+  deployment="$(curl -X "POST" "${NEBULA_URL}/api/v1/deployment?project_id=${NEBULA_PROJECT_ID}&rev=${newrev}&ref=${refspec}")"
+  deploy_id="$(echo "$deployment" | jq ".id")"
+  deploy_slug="$(echo "$deployment" | jq ".slug")"
+
+  echo "$deploy_id"
+  echo "$deploy_slug"
 
   echo "===> Registering Job for Deployment"
   # Post the nomad job to the deployment endpoint

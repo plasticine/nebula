@@ -23,6 +23,7 @@
           <%= link "Show", to: project_path(@conn, :show, project) %>
           <%= link "Edit", to: project_path(@conn, :edit, project) %>
           <%= link "Edit", to: project_path(@conn, :edit, project) %>
+          <%= button "Reinitialize", to: project_path(@conn, :reinitialize, project), method: 'post' %>
           <%= button "Delete", to: project_path(@conn, :delete, project), method: 'delete' %>
         </td>
       </tr>

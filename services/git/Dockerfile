@@ -2,7 +2,7 @@ FROM nginx:1.10.0
 MAINTAINER Justin Morris <desk@pixelbloom.com>
 
 RUN apt-get -y update \
-  && apt-get install -y curl bash wget unzip openssl git fcgiwrap \
+  && apt-get install -y curl bash wget unzip openssl git fcgiwrap jq \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -11,9 +11,6 @@ ADD conf/proxy.conf /etc/nginx/proxy.conf
 ADD conf/sites /etc/nginx/sites
 ADD conf/htpasswd /etc/nginx/.htpasswd
 
-COPY templates /container/git/templates
-
-VOLUME /container/git/templates
 EXPOSE 6000
 
 ADD entrypoint.bash /bin/entrypoint.bash

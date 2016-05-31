@@ -67,4 +67,13 @@ defmodule Nebula.ProjectController do
     |> put_flash(:info, "Project deleted successfully.")
     |> redirect(to: project_path(conn, :index))
   end
+
+  def reinitialize(conn, %{"id" => id}) do
+    project = Repo.get!(Project, id)
+    ProjectRepo.init!(project)
+
+    conn
+    |> put_flash(:info, "Project repo reinitialized successfully.")
+    |> redirect(to: project_path(conn, :index))
+  end
 end

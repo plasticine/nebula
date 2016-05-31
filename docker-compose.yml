@@ -54,8 +54,8 @@ services:
     volumes:
       - ./services/nebula:/container/app
     volumes_from:
-      - haproxy_config
       - git_data
+      - haproxy_config
 
   postgres:
     build: "./services/postgres"
@@ -77,11 +77,10 @@ services:
       - ./conf/ssl/certificate.key:/etc/ssl/certificate.key:ro
 
   git_data:
-    image: gliderlabs/alpine:3.3
-    command: "true"
+    build: "./services/git_data"
     volumes:
       - "./data/git:/container/git/data"
-      - "/container/git/templates"
+      - "./services/git_data/templates:/container/git/templates"
 
   postgres_data:
     image: gliderlabs/alpine:3.3

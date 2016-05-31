@@ -42,7 +42,7 @@ defmodule ProjectRepo do
   end
 
   defp create_project_config(root, project) do
-    File.write!(Path.join(root, "autofac_config"), Enum.join(["AUTOFAC_PROJECT_ID", project.id], "="))
+    File.write!(Path.join(root, "nebula_config"), Enum.join(["NEBULA_PROJECT_ID", project.id], "="))
   end
 
   defp git do
