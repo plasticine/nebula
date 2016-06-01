@@ -2,7 +2,7 @@ FROM nginx:1.10.0
 MAINTAINER Justin Morris <desk@pixelbloom.com>
 
 RUN apt-get -y update \
-  && apt-get install -y curl bash wget unzip openssl git fcgiwrap jq \
+  && apt-get install -y curl bash wget unzip openssl git fcgiwrap jq python \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

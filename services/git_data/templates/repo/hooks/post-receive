@@ -17,6 +17,11 @@ function on_exit {
 
 trap on_exit EXIT
 
+
+function json_escape() {
+  echo -n "$1" | python -c "import json,sys; print json.dumps(sys.stdin.read())"
+}
+
 while read oldrev newrev refspec; do
   cd "${WORK_DIR}"
 
@@ -68,11 +73,14 @@ while read oldrev newrev refspec; do
   echo "===> Registering Job for Deployment"
   # Post the nomad job to the deployment endpoint
   if [[ -f .nebula/job.nomad ]]; then
+    job="$(cat .nebula/job.nomad)"
+    echo "$job"
+    echo "$(json_escape "$job")"
     curl \
       -sX "POST" \
       "${NEBULA_URL}/api/v1/deployment/${deployment_id}/job" \
       -H "Content-Type: application/json" \
-      -d "{\"job\":{\"spec\":\"$(cat .nebula/job.nomad)\"}}"
+      -d "{\"job\":{\"spec\":\"$(json_escape "$job")\"}}"
   else
     echo "FATAL: job file not found."
     exit 1
