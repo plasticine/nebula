@@ -12,16 +12,16 @@ defmodule Nebula.Repo.Migrations.CreateDeploy do
     create index(:projects, [:name], unique: true)
     create index(:projects, [:slug], unique: true)
 
-    create table(:logs) do
-      add :project_id, references(:projects), null: false
-      add :body, :text
+    # create table(:logs) do
+    #   add :project_id, references(:projects), null: false
+    #   add :body, :text
 
-      timestamps
-    end
-    create index(:logs, [:project_id])
+    #   timestamps
+    # end
+    # create index(:logs, [:project_id])
 
-    create table(:deployment) do
-      add :project_id, references(:projects), null: false
+    create table(:deploy) do
+      add :project_id, references(:projects, on_delete: :nothing), null: false
       add :ref, :string, null: false
       add :rev, :string, null: false
       add :slug, :string, null: false
@@ -29,17 +29,17 @@ defmodule Nebula.Repo.Migrations.CreateDeploy do
 
       timestamps
     end
-    create index(:deployment, [:project_id])
-    create index(:deployment, [:slug], unique: true)
-    create index(:deployment, [:ref], unique: false)
-    create index(:deployment, [:rev], unique: false)
+    create index(:deploy, [:project_id])
+    create index(:deploy, [:slug], unique: true)
+    create index(:deploy, [:ref], unique: false)
+    create index(:deploy, [:rev], unique: false)
 
     create table(:jobs) do
-      add :spec, :text
-      add :deployment_id, references(:deployment, on_delete: :nothing)
+      add :spec, :text, null: false
+      add :deploy_id, references(:deploy, on_delete: :nothing), null: false
 
       timestamps
     end
-    create index(:jobs, [:deployment_id])
+    create index(:jobs, [:deploy_id])
   end
 end

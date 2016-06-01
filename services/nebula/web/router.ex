@@ -27,15 +27,15 @@ defmodule Nebula.Router do
     resources "/projects", ProjectController
     post "/projects/:id/reinitialize", ProjectController, :reinitialize
 
-    resources "/logs", LogController
+    resources "/deploys", DeployController
   end
 
   scope "/api", Nebula.Api, as: :api do
     pipe_through :api
 
     scope "/v1", V1, as: :v1 do
-      scope "/deployment" do
-        resources "/", DeploymentController do
+      scope "/deploy" do
+        resources "/", DeployController do
           resources "/job", JobController, only: [:create, :show], singleton: true
         end
       end

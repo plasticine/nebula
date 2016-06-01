@@ -14,7 +14,6 @@
       <nav>
         <%= link "Dashboard", to: dashboard_path(@conn, :index) %>
         <%= link "Projects", to: project_path(@conn, :index) %>
-        <%= link "Logs", to: log_path(@conn, :index) %>
       </nav>
     </header>
     <main>

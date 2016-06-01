@@ -2,6 +2,8 @@ defmodule Nebula.Project do
   use Nebula.Web, :model
 
   schema "projects" do
+    has_many :deploys, Nebula.Deploy
+
     field :name, :string
     field :slug, :string
     field :description, :string

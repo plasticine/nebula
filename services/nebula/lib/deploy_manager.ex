@@ -14,8 +14,8 @@ defmodule DeployManager do
     supervise(children, strategy: :one_for_one)
   end
 
-  def create(deployment) do
-    spawn fn -> transaction({:create, deployment}) end
+  def create(deploy) do
+    spawn fn -> transaction({:create, deploy}) end
   end
 
   defp transaction(args) do

@@ -3,7 +3,7 @@ defmodule Nebula.Job do
 
   schema "jobs" do
     field :spec, :string
-    belongs_to :deployment, Nebula.Deployment
+    belongs_to :deploy, Nebula.Deployment
 
     timestamps
   end

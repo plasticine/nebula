@@ -18,14 +18,10 @@ function on_exit {
 trap on_exit EXIT
 
 
-function json_escape() {
-  echo -n "$1" | python -c "import json,sys; print json.dumps(sys.stdin.read())"
-}
-
 while read oldrev newrev refspec; do
   cd "${WORK_DIR}"
 
-  echo "===> Setting up deployment environment"
+  echo "===> Setting up deploy environment"
   # Clone project code and check out deployed revision
   git clone "${PUSH_REPO}" "${WORK_DIR}"
   git checkout "${newrev}"
@@ -39,48 +35,46 @@ while read oldrev newrev refspec; do
   fi
 
   echo "===> Creating new Deployment with Nebula"
-  deployment="$(curl \
+  deploy="$(curl \
     -sX "POST" \
-    "${NEBULA_URL}/api/v1/deployment" \
+    "${NEBULA_URL}/api/v1/deploy" \
     -H "Content-Type: application/json" \
-    -d "{\"deployment\":{\"project_id\":\"${NEBULA_PROJECT_ID}\",\"rev\":\"${newrev}\",\"ref\":\"${refspec}\"}}")"
-  deployment_id="$(echo $deployment | jq ".id")"
+    -d "{\"deploy\":{\"project_id\":\"${NEBULA_PROJECT_ID}\",\"rev\":\"${newrev}\",\"ref\":\"${refspec}\"}}")"
+  deploy_id="$(echo $deploy | jq ".id")"
 
-  # Post the nomad job to the deployment endpoint
+  # Post the nomad job to the deploy endpoint
   if [[ -f .nebula/hooks/prepare ]]; then
     echo "===> Running deploy prepare"
     curl
       -sX "PUT" \
-      "${NEBULA_URL}/api/v1/deployment/${deployment_id}" \
+      "${NEBULA_URL}/api/v1/deploy/${deploy_id}" \
       -H "Content-Type: application/json" \
-      -d "{\"deployment\":{\"state\":\"prepare\"}}"
+      -d "{\"deploy\":{\"state\":\"prepare\"}}"
     if [[ .nebula/hooks/prepare ]]; then
       curl
         -sX "PUT" \
-        "${NEBULA_URL}/api/v1/deployment/${deployment_id}" \
+        "${NEBULA_URL}/api/v1/deploy/${deploy_id}" \
         -H "Content-Type: application/json" \
-        -d "{\"deployment\":{\"state\":\"prepare_success\"}}"
+        -d "{\"deploy\":{\"state\":\"prepare_success\"}}"
     else
       curl
         -sX "PUT" \
-        "${NEBULA_URL}/api/v1/deployment/${deployment_id}" \
+        "${NEBULA_URL}/api/v1/deploy/${deploy_id}" \
         -H "Content-Type: application/json" \
-        -d "{\"deployment\":{\"state\":\"prepare_failed\"}}"
+        -d "{\"deploy\":{\"state\":\"prepare_failed\"}}"
       exit 1
     fi
   fi
 
   echo "===> Registering Job for Deployment"
-  # Post the nomad job to the deployment endpoint
+  # Post the nomad job to the deploy endpoint
   if [[ -f .nebula/job.nomad ]]; then
     job="$(cat .nebula/job.nomad)"
-    echo "$job"
-    echo "$(json_escape "$job")"
     curl \
       -sX "POST" \
-      "${NEBULA_URL}/api/v1/deployment/${deployment_id}/job" \
-      -H "Content-Type: application/json" \
-      -d "{\"job\":{\"spec\":\"$(json_escape "$job")\"}}"
+      "${NEBULA_URL}/api/v1/deploy/${deploy_id}/job" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      --data-urlencode "job[spec]=$job"
   else
     echo "FATAL: job file not found."
     exit 1

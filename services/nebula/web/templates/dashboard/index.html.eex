@@ -4,8 +4,8 @@
 <table style="width: 100%; text-align: left;">
   <thead>
     <th>ID</th>
-    <th>Project</th>
     <th>Slug</th>
+    <th>Project</th>
     <th>Refspec</th>
     <th>Revision</th>
     <th>State</th>
@@ -16,8 +16,8 @@
     <%= for deploy <- deploys do %>
       <tr>
         <td><%= deploy.id %></td>
+        <td><%= link deploy.slug, to: deploy_path(@conn, :show, deploy)  %></td>
         <td><%= link deploy.project.name, to: project_path(@conn, :show, deploy.project) %></td>
-        <td><%= deploy.slug %></td>
         <td><%= deploy.ref %></td>
         <td><%= deploy.rev %></td>
         <td><%= deploy.state %></td>

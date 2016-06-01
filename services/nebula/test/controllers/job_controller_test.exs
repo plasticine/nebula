@@ -19,7 +19,7 @@ defmodule Nebula.JobControllerTest do
     conn = get conn, job_path(conn, :show, job)
     assert json_response(conn, 200)["data"] == %{"id" => job.id,
       "spec" => job.spec,
-      "deployment_id" => job.deployment_id}
+      "deploy_id" => job.deploy_id}
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do

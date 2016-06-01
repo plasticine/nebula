@@ -1,0 +1,31 @@
+<h2>Show Deploy</h2>
+
+<hr />
+
+<table style="width: 100%; text-align: left;">
+  <thead>
+    <th>ID</th>
+    <th>Slug</th>
+    <th>State</th>
+    <th>Refspec</th>
+    <th>Revision</th>
+    <td>Project</td>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @deploy.id %></td>
+      <td><%= @deploy.slug %></td>
+      <td><%= @deploy.state %></td>
+      <td><%= @deploy.ref %></td>
+      <td><%= @deploy.rev %></td>
+      <td><%= link @deploy.project.name, to: project_path(@conn, :show, @deploy.project) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Job</h3>
+<code>
+  <pre>
+    <%= text_to_html @deploy.job.spec |> IO.inspect %>
+  </pre>
+</code>

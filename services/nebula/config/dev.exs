@@ -39,5 +39,5 @@ config :nebula, Nebula.Repo,
   hostname: "postgres",
   username: "postgres",
   port: 5432,
-  database: "orchestrator_dev",
+  database: "nebula_dev",
   pool_size: 10 # The amount of database connections in the pool

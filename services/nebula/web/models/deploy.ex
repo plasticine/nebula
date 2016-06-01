@@ -1,8 +1,10 @@
 defmodule Nebula.Deploy do
   use Nebula.Web, :model
 
-  schema "deployment" do
+  schema "deploy" do
     belongs_to :project, Nebula.Project
+    has_one :job, Nebula.Job
+
     field :ref, :string
     field :rev, :string
     field :slug, :string
