@@ -1,5 +1,6 @@
 job "simple-example" {
     type = "service"
+    datacenters = ["dc1"]
 
     update {
         stagger = "30s"

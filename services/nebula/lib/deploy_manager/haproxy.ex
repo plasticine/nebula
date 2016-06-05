@@ -1,5 +1,5 @@
-defmodule DeployManager.Haproxy do
-  alias DeployManager.Haproxy
+defmodule DeployScheduler.Haproxy do
+  alias DeployScheduler.Haproxy
   alias Nebula.Deploy
   alias Phoenix.View
 

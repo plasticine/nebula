@@ -1,4 +1,4 @@
-<h2>Show Deploy</h2>
+<h2>Deploy</h2>
 
 <hr />
 
@@ -16,15 +16,15 @@
       <td><%= @deploy.id %></td>
       <td><%= @deploy.slug %></td>
       <td><%= @deploy.state %></td>
-      <td><%= @deploy.ref %></td>
-      <td><%= @deploy.rev %></td>
+      <td><code><%= @deploy.ref %></code></td>
+      <td><code><%= @deploy.rev %></code></td>
       <td><%= link @deploy.project.name, to: project_path(@conn, :show, @deploy.project) %></td>
     </tr>
   </tbody>
 </table>
 
 <h3>Job</h3>
-<code>
+<code style="line-height: 11px;">
   <pre>
     <%= text_to_html @deploy.job.spec |> IO.inspect %>
   </pre>

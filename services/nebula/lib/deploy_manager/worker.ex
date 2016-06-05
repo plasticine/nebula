@@ -1,20 +1,22 @@
-defmodule DeployManager.Worker do
+defmodule DeployScheduler.Worker do
   use GenServer
   require Logger
-  alias Nebula.Deploy
-  alias Nebula.Repo
-  alias DeployManager.Haproxy
+  # alias Nebula.Deploy
+  # alias Nebula.Repo
+  # alias DeployScheduler.Haproxy
 
-  def start_link([]), do: GenServer.start_link(__MODULE__, [], [])
-  def init(state), do: {:ok, state}
+  ## GenServer initialization
+  def start_link([]) do
+    GenServer.start_link(__MODULE__, [])
+  end
 
-  def handle_call({:create, deploy}, _, state) do
-    Logger.info "handle_call create"
+  def init() do
+    {:ok, %{jobs: []}}
+  end
 
-    deploy = Repo.update!(Deploy.changeset(deploy, %{state: "creating"}))
-    {:ok, config} = Haproxy.regenerate!
-
-    {:reply, {:ok, deploy}, state}
-    # {:reply, {:error, reason}, state}
+  def handle_call({:register, job}, _, state) do
+    Logger.info "[DeployScheduler] Registering new Job for Scheduling"
+    next_state = Map.set(state, jobs: [job | state.jobs])
+    {:reply, {:ok, next_state}, next_state}
   end
 end

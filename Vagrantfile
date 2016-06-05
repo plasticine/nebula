@@ -29,17 +29,14 @@ sudo chmod a+w /etc/systemd/system/nomad.d
 sudo tee /etc/systemd/system/nomad.d/nomad.conf <<EOF
 enable_debug = true
 disable_update_check = true
-enable_syslog = true
-EOF
+enable_syslog = false
 
-sudo tee /etc/rsyslog.d/10-nomad.conf <<EOF
-daemon.* {
-  /var/log/nomad.log
-  stop
+client {
+  options = {
+    "consul.address" = "#{INFRA_SERVER_IP}:8500"
+  }
 }
 EOF
-
-sudo service rsyslog restart
 
 sudo tee /etc/systemd/system/nomad.service <<EOF
 [Unit]
@@ -51,7 +48,7 @@ After=network-online.target
 EnvironmentFile=/etc/network-environment
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=/usr/local/bin/nomad agent -dev -log-level=DEBUG -bind=#{INFRA_SERVER_IP} -data-dir=/opt/nomad/data -config=/etc/systemd/system/nomad.d/nomad.conf
+ExecStart=/usr/local/bin/nomad agent -dev -log-level=INFO -bind=#{INFRA_SERVER_IP} -data-dir=/opt/nomad/data -config=/etc/systemd/system/nomad.d/nomad.conf
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
@@ -73,13 +70,6 @@ curl -sSL https://releases.hashicorp.com/consul/#{CONSUL_VERSION}/consul_#{CONSU
 sudo mkdir -p /opt/consul
 sudo unzip -o consul_ui.zip -d /opt/consul/ui
 
-sudo tee /etc/rsyslog.d/10-consul.conf <<EOF
-daemon.* {
-  /var/log/consul.log
-  stop
-}
-EOF
-
 sudo tee /etc/systemd/system/consul.service <<EOF
 [Unit]
 Description=consul agent
@@ -90,7 +80,7 @@ After=network-online.target
 EnvironmentFile=/etc/network-environment
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=/usr/local/bin/consul agent -dev -log-level=DEBUG -bind=#{INFRA_SERVER_IP} -client=#{INFRA_SERVER_IP} -data-dir=/opt/consul/data -ui-dir=/opt/consul/ui -ui -syslog
+ExecStart=/usr/local/bin/consul agent -dev -log-level=INFO -bind=#{INFRA_SERVER_IP} -client=#{INFRA_SERVER_IP} -data-dir=/opt/consul/data -ui-dir=/opt/consul/ui -ui
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
@@ -101,7 +91,6 @@ EOF
 sudo chmod 0644 /etc/systemd/system/consul.service
 sudo systemctl daemon-reload
 sudo systemctl enable consul
-sudo service rsyslog restart
 SCRIPT
 
 Vagrant.configure(2) do |config|

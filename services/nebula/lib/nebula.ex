@@ -9,7 +9,7 @@ defmodule Nebula do
     children = [
       supervisor(Nebula.Endpoint, []),
       supervisor(Nebula.Repo, []),
-      supervisor(DeployManager, []),
+      supervisor(DeployScheduler, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

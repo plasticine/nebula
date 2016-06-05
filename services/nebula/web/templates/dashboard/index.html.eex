@@ -18,8 +18,8 @@
         <td><%= deploy.id %></td>
         <td><%= link deploy.slug, to: deploy_path(@conn, :show, deploy)  %></td>
         <td><%= link deploy.project.name, to: project_path(@conn, :show, deploy.project) %></td>
-        <td><%= deploy.ref %></td>
-        <td><%= deploy.rev %></td>
+        <td><code><%= deploy.ref %></code></td>
+        <td><code><%= deploy.rev %></code></td>
         <td><%= deploy.state %></td>
         <td><%= deploy.inserted_at %></td>
         <td><%= deploy.updated_at %></td>
