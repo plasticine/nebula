@@ -33,6 +33,7 @@ defmodule Nebula.Mixfile do
         :exsentry,
         :gettext,
         :graphql,
+        :httpoison,
         :logger,
         :phoenix,
         :phoenix_ecto,
@@ -58,6 +59,7 @@ defmodule Nebula.Mixfile do
       {:exsentry, "~> 0.3.0"},
       {:gettext, "~> 0.9"},
       {:graphql, "~> 0.3"},
+      {:httpoison, "~> 0.8.0"},
       {:phoenix, "~> 1.1.4"},
       {:phoenix_ecto, "~> 2.0"},
       {:phoenix_html, "~> 2.4"},
@@ -66,6 +68,7 @@ defmodule Nebula.Mixfile do
       {:plug_graphql, "~> 0.3"},
       {:poolboy, "~> 1.5.1"},
       {:postgrex, ">= 0.0.0"},
+      {:temp, "~> 0.4"},
     ]
   end
 

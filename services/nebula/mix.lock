@@ -18,6 +18,7 @@
   "graphql": {:hex, :graphql, "0.3.0", "4894f81e0010ff04a0349845f63a19f7f8cce754273bb06ecfe00b30dc685a86", [:mix], []},
   "hackney": {:hex, :hackney, "1.6.0", "8d1e9440c9edf23bf5e5e2fe0c71de03eb265103b72901337394c840eec679ac", [:rebar3], [{:ssl_verify_fun, "1.1.0", [hex: :ssl_verify_fun, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:idna, "1.2.0", [hex: :idna, optional: false]}, {:certifi, "0.4.0", [hex: :certifi, optional: false]}]},
   "haikunator": {:hex, :haikunator, "1.0.1"},
+  "httpoison": {:hex, :httpoison, "0.8.3", "b675a3fdc839a0b8d7a285c6b3747d6d596ae70b6ccb762233a990d7289ccae4", [:mix], [{:hackney, "~> 1.6.0", [hex: :hackney, optional: false]}]},
   "httpotion": {:hex, :httpotion, "2.2.2", "f1ce1a06f6a12ee195d9b2c458c3239efc8046f2b8247e708606cad5a3f2c7d8", [:mix], [{:ibrowse, "~> 4.2", [hex: :ibrowse, optional: false]}]},
   "ibrowse": {:hex, :ibrowse, "4.2.2", "b32b5bafcc77b7277eff030ed32e1acc3f610c64e9f6aea19822abcadf681b4b", [:rebar3], []},
   "idna": {:hex, :idna, "1.2.0", "ac62ee99da068f43c50dc69acf700e03a62a348360126260e87f2b54eced86b2", [:rebar3], []},
@@ -37,6 +38,7 @@
   "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
   "redo": {:hex, :redo, "2.0.1", "b895c67f4c1266db8fecca0079fbab65bdfaf7c2f5618c8edbdbf4800e7e248b", [:rebar], []},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0", "edee20847c42e379bf91261db474ffbe373f8acb56e9079acb6038d4e0bf414f", [:rebar, :make], []},
+  "temp": {:hex, :temp, "0.4.0", "8b3fe66b49d373f91d17a15167e89907ae22b4ac7addf9f0efd585711e9ea715", [:mix], []},
   "timex": {:hex, :timex, "2.1.4", "17100f0d47473fe05423084039b8f3de9d63617b66d8db676e24a4221216db61", [:mix], [{:tzdata, "~> 0.1.8 or ~> 0.5", [hex: :tzdata, optional: false]}, {:gettext, "~> 0.10", [hex: :gettext, optional: false]}, {:combine, "~> 0.7", [hex: :combine, optional: false]}]},
   "tzdata": {:hex, :tzdata, "0.5.7", "10a4176023c2b294f1bbb98594a646ef25d658ca507b2da20a5952072d6080c4", [:mix], [{:hackney, "~> 1.0", [hex: :hackney, optional: false]}]},
   "uuid": {:hex, :uuid, "1.1.3", "06ca38801a1a95b751701ca40716bb97ddf76dfe7e26da0eec7dba636740d57a", [:mix], []}}

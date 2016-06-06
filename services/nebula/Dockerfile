@@ -9,6 +9,12 @@ RUN apt-get -qq update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN cd /tmp \
+  && curl -sSL https://releases.hashicorp.com/nomad/0.3.2/nomad_0.3.2_linux_amd64.zip -o nomad.zip \
+  && unzip nomad.zip -d /usr/local/bin/ \
+  && chmod +x /usr/local/bin/nomad \
+  && rm -rf /tmp/nomad.zip
+
 ENV ROOT /container/app
 RUN mkdir -p $ROOT
 

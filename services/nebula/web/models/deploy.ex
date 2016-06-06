@@ -1,7 +1,7 @@
 defmodule Nebula.Deploy do
   use Nebula.Web, :model
 
-  schema "deploy" do
+  schema "deploys" do
     belongs_to :project, Nebula.Project
     has_one :job, Nebula.Job
 

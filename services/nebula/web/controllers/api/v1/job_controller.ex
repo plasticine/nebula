@@ -2,7 +2,6 @@ defmodule Nebula.Api.V1.JobController do
   use Nebula.Web, :controller
   alias Nebula.Job
   alias Nebula.Deploy
-  alias DeployScheduler
 
   plug :scrub_params, "job" when action in [:create]
   plug :scrub_params, "deploy_id" when action in [:create]
@@ -14,7 +13,7 @@ defmodule Nebula.Api.V1.JobController do
 
     case Repo.insert(changeset) do
       {:ok, job} ->
-        DeployScheduler.register(job)
+        Scheduler.register(job)
         conn
         |> put_status(:created)
         |> put_resp_header("location", api_v1_deploy_job_path(conn, :show, job))

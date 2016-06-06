@@ -32,7 +32,7 @@ defmodule Nebula.Endpoint do
 
   plug Plug.Session,
     store: :cookie,
-    key: "_orchestrator_key",
+    key: "_nebula_key",
     signing_salt: "WMfWEw/C"
 
   plug Nebula.Router
