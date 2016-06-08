@@ -7,13 +7,13 @@ defmodule Scheduler.Nomad.Jobs do
   Lists all the jobs registered with Nomad.
   """
   def list do
-    get!(@endpoint) |> IO.inspect
+    get!(@endpoint)
   end
 
   @doc """
   Register a new job.
   """
-  def create(params) do
-    raise "Not implemeted"
+  def create(job) do
+    post!(@endpoint, job)
   end
 end

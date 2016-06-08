@@ -7,7 +7,7 @@ defmodule Scheduler.Nomad.HTTP do
 
       @spec process_url(binary) :: binary
       def process_url(endpoint) do
-        Path.join([Scheduler.Nomad.node_address, @api_version, endpoint]) |> IO.inspect
+        Path.join([Scheduler.Nomad.node_address, @api_version, endpoint])
       end
 
       @doc """

@@ -7,7 +7,7 @@ defmodule Scheduler.Nomad.Job do
   Query a single job for its specification and status.
   """
   def get(id) do
-    raise "Not implemeted"
+    get!(@endpoint <> id)
   end
 
   @doc """
@@ -21,6 +21,6 @@ defmodule Scheduler.Nomad.Job do
   Register a new job.
   """
   def delete(id) do
-    raise "Not implemeted"
+    delete!(@endpoint <> id)
   end
 end

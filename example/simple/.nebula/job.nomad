@@ -14,6 +14,10 @@ job "simple-example" {
             driver = "docker"
             config {
                 image = "nginx:1.10.0-alpine"
+                port_map {
+                    http = 80
+                    https = 443
+                }
             }
             service {
                 port = "http"
@@ -25,13 +29,12 @@ job "simple-example" {
                 }
             }
             resources {
-                cpu = 500
+                cpu = 256
                 memory = 128
                 network {
                     mbits = 100
-                    port "http" {
-                        static = 80
-                    }
+                    port "http" {}
+                    port "https" {}
                 }
             }
         }

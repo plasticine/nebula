@@ -18,11 +18,13 @@ defmodule Scheduler.Queue do
 
     # TODO Add error handling here...
     {:ok, output} = NomadBinary.validate!(pid)
-
-    # TODO Add error handling here...
     {:ok, json} = NomadBinary.to_json!(pid)
 
-    Scheduler.Nomad.Jobs.list
+    # Extract Job ID/name from json
+
+    # Create Job, hold onto Evaluation ID
+    Scheduler.Nomad.Jobs.create(json)
+
 
     next_state = Map.put(state, :jobs, [job | state.jobs])
     num_jobs = Enum.count(Map.get(next_state, :jobs))

@@ -2,7 +2,6 @@ defmodule Nebula.Api.V1.DeployController do
   use Nebula.Web, :controller
   alias Nebula.Deploy
   alias Sluginator
-  alias DeployManager
 
   plug :scrub_params, "deploy" when action in [:create, :update]
 
@@ -16,7 +15,6 @@ defmodule Nebula.Api.V1.DeployController do
 
     case Repo.insert(changeset) do
       {:ok, deploy} ->
-        DeployManager.create(deploy)
         conn
         |> put_status(:created)
         |> put_resp_header("location", api_v1_deploy_path(conn, :show, deploy))
