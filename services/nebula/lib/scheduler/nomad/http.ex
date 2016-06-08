@@ -5,23 +5,16 @@ defmodule Scheduler.Nomad.HTTP do
 
       @api_version "v1"
 
-      defp get(endpoint, body) do
-        make_request(:get, endpoint, body)
+      @spec process_url(binary) :: binary
+      def process_url(endpoint) do
+        Path.join([Scheduler.Nomad.node_address, @api_version, endpoint]) |> IO.inspect
       end
 
-      defp post(endpoint, body) do
-        make_request(:post, endpoint, body)
-      end
-
-      defp put(endpoint, body) do
-        make_request(:put, endpoint, body)
-      end
-
-      defp make_request(method, endpoint, body \\ [], headers \\ [], options \\ []) do
-        Path.join([Scheduler.Nomad.node_address, @api_version, endpoint])
-        |> IO.inspect
-
-        # {:ok, response} = request(method, endpoint, rb, rh, options)
+      @doc """
+      Converts the binary keys in our response to atoms.
+      """
+      def process_response_body(body) do
+        Poison.decode! body
       end
     end
   end

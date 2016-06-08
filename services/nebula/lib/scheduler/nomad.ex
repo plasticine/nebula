@@ -12,6 +12,6 @@ defmodule Scheduler.Nomad do
   end
 
   def node_address do
-    "http://172.20.10.10"
+    "http://nomad:4646"
   end
 end

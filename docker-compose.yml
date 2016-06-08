@@ -47,8 +47,8 @@ services:
     links:
       - postgres
     extra_hosts:
-     - nomad:172.20.20.10
-     - consul:172.20.20.10
+     - nomad:172.20.10.10
+     - consul:172.20.10.10
     environment:
       MIX_ENV: dev
     volumes:

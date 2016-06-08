@@ -7,7 +7,7 @@ defmodule Scheduler.Nomad.Jobs do
   Lists all the jobs registered with Nomad.
   """
   def list do
-    get(@endpoint, "")
+    get!(@endpoint) |> IO.inspect
   end
 
   @doc """
