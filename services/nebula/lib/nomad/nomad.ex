@@ -1,4 +1,4 @@
-defmodule Scheduler.Nomad do
+defmodule Nomad do
   @moduledoc """
   A client for consuming the Nomad HTTP API.
   """

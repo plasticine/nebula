@@ -13,7 +13,7 @@ defmodule Nebula.Api.V1.JobController do
 
     case Repo.insert(changeset) do
       {:ok, job} ->
-        Scheduler.register(job)
+        Nebula.Scheduler.Job.create(job)
         conn
         |> put_status(:created)
         |> put_resp_header("location", api_v1_deploy_job_path(conn, :show, job))

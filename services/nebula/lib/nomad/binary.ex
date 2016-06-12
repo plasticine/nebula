@@ -1,4 +1,4 @@
-defmodule Scheduler.NomadBinary do
+defmodule Nomad.Binary do
   @doc """
   Module defining functionality for interacting with the Nomad binary.
   """
@@ -25,16 +25,16 @@ defmodule Scheduler.NomadBinary do
   def validate!(pid) do
     case GenServer.call(pid, :validate) do
       {:ok, output}    -> {:ok, "Job validation successful"}
-      {:error, output} -> {:error, "The Job is invalid: " <> output}
+      {:error, output} -> {:error, output}
     end
   end
 
   @doc """
   Convert a HCL Job spec to JSON.
   """
-  @spec to_json!(pid) :: {:ok, String.t} | {:error, any}
-  def to_json!(pid) do
-    case GenServer.call(pid, :to_json) do
+  @spec parse!(pid) :: {:ok, %{String.t => any}} | {:error, any}
+  def parse!(pid) do
+    case GenServer.call(pid, :parse) do
       {:ok, json}      -> {:ok, json}
       {:error, output} -> {:error, output}
     end
@@ -47,9 +47,9 @@ defmodule Scheduler.NomadBinary do
     end
   end
 
-  def handle_call(:to_json, _, state) do
+  def handle_call(:parse, _, state) do
     case System.cmd state.nomad_executable, ["run", "-output", state.spec_file] do
-      {output, 0} -> {:reply, {:ok, output}, state}
+      {output, 0} -> {:reply, {:ok, Poison.Parser.parse!(output)}, state}
       {output, _} -> {:reply, {:error, output}, state}
     end
   end
