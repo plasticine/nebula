@@ -17,8 +17,6 @@ defmodule Nebula.Scheduler.Job do
   @doc """
   Register a new job to be scheduled.
   Saves the Job is a queue for later use.
-
-  TODO: Doing all the things here and will plit up later...
   """
   def handle_call(:work, _, job) do
     {:ok, pid} = GenServer.start_link(Nomad.Binary, job.spec)
@@ -27,14 +25,10 @@ defmodule Nebula.Scheduler.Job do
     {:ok, output} = Nomad.Binary.validate!(pid)
     {:ok, spec} = Nomad.Binary.parse!(pid)
 
-    # Extract Job ID/name from spec
     job_id = get_in(spec, ["Job", "ID"])
-
-    # Create Job, hold onto Evaluation ID
     nomad_job = Nomad.API.Jobs.create(spec)
-    nomad_eval = Nomad.API.Evaluation.allocations(nomad_job.eval_id) |> IO.inspect
+    nomad_eval = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
 
-    IO.inspect("==============================================================")
     {:reply, job, job}
   end
 
