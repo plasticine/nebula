@@ -34,7 +34,7 @@ defmodule ProjectRepo do
   end
 
   defp init_repo(path) do
-    System.cmd(git, ["init", "--bare", "--template=/container/git/templates/repo", path])
+    System.cmd(git, ["init", "--bare", "--template=/etc/git/templates/repo", path])
   end
 
   defp set_hook_permissions(root) do

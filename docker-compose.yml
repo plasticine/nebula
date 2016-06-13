@@ -6,11 +6,13 @@ services:
     ports:
       - "5000:443"
       - "1936:1936"
+    extra_hosts:
+     - consul:172.20.10.10
     links:
       - web
       - git
     volumes_from:
-      - haproxy_config
+      - certificates
 
   web:
     build: "./services/web"
@@ -20,10 +22,6 @@ services:
     expose:
       - "80"
       - "443"
-    volumes:
-      - ./services/web/conf/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./services/web/conf/proxy.conf:/etc/nginx/proxy.conf:ro
-      - ./services/web/conf/sites:/etc/nginx/sites:ro
     volumes_from:
       - certificates
 
@@ -32,10 +30,7 @@ services:
     restart: always
     expose:
       - "6000"
-    links:
-      - nebula
     volumes_from:
-      - git_data
       - certificates
 
   nebula:
@@ -54,8 +49,7 @@ services:
     volumes:
       - ./services/nebula:/container/app
     volumes_from:
-      - git_data
-      - haproxy_config
+      - git
 
   postgres:
     build: "./services/postgres"
@@ -75,21 +69,10 @@ services:
     volumes:
       - ./conf/ssl/certificate.crt:/etc/ssl/certificate.crt:ro
       - ./conf/ssl/certificate.key:/etc/ssl/certificate.key:ro
-
-  git_data:
-    build: "./services/git_data"
-    volumes:
-      - "./data/git:/container/git/data"
-      - "./services/git_data/templates:/container/git/templates"
+      - ./conf/ssl/certificate.pem:/etc/ssl/certificate.pem:ro
 
   postgres_data:
     image: gliderlabs/alpine:3.3
     command: "true"
     volumes:
       - "/container/postgresql/data"
-
-  haproxy_config:
-    image: gliderlabs/alpine:3.3
-    command: "true"
-    volumes:
-      - "./services/haproxy/haproxy.cfg:/container/haproxy/conf/haproxy.cfg"

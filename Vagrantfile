@@ -32,6 +32,7 @@ disable_update_check = true
 enable_syslog = false
 
 client {
+  enabled = true
   options = {
     "consul.address" = "#{INFRA_SERVER_IP}:8500"
   }
@@ -48,7 +49,7 @@ After=network-online.target
 EnvironmentFile=/etc/network-environment
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=/usr/local/bin/nomad agent -dev -log-level=INFO -bind=#{INFRA_SERVER_IP} -data-dir=/opt/nomad/data -config=/etc/systemd/system/nomad.d/nomad.conf
+ExecStart=/usr/local/bin/nomad agent -dev -network-interface=eth1 -log-level=INFO -bind=#{INFRA_SERVER_IP} -data-dir=/opt/nomad/data -config=/etc/systemd/system/nomad.d/nomad.conf
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
