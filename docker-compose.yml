@@ -19,17 +19,14 @@ services:
     restart: always
     links:
       - nebula
-    expose:
-      - "80"
-      - "443"
     volumes_from:
       - certificates
 
   git:
     build: "./services/git"
     restart: always
-    expose:
-      - "6000"
+    volumes:
+      - ./services/git/root/etc/git:/etc/git
     volumes_from:
       - certificates
 
