@@ -41,6 +41,7 @@ defmodule Nebula.Mixfile do
         :phoenix_pubsub_redis,
         :plug_graphql,
         :postgrex,
+        :gproc,
       ]
     ]
   end
@@ -69,6 +70,7 @@ defmodule Nebula.Mixfile do
       {:poolboy, "~> 1.5.1"},
       {:postgrex, ">= 0.0.0"},
       {:temp, "~> 0.4"},
+      {:gproc, "~> 0.5.0"},
     ]
   end
 

@@ -1,5 +1,5 @@
-defmodule Scheduler.Nomad.Job do
-  use Scheduler.Nomad.HTTP
+defmodule Nomad.API.Job do
+  use Nomad.API
 
   @endpoint "job"
 

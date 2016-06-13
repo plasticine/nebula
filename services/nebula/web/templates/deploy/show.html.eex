@@ -23,9 +23,24 @@
   </tbody>
 </table>
 
-<h3>Job</h3>
+<h3>Job Specification</h3>
 <code style="line-height: 11px;">
   <pre>
-    <%= text_to_html @deploy.job.spec |> IO.inspect %>
+    <%= text_to_html @deploy.job.spec %>
   </pre>
 </code>
+
+<h3>Job Status</h3>
+
+TODO
+
+<ul>
+  <li>
+    list allocations:
+    <ul>
+      <li>${job_id}-${task_group}-${task}</li>
+      <li>status</li>
+      <li>events?</li>
+    </ul>
+  </li>
+</ul>

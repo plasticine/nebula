@@ -2,13 +2,14 @@
   "builders": [
     {
       "name": "base",
-      "type": "amazon-ebs",
-      "region": "ap-southeast-2",
-      "source_ami": "ami-a5416cc6",
-      "instance_type": "t2.micro",
+      "type": "googlecompute",
+      "zone": "us-central1-a",
+      "source_image": "ubuntu-1604-xenial-v20160610",
+      "project_id": "{{user `googlecompute_project_id`}}",
+      "account_file": "{{user `googlecompute_project_id`}}.json",
       "ssh_username": "ubuntu",
-      "ami_name": "ap-southeast-2-ubuntu-base-{{isotime | clean_ami_name}}",
-      "ami_description": "A Base Docker image."
+      "image_name": "nebula-ubuntu-base-{{timestamp}}",
+      "image_description": "A Base Docker image."
     }
   ],
   "provisioners": [
@@ -30,12 +31,6 @@
         "{{template_dir}}/scripts/network-environment.bash",
         "{{template_dir}}/scripts/docker.bash"
       ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "tfvars",
-      "output": "{{template_dir}}/amis.json"
     }
   ]
 }

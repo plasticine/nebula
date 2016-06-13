@@ -15,6 +15,7 @@
   "fs": {:hex, :fs, "0.9.2", "ed17036c26c3f70ac49781ed9220a50c36775c6ca2cf8182d123b6566e49ec59", [:rebar], []},
   "fuzzyurl": {:hex, :fuzzyurl, "0.8.1", "a776cac7e58572357b9d259fb297e11c314568fc07498442751b7aef2ad35560", [:mix], []},
   "gettext": {:hex, :gettext, "0.11.0", "80c1dd42d270482418fa158ec5ba073d2980e3718bacad86f3d4ad71d5667679", [:mix], []},
+  "gproc": {:hex, :gproc, "0.5.0", "2df2d886f8f8a7b81a4b04aa17972b5965bbc5bf0100ea6d8e8ac6a0e7389afe", [:rebar], []},
   "graphql": {:hex, :graphql, "0.3.0", "4894f81e0010ff04a0349845f63a19f7f8cce754273bb06ecfe00b30dc685a86", [:mix], []},
   "hackney": {:hex, :hackney, "1.6.0", "8d1e9440c9edf23bf5e5e2fe0c71de03eb265103b72901337394c840eec679ac", [:rebar3], [{:ssl_verify_fun, "1.1.0", [hex: :ssl_verify_fun, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:idna, "1.2.0", [hex: :idna, optional: false]}, {:certifi, "0.4.0", [hex: :certifi, optional: false]}]},
   "haikunator": {:hex, :haikunator, "1.0.1"},

@@ -11,4 +11,4 @@ resources: images
 	$(MAKE) -C resources
 
 destroy:
-		$(MAKE) -C resources destroy
+	$(MAKE) -C resources destroy
