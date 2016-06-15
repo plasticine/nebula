@@ -6,7 +6,7 @@
       "zone": "us-central1-a",
       "source_image": "ubuntu-1604-xenial-v20160610",
       "project_id": "{{user `googlecompute_project_id`}}",
-      "account_file": "{{user `googlecompute_project_id`}}.json",
+      "account_file": "{{user `config_path`}}/account.json",
       "ssh_username": "ubuntu",
       "image_name": "nebula-ubuntu-base-{{timestamp}}",
       "image_description": "A Base Docker image."
