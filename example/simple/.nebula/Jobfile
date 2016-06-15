@@ -8,9 +8,9 @@ job "simple-example" {
     }
 
     group "web" {
-        count = 1
+        count = 3
 
-        task "frontend" {
+        task "http-in" {
             driver = "docker"
             config {
                 image = "nginx:1.10.0-alpine"
@@ -21,7 +21,6 @@ job "simple-example" {
             }
             service {
                 port = "http"
-                tags = ["http-in"]
                 check {
                     type = "http"
                     path = "/"

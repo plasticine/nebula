@@ -34,8 +34,8 @@ frontend http-in
 
   default_backend nebula-web
   use_backend nebula-git if is_git
-
-  {{range $i,$a:=services}}{{$name:=.Name}}{{$slug_key_path:=printf "deploy/%s/slug" $name}}{{range .Tags}}{{if eq . "http-in"}}{{$slug:=key $slug_key_path}}use_backend {{$name}} if { hdr_beg(host) -i {{$slug}}. }{{end}}{{end}}{{end}}
+  {{range $backend, $pairs := tree "haproxy/backend" | byKey}}{{$host := key (printf "haproxy/backend/%s/host" $backend)}}
+  use_backend {{$host}} if { hdr_beg(host) -i {{$host}}. }{{end}}
 
 backend nebula-web
   balance roundrobin
@@ -49,13 +49,14 @@ backend nebula-git
   option forwardfor
   server nebula-git git:80 check
 
-{{range $i,$a:=services}}{{$name:=.Name}}{{range .Tags}}{{if eq . "http-in"}}backend {{$name}}
+{{range $backend, $pairs := tree "haproxy/backend" | byKey}}{{$host := key (printf "haproxy/backend/%s/host" $backend)}}
+backend {{$host}}
   balance roundrobin
   option httpclose
   option forwardfor
   http-request set-header X-Forwarded-Port %[dst_port]
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
   option httpchk HEAD / HTTP/1.1\r\nHost:localhost
-  {{range $c,$d:=service $a.Name}}
+  {{range service $backend}}
   server {{.Node}} {{.Address}}:{{.Port}} check{{end}}
-{{end}}{{end}}{{end}}
+{{end}}

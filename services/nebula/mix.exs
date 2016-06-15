@@ -29,9 +29,11 @@ defmodule Nebula.Mixfile do
     [
       mod: {Nebula, []},
       applications: [
+        :consul,
         :cowboy,
         :exsentry,
         :gettext,
+        :gproc,
         :graphql,
         :httpoison,
         :logger,
@@ -41,7 +43,6 @@ defmodule Nebula.Mixfile do
         :phoenix_pubsub_redis,
         :plug_graphql,
         :postgrex,
-        :gproc,
       ]
     ]
   end
@@ -55,12 +56,14 @@ defmodule Nebula.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:consul, "~> 1.0.0", git: "https://github.com/plasticine/consul-ex.git", branch: "upgrade-deps"},
       {:cowboy, "~> 1.0"},
       {:excoveralls, "~> 0.5", only: [:test, :dev]},
       {:exsentry, "~> 0.3.0"},
       {:gettext, "~> 0.9"},
+      {:gproc, "~> 0.5.0"},
       {:graphql, "~> 0.3"},
-      {:httpoison, "~> 0.8.0"},
+      {:httpoison, "~> 0.8.3"},
       {:phoenix, "~> 1.1.4"},
       {:phoenix_ecto, "~> 2.0"},
       {:phoenix_html, "~> 2.4"},
@@ -70,7 +73,6 @@ defmodule Nebula.Mixfile do
       {:poolboy, "~> 1.5.1"},
       {:postgrex, ">= 0.0.0"},
       {:temp, "~> 0.4"},
-      {:gproc, "~> 0.5.0"},
     ]
   end
 

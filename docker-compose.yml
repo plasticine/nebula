@@ -11,6 +11,8 @@ services:
     links:
       - web
       - git
+    volumes:
+      - ./services/haproxy/root/etc/consul-template/templates:/etc/consul-template/templates
     volumes_from:
       - certificates
 
@@ -26,7 +28,7 @@ services:
     build: "./services/git"
     restart: always
     volumes:
-      - ./services/git/root/etc/git:/etc/git
+      - ./services/git/root/etc/git/hooks:/etc/git/hooks
     volumes_from:
       - certificates
 

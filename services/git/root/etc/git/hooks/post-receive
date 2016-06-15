@@ -68,17 +68,14 @@ while read oldrev newrev refspec; do
   echo "===> Registering Job for Deployment"
   # Post the nomad job to the deploy endpoint
   if [[ -f .nebula/Jobfile ]]; then
-    job="$(cat .nebula/Jobfile | python -c 'import json,sys; print json.dumps(sys.stdin.read())')"
-    body="{\"job\": {\"spec\": $job}}"
+    cat .nebula/Jobfile
 
-    echo $body
-
-    curl \
+    jobfile="$(cat .nebula/Jobfile | python -c 'import json,sys; print json.dumps(sys.stdin.read())')"
+    job="$(curl \
       -sX "POST" \
       "${NEBULA_URL}/api/v1/deploy/${deploy_id}/job" \
       -H "Content-Type: application/json; charset=utf-8" \
-      -d "$body"
-
+      -d "{\"job\": {\"spec\": $jobfile}}")"
   else
     echo "FATAL: job file not found."
     exit 1
