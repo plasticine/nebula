@@ -1,10 +1,10 @@
 SHELL = /bin/bash -o pipefail
 
 BASE_FILES   = $(shell find base ! -name 'amis.json' ! -name '.DS_Store')
-NAT_FILES    = $(shell find nat ! -name 'amis.json' ! -name '.DS_Store')
 CONSUL_FILES = $(shell find consul ! -name 'amis.json' ! -name '.DS_Store')
-NOMAD_FILES  = $(shell find nomad ! -name 'amis.json' ! -name '.DS_Store')
-NODE_FILES   = $(shell find node ! -name 'amis.json' ! -name '.DS_Store')
+# NAT_FILES    = $(shell find nat ! -name 'amis.json' ! -name '.DS_Store')
+# NOMAD_FILES  = $(shell find nomad ! -name 'amis.json' ! -name '.DS_Store')
+# NODE_FILES   = $(shell find node ! -name 'amis.json' ! -name '.DS_Store')
 
 NUMPROCS:=$(shell sysctl -n hw.ncpu)
 
@@ -18,11 +18,11 @@ endef
 
 all:
 	make -j$(NUMPROCS) \
-		base/amis.json \
-		nat/amis.json \
-		consul/amis.json \
-		nomad/amis.json \
-		node/amis.json
+		base/build.json \
+		consul/build.json
+		# nat/amis.json \
+		# nomad/amis.json \
+		# node/amis.json
 
 clean:
 	-rm -rf log/*.log
@@ -32,8 +32,8 @@ base/build.json: $(BASE_FILES)
 	$(call build-image,base)
 
 .DELETE_ON_ERROR:
-consul/amis.json: $(CONSUL_FILES) base/amis.json
-	$(call build-image,consul,--var-file=base/amis.json)
+consul/build.json: $(CONSUL_FILES) base/build.json
+	$(call build-image,consul,--var-file=base/build.json)
 
 # .DELETE_ON_ERROR:
 # nomad/amis.json: $(NOMAD_FILES) base/amis.json
