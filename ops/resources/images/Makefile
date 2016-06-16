@@ -2,7 +2,6 @@ SHELL = /bin/bash -o pipefail
 NUMPROCS:=$(shell sysctl -n hw.ncpu)
 
 BASE_FILES   = $(shell find base ! -name 'image.json' ! -name '.DS_Store')
-CONSUL_FILES = $(shell find consul ! -name 'image.json' ! -name '.DS_Store')
 
 .PHONY: all clean
 
@@ -18,13 +17,8 @@ endef
 
 all:
 	make -j$(NUMPROCS) \
-		base/image.json \
-		consul/image.json
+		base/image.json
 
 .DELETE_ON_ERROR:
 base/image.json: $(BASE_FILES)
 	$(call build-image,base)
-
-.DELETE_ON_ERROR:
-consul/image.json: $(CONSUL_FILES) base/image.json
-	$(call build-image,consul,--var-file=base/image.json)

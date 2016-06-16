@@ -29,7 +29,9 @@
       "type": "shell",
       "scripts": [
         "{{template_dir}}/scripts/network-environment.bash",
-        "{{template_dir}}/scripts/docker.bash"
+        "{{template_dir}}/scripts/docker.bash",
+        "{{template_dir}}/scripts/dnsmasq.bash",
+        "{{template_dir}}/scripts/consul.bash"
       ]
     }
   ]
