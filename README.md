@@ -1,5 +1,9 @@
 # Nebula
 
+:warning: **Just hacking, don't expect to find anything useful here...** :warning:
+
+***
+
 ### Install development toolchain
 
 - `brew update && brew install vagrant nomad consul`
