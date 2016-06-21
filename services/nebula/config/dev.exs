@@ -33,6 +33,8 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
+config :consul, host: "consul", port: 8500
+
 # Configure your database
 config :nebula, Nebula.Repo,
   adapter: Ecto.Adapters.Postgres,

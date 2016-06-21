@@ -21,10 +21,10 @@ defmodule Nebula.Scheduler do
     Supervisor.count_children(:scheduler)
   end
 
-  defp register_missing_jobs do
-    Logger.info "[scheduler] Checking for missing job processes..."
-    Nebula.Repo.all(Nebula.Job)
-    |> Enum.map(fn job -> register_job(job.id) end)
-    |> IO.inspect
-  end
+  # defp register_missing_jobs do
+  #   Logger.info "[scheduler] Checking for missing job processes..."
+  #   Nebula.Repo.all(Nebula.Job)
+  #   |> Enum.map(fn job -> register_job(job.id) end)
+  #   |> IO.inspect
+  # end
 end

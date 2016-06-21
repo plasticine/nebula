@@ -1,0 +1,62 @@
+global
+  user haproxy
+  group haproxy
+  log 127.0.0.1 local0
+  log 127.0.0.1 local1 notice
+  maxconn 4096
+  tune.ssl.default-dh-param 2048
+
+defaults
+  mode http
+  log global
+  fullconn 1000
+  timeout connect         5s
+  timeout client          25s
+  timeout server          25s
+  timeout tunnel          3600s
+  timeout http-keep-alive 1s
+  timeout http-request    15s
+
+listen stats
+  mode http
+  bind *:1936 ssl crt /etc/ssl/certificate.pem
+  stats enable
+  stats hide-version
+  stats refresh 5s
+  stats uri /
+
+frontend http-in
+  mode http
+  bind *:80
+  bind *:443 ssl crt /etc/ssl/certificate.pem
+  redirect scheme https if !{ ssl_fc }
+  acl is_git hdr_beg(host) -i git.
+
+  default_backend nebula-web
+  use_backend nebula-git if is_git
+  {{range $backend, $pairs := tree "haproxy/backend" | byKey}}{{$host := key (printf "haproxy/backend/%s/host" $backend)}}
+  use_backend {{$host}} if { hdr_beg(host) -i {{$host}}. }{{end}}
+
+backend nebula-web
+  balance roundrobin
+  option httpclose
+  option forwardfor
+  server nebula-web web:80 check
+
+backend nebula-git
+  balance roundrobin
+  option httpclose
+  option forwardfor
+  server nebula-git git:80 check
+
+{{range $backend, $pairs := tree "haproxy/backend" | byKey}}{{$host := key (printf "haproxy/backend/%s/host" $backend)}}
+backend {{$host}}
+  balance roundrobin
+  option httpclose
+  option forwardfor
+  http-request set-header X-Forwarded-Port %[dst_port]
+  http-request add-header X-Forwarded-Proto https if { ssl_fc }
+  option httpchk HEAD / HTTP/1.1\r\nHost:localhost
+  {{range service $backend}}
+  server {{.Node}} {{.Address}}:{{.Port}} check{{end}}
+{{end}}

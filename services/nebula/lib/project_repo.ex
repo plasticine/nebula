@@ -13,16 +13,17 @@ defmodule ProjectRepo do
   end
 
   def delete!(project) do
-    repo_path(project.slug) |> File.rm_rf!
+    File.rm_rf!(repo_path(project.slug))
   end
 
   defp bootstrap_repo(project) do
-    repo_root = repo_path(project.slug)
+    root = repo_path(project.slug)
 
-    case init_repo(repo_root) do
+    case init_repo(root) do
       {output, 0} ->
-        set_hook_permissions(repo_root)
-        create_project_config(repo_root, project)
+        link_hooks(root)
+        set_hook_permissions(root)
+        create_project_config(root, project)
         {output, 0}
       {error, exit_code} ->
         {error, exit_code}
@@ -30,11 +31,15 @@ defmodule ProjectRepo do
   end
 
   defp repo_path(slug) do
-    "/container/git/data/" <> slug <> ".git"
+    "/data/git/" <> slug <> ".git"
   end
 
-  defp init_repo(path) do
-    System.cmd(git, ["init", "--bare", "--template=/container/git/templates/repo", path])
+  defp init_repo(root) do
+    System.cmd(git, ["init", "--bare", root])
+  end
+
+  defp link_hooks(root) do
+    File.ln_s("/etc/git/hooks/post-receive", Path.join([root, "hooks", "post-receive"]))
   end
 
   defp set_hook_permissions(root) do
@@ -42,7 +47,7 @@ defmodule ProjectRepo do
   end
 
   defp create_project_config(root, project) do
-    File.write!(Path.join(root, "nebula_config"), Enum.join(["NEBULA_PROJECT_ID", project.id], "="))
+    File.write!(Path.join(root, "nebula_config"), Enum.join(["NEBULA_PROJECT_ID", project.id], "=") <> "\n")
   end
 
   defp git do

@@ -1,47 +1,24 @@
-variable "private_key_path" {
-  description = "Path to the private key you wish to use to provision your infrastructure."
-  type = "string"
-  default = "/Users/justin/Projects/plasticine/infrastructure/infra"
+variable "account_file_path" {
+  description = "Path to the JSON file used to describe your account credentials"
+  default = "../config/account.json"
 }
 
-variable "public_key_path" {
-  description = "Path to the public key you wish to use to provision your infrastructure."
-  type = "string"
-  default = "~/.ssh/infrastructure_hacking.pub"
+variable "project_name" {
+  description = "The ID of the Google Cloud project"
 }
 
 variable "region" {
-  description = "AWS region to host your network."
-  default = "ap-southeast-2"
+  default = "us-central1"
 }
 
-variable "vpc_cidr" {
-  description = "CIDR for VPC"
-  default = "10.128.0.0/16"
+variable "region_zone" {
+  default = "us-central1-a"
 }
 
-variable "public_subnet_cidr" {
-  description = "CIDR for public subnet"
-  default = "10.128.0.0/24"
-}
-
-variable "private_subnet_cidr" {
-  description = "CIDR for private subnet"
-  default = "10.128.1.0/24"
-}
-
-variable "packer-ap-southeast-2-base" {
+variable "base_image_name" {
   description = "..."
 }
 
-variable "packer-ap-southeast-2-nat" {
-  description = "..."
-}
-
-variable "packer-ap-southeast-2-consul" {
-  description = "..."
-}
-
-variable "packer-ap-southeast-2-nomad" {
+variable "consul_image_name" {
   description = "..."
 }

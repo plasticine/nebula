@@ -29,6 +29,7 @@ defmodule Nomad.Model.Allocation do
   defp task_states(map) do
     map
     |> Map.get("TaskStates", %{})
+    |> Enum.reject(&is_nil/1)
     |> Enum.map(fn({k,v}) -> {k, TaskState.from_map(v)} end)
   end
 end

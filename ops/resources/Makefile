@@ -1,8 +1,11 @@
 SHELL = /bin/bash -o pipefail
 
-.PHONY: all get destroy
+.PHONY: all images get destroy
 
-all: plan apply
+all: images plan apply
+
+images:
+	$(MAKE) -C images
 
 get:
 	terraform get
@@ -10,10 +13,8 @@ get:
 .DELETE_ON_ERROR:
 plan: get
 	terraform plan \
-		-var-file="../images/base/amis.json" \
-		-var-file="../images/nat/amis.json" \
-		-var-file="../images/consul/amis.json" \
-		-var-file="../images/nomad/amis.json" \
+		-var-file="images/base/image.json" \
+		-var-file="images/consul/image.json" \
 		-out=plan
 
 .DELETE_ON_ERROR:
@@ -23,7 +24,5 @@ apply: plan
 
 destroy:
 	terraform destroy \
-		-var-file="../images/base/amis.json" \
-		-var-file="../images/nat/amis.json" \
-		-var-file="../images/consul/amis.json" \
-		-var-file="../images/nomad/amis.json"
+		-var-file="images/base/image.json" \
+		-var-file="images/consul/image.json" \
