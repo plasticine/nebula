@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"cons",
+				"consul-server"
+			],
+			[
+				"make",
+				"make_request"
+			],
+			[
+				"spec",
+				"spec_file"
+			],
+			[
+				"j",
+				"join	join/2"
+			],
+			[
+				"writ",
+				"write!	write!/2"
+			],
+			[
+				"wr",
+				"write!	write!/3"
+			],
+			[
+				"tm",
+				"tmp_dir!	tmp_dir!/0"
+			],
+			[
 				"rea",
 				"raise	raise/1"
 			],
@@ -279,38 +307,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "services/nebula/lib/deploy_scheduler.ex",
-			"settings":
-			{
-				"buffer_size": 646,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "services/nebula/lib/deploy_manager/worker.ex",
-			"settings":
-			{
-				"buffer_size": 530,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "services/nebula/web/controllers/api/v1/deploy_controller.ex",
-			"settings":
-			{
-				"buffer_size": 1908,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "services/nebula/web/controllers/api/v1/job_controller.ex",
-			"settings":
-			{
-				"buffer_size": 985,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -320,9 +316,37 @@
 	"command_palette":
 	{
 		"height": 301.0,
-		"last_filter": "",
+		"last_filter": "syngo",
 		"selected_items":
 		[
+			[
+				"syngo",
+				"Set Syntax: Go"
+			],
+			[
+				"diff",
+				"Git: Diff Current File"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"terr",
+				"Set Syntax: Terraform"
+			],
+			[
+				"set go",
+				"Set Syntax: Go"
+			],
+			[
+				"snake",
+				"Convert Case: snake_case"
+			],
+			[
+				"bui",
+				"Build: Cancel"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -381,10 +405,6 @@
 			],
 			[
 				"d",
-				"Git: Diff Current File"
-			],
-			[
-				"diff",
 				"Git: Diff Current File"
 			],
 			[
@@ -504,7 +524,7 @@
 	},
 	"console":
 	{
-		"height": 525.0,
+		"height": 707.0,
 		"history":
 		[
 		]
@@ -520,157 +540,138 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/justin/Projects/plasticine/nebula",
-		"/Users/justin/Projects/plasticine/nebula/example/simple",
-		"/Users/justin/Projects/plasticine/nebula/example/simple/.nebula",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/orchestrator",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/priv/repo",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/priv/repo/migrations",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/static/assets",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/static/css",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/static/js",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/dashboard",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/deploy",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/api",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/api/v1",
-		"/Users/justin/Projects/plasticine/nebula/services/web/conf",
-		"/Users/justin/Projects/plasticine/nebula/services/web/conf/sites"
+		"/Users/justin/Projects/plasticine/nebula"
 	],
 	"file_history":
 	[
+		"/Users/justin/Projects/plasticine/nebula/ops/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/consul/resources/user_data.bash.template",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/consul/files/consul-join-cluster",
+		"/Users/justin/Projects/plasticine/nebula/docker-compose.yml",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/consul-template/templates/haproxy.cfg.ctmpl",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/project.ex",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/variables.tf",
+		"/Users/justin/Projects/plasticine/nebula/services/fabio/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/nginx/conf.d/root.conf",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/Makefile",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/bastion.tf",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/terraform.tfvars",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/consul.tf",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/consul/main.tf",
+		"/Users/justin/Projects/plasticine/nebula/services/fabio/root/etc/services.d/fabio/run",
+		"/Users/justin/Projects/plasticine/nebula/services/fabio/root/etc/fabio/conf.d/fabio.properties",
+		"/Users/justin/Projects/plasticine/nebula/services/fabio/root/etc/fix-attrs.d/10-fabio",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/Makefile",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/consul/variables.tf",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/consul/image.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/consul/build.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/base/scripts/base.bash",
+		"/Users/justin/Projects/plasticine/nebula/ops/.gitignore",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/variables.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/base/main.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/log/.gitkeep",
+		"/Users/justin/Projects/plasticine/nebula/ops/config/.gitkeep",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/images/consul/main.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/Makefile",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/consul/cluster.tf",
+		"/Users/justin/Projects/plasticine/nebula/ops/images/consul/main.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/images/base/main.json",
+		"/Users/justin/Projects/plasticine/nebula/ops/images/Makefile",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/main.tf",
+		"/Users/justin/Projects/plasticine/nebula/ops/resources/.gitignore",
+		"/Users/justin/Projects/plasticine/nebula/ops/images/base/build.json",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1/job_controller.ex",
+		"/Users/justin/Projects/plasticine/nebula/example/simple/.nebula/Jobfile",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/model/allocation.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/scheduler.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/job.ex",
+		"/etc/hosts",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/job.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/model/task_state.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/mix.exs",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/config/dev.exs",
+		"/Users/justin/Projects/plasticine/nebula/Vagrantfile",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/nginx/nginx.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/project_repo.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/git/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/git/hooks/post-receive",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/git/templates/repo/hooks/post-receive",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/data/git/test-project.git/hooks/post-receive",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/fix-attrs.d/10-nginx",
+		"/Users/justin/Projects/plasticine/nebula/ROADMAP.md",
+		"/Users/justin/Projects/plasticine/nebula/services/web/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/git_data/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/web/root/etc/nginx/conf.d/root.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/web/conf/sites/root.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/data/git/.gitkeep",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/consul-template/conf.d/haproxy.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/services.d/consul-template/run",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/services.d/haproxy/run",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/fix-attrs.d/10-haproxy",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/consul-template/conf.d/_base.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/consul-template/templates/haproxy.conf.ctmpl",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/haproxy/haproxy.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/haproxy.cfg",
+		"/Users/justin/Projects/plasticine/nebula/services/haproxy/root/etc/services.d/consul-template/down",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/services.d/spawn-fcgi/run",
+		"/Users/justin/Projects/plasticine/nebula/services/git/entrypoint.bash",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/etc/services.d/nginx/run",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/nginx/nginx.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/nginx/htpasswd",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/nginx/conf.d/git.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/git/root/nginx/proxy.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/git/conf/nginx.conf",
+		"/Users/justin/Projects/plasticine/nebula/.git/MERGE_MSG",
+		"/Users/justin/Projects/plasticine/nebula/.git/COMMIT_EDITMSG",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/model/event.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/api/evaluation.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/binary.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/reaper.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/deploy/show.html.eex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/api/jobs.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/api.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/api/job.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nebula.ex",
+		"/Users/justin/Projects/plasticine/nebula/example/simple/.nebula/job.nomad",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/model/job.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/model/spec.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/http.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/jobs.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/job.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/queue.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nomad/nomad.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/nomad/binary.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/nomad_binary.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/job_pool.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/supervisor.ex",
+		"/Users/justin/Projects/plasticine/nebula/ops/images/variables.json",
+		"/Users/justin/Projects/plasticine/nebula/services/nomad/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/nomad/nomad.conf",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1/deploy_controller.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/nomad/job.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/nomad.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/nomad/http.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/nomad/jobs.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/orchestrator/endpoint.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/logger.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/Dockerfile",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/scheduler/haproxy.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_scheduler/worker.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/priv/repo/migrations/20160501063638_create_initial.exs",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/deploy.ex",
+		"/Users/justin/Library/Application Support/Sublime Text 3/Packages/User/GitGutter.sublime-settings",
+		"/Users/justin/Library/Application Support/Sublime Text 3/Packages/GitGutter/GitGutter.sublime-settings",
+		"/Users/justin/Projects/plasticine/nebula/nebula.sublime-project",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_scheduler.ex",
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager/worker.ex",
 		"/Users/justin/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/Users/justin/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/justin/Projects/plasticine/nebula/example/simple/.nebula/job.nomad",
 		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager/job.ex",
 		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager/haproxy.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/nebula.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/haproxy_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/Vagrantfile",
-		"/Users/justin/Projects/plasticine/nebula/README.md",
-		"/Users/justin/Projects/plasticine/nebula/ops/resources/nomad/resources/user_data.yml.template",
-		"/Users/justin/Projects/plasticine/nebula/ops/images/nomad/files/nomad.service",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager/nomad.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/dashboard/index.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/deploy/show.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/git_data/templates/repo/hooks/post-receive",
-		"/Users/justin/Projects/plasticine/nebula/data/git/test-project.git/hooks/post-receive",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/priv/repo/migrations/20160501063638_create_initial.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/api/v1/deploy_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1/deploy_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1/job_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/project_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/job.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/api/v1/job_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/controllers/job_controller_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/deploy.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager/worker.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/deploy_manager.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/router.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/dashboard_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/deploy_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/dashboard_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/config/dev.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/config/prod.secret.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/config/test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/layout/app.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/project.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/deployment/show.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/deploy_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/deployment_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/log/new.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/log/show.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/log/index.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/templates/log/edit.html.eex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/log_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1/deployment_controller.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/job_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/haproxy/haproxy.cfg",
-		"/Users/justin/Projects/plasticine/nebula/services/git/Dockerfile",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/priv/repo/migrations/20160531200157_create_job.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/git/templates/repo/hooks/post-receive",
-		"/Users/justin/Projects/plasticine/nebula/example/simple/.nebula/job",
-		"/Users/justin/Projects/plasticine/nebula/example/simple/Dockerfile",
-		"/Users/justin/Projects/plasticine/nebula/.gitignore",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/README.md",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/mix.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/orchestrator.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/web/conf/sites/root.conf",
-		"/Users/justin/Projects/plasticine/nebula/docker-compose.yml",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/config/config.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/config/prod.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/orchestrator/endpoint.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/lib/orchestrator/repo.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/gettext.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/priv/repo/seeds.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/controllers/log_controller_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/controllers/page_controller_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/controllers/project_controller_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/models/deploy_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/models/log_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/models/project_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/support/channel_case.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/support/conn_case.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/support/model_case.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/test_helper.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/views/error_view_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/views/layout_view_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/test/views/page_view_test.exs",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/channels/user_socket.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/controllers/api/v1/deployment.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/graphql/nebula_schema.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/graphql/types/project_type.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/models/log.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/api/v1/deployment_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/error_helpers.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/error_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/layout_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/log_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/project_view.ex",
-		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/web.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/models/deploy.ex",
-		"/Users/justin/Projects/plasticine/infrastructure/images/base/scripts/reboot.bash",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/dev/data/git/test-project.git/autofac_config",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/example/simple/.autofac/config",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/views/dashboard_view.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/views/project_view.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/dashboard/index.html.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/project/index.html.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/models/project.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/controllers/api/v1/deployment.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/views/haproxy_view.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/haproxy/haproxy.cfg.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/orchestrator.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/project_repo.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/docker-compose.yml",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/git/Dockerfile",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/git/templates/repo/hooks/post-receive",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/haproxy_config/haproxy.cfg",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/controllers/project_controller.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/project/new.html.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/project/form.html.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/log/index.html.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/web/templates/project/show.html.eex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/.gitignore",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/priv/repo/migrations/20160501063638_create_initial.exs",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/orchestrator/repo.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/project_repo/worker.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/project_vcs.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/project_vcs/worker.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/git.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/lib/orchestrator/endpoint.ex",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/mix.exs",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/git/conf/htpasswd",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/git/entrypoint.bash",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/git/conf/sites/root.conf",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/web/conf/sites/root.conf",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/web/entrypoint.bash",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/git/conf/nginx.conf",
-		"/Users/justin/Projects/plasticine/infrastructure-orchestrator/services/orchestrator/entrypoint.bash"
+		"/Users/justin/Projects/plasticine/nebula/services/nebula/web/views/haproxy_view.ex"
 	],
 	"find":
 	{
@@ -748,6 +749,104 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"haproxy",
+			"template_file",
+			"images",
+			"build",
+			"amis",
+			"build.",
+			"amis",
+			"..",
+			"foobar",
+			"server",
+			"foobar",
+			"packer-ap-southeast-2-base",
+			"find_http_in_task",
+			"find_http_task",
+			"DEBUG",
+			"INFO",
+			"job.nomad",
+			"=",
+			"   ",
+			"  ",
+			"0654",
+			"git",
+			"web",
+			"/container/haproxy/ssl/certificate.pem",
+			"key",
+			"nginx",
+			" && \\",
+			"nginx",
+			"${CONSUL_TEMPLATE_VERSION}",
+			" && \\",
+			" &&",
+			"0.15.0",
+			"14",
+			"key",
+			"task_state",
+			"key",
+			"TaskStates",
+			"k",
+			"v",
+			"allocation_map",
+			"task_state",
+			"event_map",
+			" => ",
+			", ",
+			"\": \"",
+			"job_id",
+			", do: ",
+			"endpoint",
+			"start_missing_jobs",
+			"defp",
+			"nomad_executable",
+			"json",
+			"to_json",
+			"nebula_1          |    ",
+			"machine_map",
+			"@endpoint",
+			"Scheduler.",
+			"Scheduler.Nomad",
+			"job",
+			"messages",
+			"chat_room",
+			"queue",
+			"OLD_IMAGE",
+			" ",
+			"$NOMAD_VERSION",
+			"sudo",
+			"5432",
+			"DeployManager",
+			"172.20.20.10",
+			", do: ",
+			"[]",
+			"nil, ",
+			"nil",
+			"make_request",
+			"scheduler",
+			"queue",
+			"scheduler",
+			"DeployScheduler",
+			"Nomad",
+			"#{NOMAD_VERSION}",
+			"sudo",
+			"poolboy_config",
+			"deploy_scheduler",
+			"spec",
+			", do: ",
+			"_",
+			"nomad",
+			"->",
+			"validate",
+			"nomad",
+			", do: ",
+			"pid",
+			" |> ",
+			"validate",
+			"get_node_url",
+			"[]",
+			"DeployScheduler",
+			"deploy",
 			", do: ",
 			":reply",
 			"deploy_queue",
@@ -777,105 +876,7 @@
 			"project",
 			"AUTOFAC",
 			"autofac",
-			"Orchestrator",
-			"Orchestrator.",
-			"orchestrator_upstream",
-			":orchestrator",
-			"orchestrator",
-			"Orchestrator.",
-			"Orchestrator",
-			"orchestrator",
-			"AUTOFAC_URL",
-			"Autofac",
-			"cleanup",
-			"...",
-			" <> ",
-			"project_changeset",
-			":insert, ",
-			"name",
-			"project_vcs",
-			"ProjectRepo",
-			"git",
-			"project",
-			"name",
-			"deployment",
-			"create",
-			"deploy_queue",
-			"entrypoint",
-			"ubuntu",
-			"orchestrator",
-			"IO.inspect",
-			"does not update chosen resource and renders errors when data is invalid",
-			"make_valid_attrs(project)",
-			"log = Repo.insert! %Log{}",
-			"valid_attrs",
-			"@valid_attrs",
-			"role",
-			"create_user",
-			"172.20.20.10",
-			"\\${DEFAULT_IPV4}",
-			"num_servers",
-			"local_peers",
-			"peers",
-			"/provision",
-			"/tmp/provision",
-			"PEERS",
-			"PRIVATE_IPV4",
-			"nat",
-			"packer-ap-southeast-2-nat",
-			"packer-ap-southeast-2-nomad",
-			"packer-ap-southeast-2-consul",
-			" ",
-			"nat",
-			"provision",
-			"provision/",
-			"\" : \"",
-			"tee",
-			"network",
-			"opt",
-			"8300",
-			"Consul",
-			"consul",
-			"nomad-join",
-			"consul",
-			"Consul",
-			"consul",
-			"notify_success",
-			"consul-join",
-			"aws_iam_instance_profile",
-			"aws_iam_role_policy",
-			"aws_iam_instance_profile",
-			"server",
-			"wait_for_local_consul",
-			"consul-join-cluster",
-			"consul",
-			"run",
-			"vagrant",
-			"consul",
-			"'shell'",
-			"private_network",
-			":shell,",
-			"INFRASTRUCTURE_SERVER_IP",
-			"CONSUL_SERVER_IP",
-			"NOMAD_SERVER_IP",
-			"node.vm.provision :shell,",
-			"$INSTALL_CONSUL",
-			"$FIX_VMWARE_TOOLS_SCRIPT",
-			"$BASE_SYSTEM",
-			"$INSTALL_NOMAD",
-			"node1",
-			"#{$",
-			"0.3.2",
-			"0.6.4",
-			"172.20.10.10",
-			"172.20.20.10",
-			"\"",
-			"node2",
-			"nomad3",
-			"nomad2",
-			"nomad1",
-			"consul1",
-			"forwarded_port"
+			"Orchestrator"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -919,371 +920,18 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "services/nebula/lib/deploy_scheduler.ex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 646,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								224,
-								246
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/Elixir/Syntaxes/Elixir.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "services/nebula/lib/deploy_manager/worker.ex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 530,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								346,
-								346
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/Elixir/Syntaxes/Elixir.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 2,
-					"file": "services/nebula/web/controllers/api/v1/deploy_controller.ex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1908,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								136,
-								117
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/Elixir/Syntaxes/Elixir.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "services/nebula/web/controllers/api/v1/job_controller.ex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 985,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								55,
-								55
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/Elixir/Syntaxes/Elixir.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1310,12 +958,19 @@
 				0,
 				2,
 				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.33,
+			0.66,
 			1.0
 		],
 		"rows":
@@ -1332,6 +987,10 @@
 	"output.MarGo-output":
 	{
 		"height": 122.0
+	},
+	"output.exec":
+	{
+		"height": 446.0
 	},
 	"output.find_results":
 	{
@@ -1355,8 +1014,108 @@
 		"selected_items":
 		[
 			[
+				"docker",
+				"ops/Dockerfile"
+			],
+			[
+				"project",
+				"services/nebula/web/models/project.ex"
+			],
+			[
+				"hapr",
+				"services/haproxy/root/etc/consul-template/templates/haproxy.cfg.ctmpl"
+			],
+			[
 				"haprox",
-				"services/nebula/web/views/haproxy_view.ex"
+				"services/haproxy/root/etc/consul-template/templates/haproxy.cfg.ctmpl"
+			],
+			[
+				"jbocon",
+				"services/nebula/web/controllers/api/v1/job_controller.ex"
+			],
+			[
+				"jobfil",
+				"example/simple/.nebula/Jobfile"
+			],
+			[
+				"haproxy",
+				"services/haproxy/root/etc/consul-template/templates/haproxy.cfg.ctmpl"
+			],
+			[
+				"vagrant",
+				"Vagrantfile"
+			],
+			[
+				"dev",
+				"services/nebula/config/dev.exs"
+			],
+			[
+				"jobcontr",
+				"services/nebula/web/controllers/api/v1/job_controller.ex"
+			],
+			[
+				"nginx",
+				"services/git/root/etc/nginx/nginx.conf"
+			],
+			[
+				"root.",
+				"services/git/root/etc/nginx/conf.d/root.conf"
+			],
+			[
+				"projecre",
+				"services/nebula/lib/project_repo.ex"
+			],
+			[
+				"hapro",
+				"services/haproxy/root/etc/consul-template/templates/haproxy.cfg.ctmpl"
+			],
+			[
+				"nomad",
+				"example/simple/.nebula/job.nomad"
+			],
+			[
+				"deploy",
+				"services/nebula/web/templates/deploy/show.html.eex"
+			],
+			[
+				"binary",
+				"services/nebula/lib/nomad/binary.ex"
+			],
+			[
+				"vag",
+				"Vagrantfile"
+			],
+			[
+				"binar",
+				"services/nebula/lib/nomad/binary.ex"
+			],
+			[
+				"nomadbin",
+				"services/nebula/lib/scheduler/nomad/binary.ex"
+			],
+			[
+				"jobcontrol",
+				"services/nebula/web/controllers/api/v1/job_controller.ex"
+			],
+			[
+				"mix",
+				"services/nebula/mix.exs"
+			],
+			[
+				".nomad",
+				"example/simple/.nebula/job.nomad"
+			],
+			[
+				"deploycontro",
+				"services/nebula/web/controllers/api/v1/deploy_controller.ex"
+			],
+			[
+				"endpo",
+				"services/nebula/lib/orchestrator/endpoint.ex"
+			],
+			[
+				"jobcon",
+				"services/nebula/web/controllers/api/v1/job_controller.ex"
 			],
 			[
 				"read",
@@ -1367,16 +1126,8 @@
 				"ops/resources/nomad/resources/user_data.yml.template"
 			],
 			[
-				"nomad",
-				"ops/images/nomad/files/nomad.service"
-			],
-			[
 				"vagra",
 				"Vagrantfile"
-			],
-			[
-				".nomad",
-				"example/simple/.nebula/job.nomad"
 			],
 			[
 				"post",
@@ -1401,10 +1152,6 @@
 			[
 				"route",
 				"services/nebula/web/router.ex"
-			],
-			[
-				"deploy",
-				"services/nebula/web/models/deploy.ex"
 			],
 			[
 				"rout",
@@ -1455,14 +1202,6 @@
 				"infrastructure-orchestrator/services/orchestrator/web/templates/project/index.html.eex"
 			],
 			[
-				"hapro",
-				"infrastructure-orchestrator/services/haproxy_config/haproxy.cfg"
-			],
-			[
-				"hapr",
-				"infrastructure-orchestrator/services/orchestrator/web/views/haproxy_view.ex"
-			],
-			[
 				"deployment",
 				"infrastructure-orchestrator/services/orchestrator/web/controllers/api/v1/deployment.ex"
 			],
@@ -1503,10 +1242,6 @@
 				"infrastructure-orchestrator/services/orchestrator/web/controllers/project_controller.ex"
 			],
 			[
-				"project",
-				"infrastructure-orchestrator/services/orchestrator/web/models/project.ex"
-			],
-			[
 				"en",
 				"infrastructure-orchestrator/services/orchestrator/lib/orchestrator/endpoint.ex"
 			],
@@ -1516,10 +1251,6 @@
 			],
 			[
 				"root.con",
-				"infrastructure-orchestrator/services/web/conf/sites/root.conf"
-			],
-			[
-				"root.",
 				"infrastructure-orchestrator/services/web/conf/sites/root.conf"
 			],
 			[
@@ -1533,18 +1264,6 @@
 			[
 				"dashboard",
 				"infrastructure-orchestrator/services/orchestrator/web/templates/dashboard/index.html.eex"
-			],
-			[
-				"haproxy",
-				"infrastructure-orchestrator/services/orchestrator/web/templates/haproxy/haproxy.cfg.eex"
-			],
-			[
-				"vagrant",
-				"infrastructure-orchestrator/Vagrantfile"
-			],
-			[
-				"mix",
-				"infrastructure-orchestrator/services/orchestrator/mix.exs"
 			],
 			[
 				"logtest",
@@ -1763,10 +1482,6 @@
 				"services/nginx/sites.ctmpl"
 			],
 			[
-				"docker",
-				"docker-compose.yml"
-			],
-			[
 				"webhookhandler",
 				"services/api/lib/pipelite/webhook_handler.ex"
 			],
@@ -1809,62 +1524,6 @@
 			[
 				"paymentsummarypanel",
 				"services/ui/src/components/PaymentSummaryPanel/__tests__/index.jsx"
-			],
-			[
-				"moneytest",
-				"services/ui/src/lib/money/__tests__/money_test.js"
-			],
-			[
-				"moneyinde",
-				"services/ui/src/lib/money/index.js"
-			],
-			[
-				"mone",
-				"services/ui/src/lib/money/Money.js"
-			],
-			[
-				"paymenindex",
-				"services/ui/src/components/PaymentSummaryPanel/index.jsx"
-			],
-			[
-				"moneyteest",
-				"services/ui/src/lib/money/__tests__/money_test.js"
-			],
-			[
-				"smartindex",
-				"services/ui/src/components/common/SmartAmountInput/index.jsx"
-			],
-			[
-				"paymentsumm",
-				"services/ui/src/components/PaymentSummaryPanel/index.jsx"
-			],
-			[
-				"payanyoneconfirmscene",
-				"services/ui/src/components/scenes/pay_anyone/PayAnyoneConfirmScene/index.jsx"
-			],
-			[
-				"moneyjs",
-				"services/ui/src/lib/money/Money.js"
-			],
-			[
-				"util.js",
-				"services/ui/src/lib/util/index.js"
-			],
-			[
-				"webpack",
-				"services/ui/config/webpack/makeConfig.js"
-			],
-			[
-				"testhelper",
-				"services/ui/test/helper.js"
-			],
-			[
-				"payanyonedeta",
-				"services/ui/src/components/scenes/pay_anyone/PayAnyoneDetailsScene/index.jsx"
-			],
-			[
-				"prefillaop",
-				"services/ui/src/components/common/PrefillableOptions/index.jsx"
 			]
 		],
 		"width": 0.0
