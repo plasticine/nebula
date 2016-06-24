@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 CONSUL_VERSION = '0.6.4'
-NOMAD_VERSION = '0.3.2'
+NOMAD_VERSION = '0.4.0-rc2'
 INFRA_SERVER_IP = '172.20.10.10'
 
 BASE_SYSTEM = <<SCRIPT
