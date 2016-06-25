@@ -1,7 +1,7 @@
 version: '2'
 services:
-  haproxy:
-    build: "./services/haproxy"
+  fabio:
+    build: "./services/fabio"
     restart: always
     ports:
       - "5000:443"
@@ -11,26 +11,38 @@ services:
     links:
       - web
       - git
-    volumes:
-      - ./services/haproxy/root/etc/consul-template/templates:/etc/consul-template/templates
     volumes_from:
       - certificates
+    volumes:
+      - ./services/haproxy/root/etc/consul-template/templates:/etc/consul-template/templates
+
+  # haproxy:
+  #   build: "./services/haproxy"
+  #   restart: always
+  #   ports:
+  #     - "5000:443"
+  #     - "1936:1936"
+  #   extra_hosts:
+  #    - consul:172.20.10.10
+  #   links:
+  #     - web
+  #     - git
+  #   volumes:
+  #     - ./services/haproxy/root/etc/consul-template/templates:/etc/consul-template/templates
+  #   volumes_from:
+  #     - certificates
 
   web:
     build: "./services/web"
     restart: always
     links:
       - nebula
-    volumes_from:
-      - certificates
 
   git:
     build: "./services/git"
     restart: always
     volumes:
       - ./services/git/root/etc/git/hooks:/etc/git/hooks
-    volumes_from:
-      - certificates
 
   nebula:
     build: "./services/nebula"
