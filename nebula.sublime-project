@@ -1,23 +1,20 @@
 {
-	"folders":
+	"SublimeLinter":
+	{
+		"linters":
+		{
+			"elixirc":
+			{
+				"chdir": "./services/nebula",
+				"mix_project": true
+			}
+		}
+	},
+	"build_systems":
 	[
 		{
-			"path": "."
+			"name": "test",
+			"shell_cmd": "docker-compose run --rm -e MIX_ENV=test orchestrator test"
 		}
-	],
-  "build_systems":
-  [
-    {
-      "name": "test",
-      "shell_cmd": "docker-compose run --rm -e MIX_ENV=test orchestrator test"
-    }
-  ],
-  "SublimeLinter": {
-    "linters": {
-      "elixirc": {
-        "mix_project": true,
-        "chdir": "./services/nebula"
-      }
-    }
-  }
+	]
 }

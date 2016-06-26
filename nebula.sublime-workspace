@@ -538,10 +538,6 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/justin/Projects/plasticine/nebula"
-	],
 	"file_history":
 	[
 		"/Users/justin/Projects/plasticine/nebula/ops/Dockerfile",
@@ -1546,7 +1542,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 2,
 	"settings":
 	{
 	},

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+readonly TMPDIR="$(mktemp -d)"
+readonly PRIVATE_IP="$(ifconfig en1 | grep 'inet ' | awk '{ print $2  }')"
+
+handle_exit() {
+  rm -rf "$TMPDIR"
+}
+
+main() {
+  .dev/bin/nomad agent \
+    -dev \
+    -log-level=INFO \
+    -bind="$PRIVATE_IP" \
+    -data-dir="$TMPDIR"
+}
+
+trap handle_exit EXIT
+main

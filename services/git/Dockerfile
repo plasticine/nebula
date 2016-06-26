@@ -27,4 +27,4 @@ VOLUME ["/data/git"]
 VOLUME ["/etc/git/templates/repo/hooks"]
 
 ENTRYPOINT ["/init"]
-EXPOSE 80 443
+EXPOSE 4000

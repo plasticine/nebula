@@ -9,13 +9,11 @@ RUN \
     curl \
     bash \
   && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xfz - -C / \
-  && curl -sSL https://github.com/eBay/fabio/releases/download/v${FABIO_VERSION}/fabio-${FABIO_VERSION}-go1.6.2_linux-amd64 \
-  && chown -R nginx:www-data /var/lib/nginx
+  && curl -sSL https://github.com/eBay/fabio/releases/download/v${FABIO_VERSION}/fabio-${FABIO_VERSION}-go1.6.2_linux-amd64 -o /usr/local/bin/fabio \
+  && chmod +x /usr/local/bin/fabio
+  # && apk del curl
 
 ADD root /
 
-VOLUME ["/data/git"]
-VOLUME ["/etc/git/templates/repo/hooks"]
-
 ENTRYPOINT ["/init"]
-EXPOSE 80 443
+EXPOSE 9999 9998

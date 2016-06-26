@@ -1,72 +1,52 @@
 version: '2'
 services:
   fabio:
-    build: "./services/fabio"
+    build: "services/fabio"
     restart: always
+    environment:
+      HOST_IP: ${HOST_IP}
     ports:
-      - "5000:443"
-      - "1936:1936"
-    extra_hosts:
-     - consul:172.20.10.10
-    links:
-      - web
-      - git
+      - "9999:9999"
+      - "9998:9998"
     volumes_from:
       - certificates
-    volumes:
-      - ./services/haproxy/root/etc/consul-template/templates:/etc/consul-template/templates
-
-  # haproxy:
-  #   build: "./services/haproxy"
-  #   restart: always
-  #   ports:
-  #     - "5000:443"
-  #     - "1936:1936"
-  #   extra_hosts:
-  #    - consul:172.20.10.10
-  #   links:
-  #     - web
-  #     - git
-  #   volumes:
-  #     - ./services/haproxy/root/etc/consul-template/templates:/etc/consul-template/templates
-  #   volumes_from:
-  #     - certificates
 
   web:
-    build: "./services/web"
+    build: "services/web"
     restart: always
     links:
       - nebula
 
   git:
-    build: "./services/git"
+    build: "services/git"
     restart: always
     volumes:
-      - ./services/git/root/etc/git/hooks:/etc/git/hooks
+      - "./services/git/root/etc/git/hooks:/etc/git/hooks"
 
   nebula:
-    build: "./services/nebula"
+    build: "services/nebula"
     command: "phoenix.server"
     restart: always
     expose:
       - "4000"
     links:
       - postgres
-    extra_hosts:
-     - nomad:172.20.10.10
-     - consul:172.20.10.10
     environment:
       MIX_ENV: dev
+      SERVICE_NAME: nebula
+      SERVICE_TAGS: nebula
     volumes:
-      - ./services/nebula:/container/app
+      - "./services/nebula:/container/app"
     volumes_from:
       - git
 
   postgres:
-    build: "./services/postgres"
+    build: "services/postgres"
     restart: always
     environment:
       PGDATA: /container/postgresql/data
+      SERVICE_80_NAME: postgres
+      SERVICE_TAGS: nebula
     volumes_from:
       - postgres_data
     ports:
@@ -75,15 +55,15 @@ services:
       - "5432"
 
   certificates:
-    image: gliderlabs/alpine:3.3
+    image: gliderlabs/alpine:3.4
     command: "true"
     volumes:
-      - ./conf/ssl/certificate.crt:/etc/ssl/certificate.crt:ro
-      - ./conf/ssl/certificate.key:/etc/ssl/certificate.key:ro
-      - ./conf/ssl/certificate.pem:/etc/ssl/certificate.pem:ro
+      - "./conf/ssl/certificate.crt:/etc/ssl/certificate.crt:ro"
+      - "./conf/ssl/certificate.key:/etc/ssl/certificate.key:ro"
+      - "./conf/ssl/certificate.pem:/etc/ssl/certificate.pem:ro"
 
   postgres_data:
-    image: gliderlabs/alpine:3.3
+    image: gliderlabs/alpine:3.4
     command: "true"
     volumes:
       - "/container/postgresql/data"

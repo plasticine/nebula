@@ -19,4 +19,4 @@ RUN \
 ADD root /
 
 ENTRYPOINT ["/init"]
-EXPOSE 80 443
+EXPOSE 80
