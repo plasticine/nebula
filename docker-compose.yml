@@ -14,12 +14,22 @@ services:
   web:
     build: "services/web"
     restart: always
+    environment:
+      # SERVICE_80_CHECK_HTTP: /
+      # SERVICE_80_CHECK_INTERVAL: 15s
+      # SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_TAGS: http,urlprefix-/
     links:
       - nebula
 
   git:
     build: "services/git"
     restart: always
+    environment:
+      # SERVICE_80_CHECK_HTTP: /git
+      # SERVICE_80_CHECK_INTERVAL: 15s
+      # SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_TAGS: http,urlprefix-/
     volumes:
       - "./services/git/root/etc/git/hooks:/etc/git/hooks"
 

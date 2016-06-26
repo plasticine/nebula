@@ -7,8 +7,6 @@ ENV NGINX_VERSION=1.6.5
 RUN \
   apk add --no-cache \
     curl \
-    spawn-fcgi \
-    fcgiwrap \
     nginx \
   && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xfz - -C / \
   && apk del curl \
