@@ -3,8 +3,8 @@ services:
   fabio:
     build: "services/fabio"
     restart: always
-    environment:
-      HOST_IP: ${HOST_IP}
+    links:
+      - consul
     ports:
       - "9999:9999"
       - "9998:9998"
@@ -15,10 +15,10 @@ services:
     build: "services/web"
     restart: always
     environment:
-      # SERVICE_80_CHECK_HTTP: /
-      # SERVICE_80_CHECK_INTERVAL: 15s
-      # SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_TAGS: http,urlprefix-/
+      SERVICE_5000_CHECK_HTTP: /
+      SERVICE_5000_CHECK_INTERVAL: 15s
+      SERVICE_5000_CHECK_TIMEOUT: 1s
+      SERVICE_5000_TAGS: urlprefix-/
     links:
       - nebula
 
@@ -26,10 +26,10 @@ services:
     build: "services/git"
     restart: always
     environment:
-      # SERVICE_80_CHECK_HTTP: /git
-      # SERVICE_80_CHECK_INTERVAL: 15s
-      # SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_TAGS: http,urlprefix-/
+      SERVICE_4000_CHECK_HTTP: /git
+      SERVICE_4000_CHECK_INTERVAL: 15s
+      SERVICE_4000_CHECK_TIMEOUT: 1s
+      SERVICE_4000_TAGS: urlprefix-/
     volumes:
       - "./services/git/root/etc/git/hooks:/etc/git/hooks"
 
@@ -77,3 +77,22 @@ services:
     command: "true"
     volumes:
       - "/container/postgresql/data"
+
+  consul:
+    image: gliderlabs/consul-server:0.6
+    command: -client=0.0.0.0 -bootstrap -ui-dir /ui -data-dir /data -advertise=127.0.0.1
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  registrator:
+    image: gliderlabs/registrator:v7
+    command: -internal -ip=127.0.0.1 -resync=30 consul://consul:8500
+    links:
+      - consul
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
