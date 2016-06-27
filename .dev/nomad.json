@@ -1,0 +1,9 @@
+addresses {
+  http = "0.0.0.0"
+}
+
+client {
+  options {
+    "driver.whitelist" = "docker"
+  }
+}

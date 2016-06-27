@@ -3,8 +3,10 @@ services:
   fabio:
     build: "services/fabio"
     restart: always
-    links:
-      - consul
+    environment:
+      SERVICE_IGNORE: 'true'
+    extra_hosts:
+      - consul:${HOST_IP}
     ports:
       - "9999:9999"
       - "9998:9998"
@@ -15,10 +17,11 @@ services:
     build: "services/web"
     restart: always
     environment:
-      SERVICE_5000_CHECK_HTTP: /
-      SERVICE_5000_CHECK_INTERVAL: 15s
-      SERVICE_5000_CHECK_TIMEOUT: 1s
-      SERVICE_5000_TAGS: urlprefix-/
+      SERVICE_80_NAME: web
+      SERVICE_80_CHECK_HTTP: /health
+      SERVICE_80_CHECK_INTERVAL: 10s
+      SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_80_TAGS: urlprefix-/
     links:
       - nebula
 
@@ -26,10 +29,13 @@ services:
     build: "services/git"
     restart: always
     environment:
-      SERVICE_4000_CHECK_HTTP: /git
-      SERVICE_4000_CHECK_INTERVAL: 15s
-      SERVICE_4000_CHECK_TIMEOUT: 1s
-      SERVICE_4000_TAGS: urlprefix-/
+      SERVICE_80_NAME: git
+      SERVICE_80_CHECK_HTTP: /health
+      SERVICE_80_CHECK_INTERVAL: 10s
+      SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_80_TAGS: urlprefix-/git
+    volumes_from:
+      - project_data
     volumes:
       - "./services/git/root/etc/git/hooks:/etc/git/hooks"
 
@@ -39,23 +45,28 @@ services:
     restart: always
     expose:
       - "4000"
+    extra_hosts:
+      - consul:${HOST_IP}
     links:
       - postgres
     environment:
       MIX_ENV: dev
       SERVICE_NAME: nebula
       SERVICE_TAGS: nebula
+      # SERVICE_80_CHECK_HTTP: /health
+      # SERVICE_80_CHECK_INTERVAL: 10s
+      # SERVICE_80_CHECK_TIMEOUT: 1s
     volumes:
       - "./services/nebula:/container/app"
     volumes_from:
-      - git
+      - project_data
 
   postgres:
     build: "services/postgres"
     restart: always
     environment:
       PGDATA: /container/postgresql/data
-      SERVICE_80_NAME: postgres
+      SERVICE_NAME: postgres
       SERVICE_TAGS: nebula
     volumes_from:
       - postgres_data
@@ -78,9 +89,17 @@ services:
     volumes:
       - "/container/postgresql/data"
 
+  project_data:
+    image: gliderlabs/alpine:3.4
+    command: "true"
+    volumes:
+      - "./data/projects:/data/projects"
+
   consul:
     image: gliderlabs/consul-server:0.6
     command: -client=0.0.0.0 -bootstrap -ui-dir /ui -data-dir /data -advertise=127.0.0.1
+    environment:
+      SERVICE_IGNORE: 'true'
     ports:
       - "8300:8300"
       - "8400:8400"
@@ -92,7 +111,7 @@ services:
   registrator:
     image: gliderlabs/registrator:v7
     command: -internal -ip=127.0.0.1 -resync=30 consul://consul:8500
-    links:
-      - consul
+    extra_hosts:
+      - consul:${HOST_IP}
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"

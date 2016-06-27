@@ -18,4 +18,4 @@ ADD root /
 
 ENTRYPOINT ["/init"]
 
-EXPOSE 5000
+EXPOSE 80

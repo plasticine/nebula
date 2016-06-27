@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER Justin Morris <desk@pixelbloom.com>
 
 ENV S6_OVERLAY_VERSION v1.17.2.0
-ENV FABIO_VERSION 1.2rc2
+ENV FABIO_VERSION 1.1.5
 
 RUN \
   apk add --no-cache \

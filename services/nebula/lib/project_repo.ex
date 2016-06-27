@@ -31,7 +31,7 @@ defmodule ProjectRepo do
   end
 
   defp repo_path(slug) do
-    "/data/git/" <> slug <> ".git"
+    "/data/projects/" <> slug <> ".git"
   end
 
   defp init_repo(root) do

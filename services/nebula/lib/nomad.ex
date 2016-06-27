@@ -1,3 +1,5 @@
+defmodule Nomad do
+end
 # def start(_type, _args) do
 #   import Supervisor.Spec, warn: false
 
