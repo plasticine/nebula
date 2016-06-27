@@ -5,8 +5,6 @@ services:
     restart: always
     environment:
       SERVICE_IGNORE: 'true'
-    extra_hosts:
-      - consul:${HOST_IP}
     ports:
       - "9999:9999"
       - "9998:9998"
@@ -111,7 +109,5 @@ services:
   registrator:
     image: gliderlabs/registrator:v7
     command: -internal -ip=127.0.0.1 -resync=30 consul://consul:8500
-    extra_hosts:
-      - consul:${HOST_IP}
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
