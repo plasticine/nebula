@@ -8,6 +8,8 @@ services:
     ports:
       - "9999:9999"
       - "9998:9998"
+    extra_hosts:
+      - consul:${HOST_IP}
     volumes_from:
       - certificates
 
@@ -20,6 +22,8 @@ services:
       SERVICE_80_CHECK_INTERVAL: 10s
       SERVICE_80_CHECK_TIMEOUT: 1s
       SERVICE_80_TAGS: urlprefix-/
+    expose:
+      - "80"
     links:
       - nebula
 
@@ -32,6 +36,8 @@ services:
       SERVICE_80_CHECK_INTERVAL: 10s
       SERVICE_80_CHECK_TIMEOUT: 1s
       SERVICE_80_TAGS: urlprefix-/git
+    expose:
+      - "80"
     volumes_from:
       - project_data
     volumes:
@@ -93,21 +99,10 @@ services:
     volumes:
       - "./data/projects:/data/projects"
 
-  consul:
-    image: gliderlabs/consul-server:0.6
-    command: -client=0.0.0.0 -bootstrap -ui-dir /ui -data-dir /data -advertise=127.0.0.1
-    environment:
-      SERVICE_IGNORE: 'true'
-    ports:
-      - "8300:8300"
-      - "8400:8400"
-      - "8500:8500"
-      - "8600:53/udp"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-
   registrator:
     image: gliderlabs/registrator:v7
-    command: -internal -ip=127.0.0.1 -resync=30 consul://consul:8500
+    command: -ip=${HOST_IP} -resync=30 consul://consul:8500
+    extra_hosts:
+      - consul:${HOST_IP}
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"

@@ -3,18 +3,19 @@
 set -e
 
 readonly TMPDIR="$(mktemp -d)"
-readonly PRIVATE_IP="$(ifconfig en1 | grep 'inet ' | awk '{ print $2  }')"
+readonly PRIVATE_IP="$(ifconfig en0 | grep 'inet ' | awk '{ print $2  }')"
 
 handle_exit() {
-  rm -rf "$TMPDIR"
+  rm -rf "${TMPDIR}"
 }
 
 main() {
   .dev/bin/nomad agent \
     -dev \
+    -bind="${PRIVATE_IP}" \
     -log-level=INFO \
     -config=.dev/nomad.json \
-    -data-dir="$TMPDIR"
+    -data-dir="${TMPDIR}"
 }
 
 trap handle_exit EXIT
