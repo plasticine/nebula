@@ -47,6 +47,7 @@ services:
       - "4000"
     links:
       - postgres
+      - nomad
     environment:
       MIX_ENV: dev
       SERVICE_NAME: nebula
@@ -95,13 +96,18 @@ services:
 
   nomad:
     build: "./services/nomad"
+    command: agent -dev -data-dir=/data/nomad -bind=0.0.0.0 -log-level=DEBUG -config=/etc/nomad/server.conf
     ports:
       - "4646:4646"
       - "4647:4647"
+    links:
+      - consul
+    privileged: true
     environment:
       SERVICE_IGNORE: 'true'
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./data/nomad:/data/nomad"
+      - "/var/run/docker.sock:/tmp/docker.sock"
 
   consul:
     image: gliderlabs/consul-server:0.6
@@ -113,8 +119,6 @@ services:
       - "8400:8400"
       - "8500:8500"
       - "8600:53/udp"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
 
   registrator:
     image: gliderlabs/registrator:v7
