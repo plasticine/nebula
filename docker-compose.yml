@@ -4,9 +4,10 @@ services:
     build: "services/fabio"
     restart: always
     environment:
+      registry_consul_addr: 172.20.10.10:8500
+      registry_consul_register_addr: ${HOST_IP}:9998
+      ui_addr: 0.0.0.0:9998
       SERVICE_IGNORE: 'true'
-    links:
-      - consul
     ports:
       - "9999:9999"
       - "9998:9998"
@@ -16,6 +17,8 @@ services:
   web:
     build: "services/web"
     restart: always
+    ports:
+      - "80"
     environment:
       SERVICE_80_NAME: web
       SERVICE_80_CHECK_HTTP: /health
@@ -28,6 +31,8 @@ services:
   git:
     build: "services/git"
     restart: always
+    ports:
+      - "80"
     environment:
       SERVICE_80_NAME: git
       SERVICE_80_CHECK_HTTP: /health
@@ -47,7 +52,8 @@ services:
       - "4000"
     links:
       - postgres
-      - nomad
+    extra_hosts:
+      - nomad:172.20.10.10
     environment:
       MIX_ENV: dev
       SERVICE_NAME: nebula
@@ -94,36 +100,9 @@ services:
     volumes:
       - "./data/projects:/data/projects"
 
-  nomad:
-    build: "./services/nomad"
-    command: agent -dev -data-dir=/data/nomad -bind=0.0.0.0 -log-level=DEBUG -config=/etc/nomad/server.conf
-    ports:
-      - "4646:4646"
-      - "4647:4647"
-    links:
-      - consul
-    privileged: true
-    environment:
-      SERVICE_IGNORE: 'true'
-    volumes:
-      - "./data/nomad:/data/nomad"
-      - "/var/run/docker.sock:/tmp/docker.sock"
-
-  consul:
-    image: gliderlabs/consul-server:0.6
-    command: -client=0.0.0.0 -bootstrap -ui-dir /ui -data-dir /data -advertise=127.0.0.1
-    environment:
-      SERVICE_IGNORE: 'true'
-    ports:
-      - "8300:8300"
-      - "8400:8400"
-      - "8500:8500"
-      - "8600:53/udp"
-
   registrator:
     image: gliderlabs/registrator:v7
-    command: -internal -ip=127.0.0.1 -resync=30 consul://consul:8500
-    links:
-      - consul
+    network_mode: host
+    command: -ip=${HOST_IP} -resync=30 consul://172.20.10.10:8500
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
