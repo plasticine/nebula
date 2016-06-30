@@ -4,9 +4,9 @@ NUMPROCS := $(shell sysctl -n hw.ncpu)
 CONSUL_VERSION = 0.6.4
 NOMAD_VERSION = 0.4.0
 
-.PHONY: bootstrap dev prepare
+.PHONY: bootstrap dev vm prepare
 
-dev: .dev/bin/consul .dev/consul/ui .dev/bin/nomad
+dev: vm .dev/bin/consul .dev/consul/ui .dev/bin/nomad
 
 .dev:
 	mkdir -p .dev/{bin,consul,nomad}
@@ -25,6 +25,10 @@ dev: .dev/bin/consul .dev/consul/ui .dev/bin/nomad
 	mkdir -p .dev/consul
 	curl -sSL "https://releases.hashicorp.com/consul/$(CONSUL_VERSION)/consul_$(CONSUL_VERSION)_web_ui.zip" -o "$(TEMPDIR)/consul_ui.zip"
 	unzip -o "$(TEMPDIR)/consul_ui.zip" -d .dev/consul/ui
+
+vm:
+	VBoxManage hostonlyif remove vboxnet0
+	vagrant up --provision
 
 prepare:
 	docker-compose down --remove-orphans

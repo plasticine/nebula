@@ -29,9 +29,14 @@ disable_update_check = true
 enable_syslog = false
 client {
   enabled = true
-  options = {
-    "consul.address" = "#{INFRA_SERVER_IP}:8500"
-  }
+}
+
+addresses {
+  http = "0.0.0.0"
+}
+
+consul {
+  address = "#{INFRA_SERVER_IP}:8500"
 }
 EOF
 sudo tee /etc/systemd/system/nomad.service <<EOF
@@ -69,7 +74,7 @@ After=network-online.target
 EnvironmentFile=/etc/network-environment
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart=/usr/local/bin/consul agent -dev -log-level=INFO -bind=#{INFRA_SERVER_IP} -client=#{INFRA_SERVER_IP} -data-dir=/opt/consul/data -ui-dir=/opt/consul/ui -ui
+ExecStart=/usr/local/bin/consul agent -dev -log-level=INFO -client=0.0.0.0 -advertise=#{INFRA_SERVER_IP} -data-dir=/opt/consul/data -ui-dir=/opt/consul/ui -ui
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 [Install]
