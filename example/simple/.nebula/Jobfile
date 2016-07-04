@@ -21,6 +21,7 @@ job "simple-example" {
             }
             service {
                 port = "http"
+                tags = ["http", "nebula-entrypoint"]
                 check {
                     type = "http"
                     path = "/"
