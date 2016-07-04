@@ -24,15 +24,13 @@ defmodule Nebula.Scheduler.Job do
 
     # TODO Add error handling here...
     {:ok, output} = Nomad.Binary.validate!(pid)
-    {:ok, spec} = Nomad.Binary.parse!(pid)
+    {:ok, job_spec} = Nomad.Binary.parse!(pid)
+    nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, job.deploy.slug)
 
-    nomad_job = Nomad.API.Jobs.create(spec)
+    IO.inspect nebula_job
+
+    nomad_job = Nomad.API.Jobs.create(nebula_job)
     allocations = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
-
-    # Set consul config keys for the deploy
-    Enum.map(find_task_id(allocations, "http-in"), fn id ->
-      Consul.Kv.put(Path.join(["haproxy", "backend", id, "host"]), job.deploy.slug)
-    end)
 
     {:noreply, job, job}
   end
@@ -58,16 +56,5 @@ defmodule Nebula.Scheduler.Job do
   """
   def get(id) do
     :gproc.where({:n, :l, {:job, id}})
-  end
-
-  defp find_task_id(allocations, id) do
-    allocations
-    |> Enum.filter(fn x ->
-      x |> Map.get(:task_states, []) |> Enum.find(fn y -> elem(y, 0) == id end)
-    end)
-    |> Enum.reduce([], fn(x, acc) ->
-      [Enum.join([x.job_id, x.task_group, id], "-") | acc]
-    end)
-    |> Enum.uniq
   end
 end

@@ -4,7 +4,10 @@ services:
     build: "services/fabio"
     restart: always
     environment:
-      HOST_IP: ${HOST_IP}
+      registry_consul_addr: 172.20.10.10:8500
+      registry_consul_register_addr: ${HOST_IP}:9998
+      ui_addr: 0.0.0.0:9998
+      SERVICE_IGNORE: 'true'
     ports:
       - "9999:9999"
       - "9998:9998"
@@ -14,22 +17,30 @@ services:
   web:
     build: "services/web"
     restart: always
+    ports:
+      - "80"
     environment:
-      # SERVICE_80_CHECK_HTTP: /
-      # SERVICE_80_CHECK_INTERVAL: 15s
-      # SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_TAGS: http,urlprefix-/
+      SERVICE_80_NAME: web
+      SERVICE_80_CHECK_HTTP: /health
+      SERVICE_80_CHECK_INTERVAL: 5s
+      SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/
     links:
       - nebula
 
   git:
     build: "services/git"
     restart: always
+    ports:
+      - "80"
     environment:
-      # SERVICE_80_CHECK_HTTP: /git
-      # SERVICE_80_CHECK_INTERVAL: 15s
-      # SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_TAGS: http,urlprefix-/
+      SERVICE_80_NAME: git
+      SERVICE_80_CHECK_HTTP: /health
+      SERVICE_80_CHECK_INTERVAL: 5s
+      SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/git
+    volumes_from:
+      - project_data
     volumes:
       - "./services/git/root/etc/git/hooks:/etc/git/hooks"
 
@@ -41,21 +52,26 @@ services:
       - "4000"
     links:
       - postgres
+    extra_hosts:
+      - nomad:172.20.10.10
     environment:
       MIX_ENV: dev
       SERVICE_NAME: nebula
       SERVICE_TAGS: nebula
+      # SERVICE_80_CHECK_HTTP: /health
+      # SERVICE_80_CHECK_INTERVAL: 5s
+      # SERVICE_80_CHECK_TIMEOUT: 1s
     volumes:
       - "./services/nebula:/container/app"
     volumes_from:
-      - git
+      - project_data
 
   postgres:
     build: "services/postgres"
     restart: always
     environment:
       PGDATA: /container/postgresql/data
-      SERVICE_80_NAME: postgres
+      SERVICE_NAME: postgres
       SERVICE_TAGS: nebula
     volumes_from:
       - postgres_data
@@ -77,3 +93,16 @@ services:
     command: "true"
     volumes:
       - "/container/postgresql/data"
+
+  project_data:
+    image: gliderlabs/alpine:3.4
+    command: "true"
+    volumes:
+      - "./data/projects:/data/projects"
+
+  registrator:
+    image: gliderlabs/registrator:v7
+    network_mode: host
+    command: -ip=${HOST_IP} -resync=30 consul://172.20.10.10:8500
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"

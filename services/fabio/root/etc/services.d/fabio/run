@@ -1,7 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-exec /usr/local/bin/fabio \
-  -registry.consul.addr="$HOST_IP:8500" \
-  -registry.consul.register.addr="$HOST_IP:9998" \
-  -ui.addr=":9998" \
-  -cfg /etc/fabio/fabio.properties;
+exec /usr/local/bin/fabio -cfg /etc/fabio/fabio.properties;

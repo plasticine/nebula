@@ -8,7 +8,7 @@ job "simple-example" {
     }
 
     group "web" {
-        count = 3
+        count = 1
 
         task "http-in" {
             driver = "docker"
@@ -21,6 +21,7 @@ job "simple-example" {
             }
             service {
                 port = "http"
+                tags = ["http", "nebula-entrypoint"]
                 check {
                     type = "http"
                     path = "/"
@@ -32,7 +33,7 @@ job "simple-example" {
                 cpu = 256
                 memory = 128
                 network {
-                    mbits = 100
+                    mbits = 1
                     port "http" {}
                     port "https" {}
                 }

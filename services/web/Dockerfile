@@ -17,4 +17,5 @@ RUN \
 ADD root /
 
 ENTRYPOINT ["/init"]
+
 EXPOSE 80
