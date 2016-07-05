@@ -13,7 +13,7 @@ job "simple-example" {
         task "http-in" {
             driver = "docker"
             config {
-                image = "nginx:1.10.0-alpine"
+                image = "tutum/hello-world"
                 port_map {
                     http = 80
                     https = 443

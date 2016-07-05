@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       registry_consul_addr: 172.20.10.10:8500
-      registry_consul_register_addr: ${HOST_IP}:9998
+      registry_consul_register_addr: ${HOSTNAME}:9998
       ui_addr: 0.0.0.0:9998
       SERVICE_IGNORE: 'true'
     ports:
@@ -24,7 +24,7 @@ services:
       SERVICE_80_CHECK_HTTP: /health
       SERVICE_80_CHECK_INTERVAL: 5s
       SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/
+      SERVICE_80_TAGS: urlprefix-${DOMAINNAME}/
     links:
       - nebula
 
@@ -38,7 +38,7 @@ services:
       SERVICE_80_CHECK_HTTP: /health
       SERVICE_80_CHECK_INTERVAL: 5s
       SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/git
+      SERVICE_80_TAGS: urlprefix-${DOMAINNAME}/git
     volumes_from:
       - project_data
     volumes:
@@ -103,6 +103,6 @@ services:
   registrator:
     image: gliderlabs/registrator:v7
     network_mode: host
-    command: -ip=${HOST_IP} -resync=30 consul://172.20.10.10:8500
+    command: -ip=${HOSTNAME} -resync=30 consul://172.20.10.10:8500
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"

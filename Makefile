@@ -7,6 +7,7 @@ NOMAD_VERSION = 0.4.0
 .PHONY: bootstrap dev vm prepare
 
 dev: vm .dev/bin/consul .dev/consul/ui .dev/bin/nomad
+	HOSTNAME=$(shell hostname) docker-compose up
 
 .dev:
 	mkdir -p .dev/{bin,consul,nomad}
@@ -27,7 +28,6 @@ dev: vm .dev/bin/consul .dev/consul/ui .dev/bin/nomad
 	unzip -o "$(TEMPDIR)/consul_ui.zip" -d .dev/consul/ui
 
 vm:
-	VBoxManage hostonlyif remove vboxnet0
 	vagrant up --provision
 
 prepare:
