@@ -7,7 +7,7 @@ defmodule Nomad.API.Job do
   Query a single job for its specification and status.
   """
   def get(id) do
-    get!(@endpoint <> id)
+    get!(Path.join([@endpoint, id]))
   end
 
   @doc """
@@ -21,6 +21,7 @@ defmodule Nomad.API.Job do
   Register a new job.
   """
   def delete(id) do
-    delete!(@endpoint <> id)
+    IO.inspect Path.join([@endpoint, id])
+    delete!(Path.join([@endpoint, id]))
   end
 end

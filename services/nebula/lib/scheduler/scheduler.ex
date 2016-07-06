@@ -8,7 +8,6 @@ defmodule Nebula.Scheduler do
   end
 
   def init(_) do
-    # register_missing_jobs
     supervise([worker(Nebula.Scheduler.Job, [])], strategy: :simple_one_for_one)
   end
 
@@ -20,11 +19,4 @@ defmodule Nebula.Scheduler do
     # TODO this does not work
     Supervisor.count_children(:scheduler)
   end
-
-  # defp register_missing_jobs do
-  #   Logger.info "[scheduler] Checking for missing job processes..."
-  #   Nebula.Repo.all(Nebula.Job)
-  #   |> Enum.map(fn job -> register_job(job.id) end)
-  #   |> IO.inspect
-  # end
 end

@@ -1,5 +1,7 @@
 defmodule Nebula.Scheduler.Reaper do
+  import Ecto.Query, only: [from: 1, from: 2]
   use GenServer
+  use Timex
   require Logger
 
   def start_link do
@@ -14,12 +16,18 @@ defmodule Nebula.Scheduler.Reaper do
   def handle_info(:work, state) do
     Logger.debug "[scheduler] Checking for Jobs to be reaped."
 
-    # TODO get a list of all jobs here and work through them checking if any need to be shut down.
-    #
-    # Query Job table for jobs that are expired and kill them off:
-    # `Nebula.Scheduler.Job.get(id)`
+    expired_deploys |> Enum.map(fn(deploy) ->
+      Logger.debug "[scheduler] Reaping #{deploy.slug}"
+      Nomad.API.Job.delete(deploy.slug)
+      Nebula.Repo.update(%{deploy | state: "expired"})
+    end)
 
-    Process.send_after(self(), :work, 30_000) # In 2 hours
+    Process.send_after(self(), :work, 30_000)
     {:noreply, state}
+  end
+
+  defp expired_deploys do
+    query = from d in Nebula.Deploy, where: d.expire_at < ^DateTime.now, select: d
+    Nebula.Repo.all(query)
   end
 end
