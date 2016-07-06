@@ -49,7 +49,7 @@ resource "google_compute_autoscaler" "consul-server" {
 
   autoscaling_policy = {
     max_replicas    = 5
-    min_replicas    = 3
+    min_replicas    = 1
     cooldown_period = 60
 
     cpu_utilization {
