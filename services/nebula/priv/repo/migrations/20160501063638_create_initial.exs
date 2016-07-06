@@ -26,6 +26,7 @@ defmodule Nebula.Repo.Migrations.CreateDeploy do
       add :rev, :string, null: false
       add :slug, :string, null: false
       add :state, :string, null: false, default: "pending"
+      add :expire_at, :datetime
 
       timestamps
     end

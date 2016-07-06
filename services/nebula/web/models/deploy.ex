@@ -9,12 +9,13 @@ defmodule Nebula.Deploy do
     field :rev, :string
     field :slug, :string
     field :state, :string
+    field :expire_at, Timex.Ecto.DateTime
 
     timestamps
   end
 
   @required_fields ~w(project_id ref rev slug state)
-  @optional_fields ~w()
+  @optional_fields ~w(expire_at)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

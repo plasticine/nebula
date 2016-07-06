@@ -43,6 +43,8 @@ defmodule Nebula.Mixfile do
         :phoenix_pubsub_redis,
         :plug_graphql,
         :postgrex,
+        :timex,
+        :timex_ecto,
       ]
     ]
   end
@@ -69,10 +71,13 @@ defmodule Nebula.Mixfile do
       {:phoenix_html, "~> 2.4"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:phoenix_pubsub_redis, "~> 2.0.0"},
+      {:phoenix_timex, "~> 1.0.0"},
       {:plug_graphql, "~> 0.3"},
       {:poolboy, "~> 1.5.1"},
       {:postgrex, ">= 0.0.0"},
       {:temp, "~> 0.4"},
+      {:timex, "~> 2.2.1"},
+      {:timex_ecto, "~> 1.1.3"},
     ]
   end
 

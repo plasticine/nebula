@@ -2,6 +2,7 @@ defmodule Nebula.Api.V1.DeployController do
   use Nebula.Web, :controller
   alias Nebula.Deploy
   alias Sluginator
+  use Timex
 
   plug :scrub_params, "deploy" when action in [:create, :update]
 
@@ -55,11 +56,15 @@ defmodule Nebula.Api.V1.DeployController do
     project = Repo.get!(Nebula.Project, Map.get(deploy_params, "project_id"))
 
     %{
+      expire_at: default_expire_at,
       project_id: project.id,
       ref: Map.get(deploy_params, "ref"),
       rev: Map.get(deploy_params, "rev"),
       slug: Sluginator.build,
-      state: "accepted"
+      state: "accepted",
     }
   end
+
+  # TODO: will want to make this come from config at some point...
+  defp default_expire_at, do: Timex.shift(DateTime.now, hours: 1)
 end

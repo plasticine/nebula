@@ -1,13 +1,13 @@
 SHELL = /bin/bash -o pipefail
 TEMPDIR := $(shell mktemp -d)
 NUMPROCS := $(shell sysctl -n hw.ncpu)
+HOST_IP := "$(shell (ifconfig en0 | grep 'inet ' || ifconfig en1 | grep 'inet ') | cut -d " " -f2)"
 CONSUL_VERSION = 0.6.4
 NOMAD_VERSION = 0.4.0
 
 .PHONY: bootstrap dev vm prepare
 
 dev: vm .dev/bin/consul .dev/consul/ui .dev/bin/nomad
-	HOSTNAME=$(shell hostname) docker-compose up
 
 .dev:
 	mkdir -p .dev/{bin,consul,nomad}
@@ -41,4 +41,4 @@ prepare:
 bootstrap: dev prepare
 
 up:
-	docker-compose up --remove-orphans
+	HOST_IP=$(HOST_IP) docker-compose up --remove-orphans

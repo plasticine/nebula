@@ -16,7 +16,7 @@ defmodule Nomad.Model.Allocation do
       node_id: map["NodeID"],
       job_id: map["JobID"],
       task_group: map["TaskGroup"],
-      task_states: task_states(map),
+      task_states: task_states(map["TaskStates"]),
       desired_status: map["DesiredStatus"],
       desired_description: map["DesiredDescription"],
       client_status: map["ClientStatus"],
@@ -26,9 +26,9 @@ defmodule Nomad.Model.Allocation do
     }
   end
 
-  defp task_states(map) do
-    map
-    |> Map.get("TaskStates", %{})
+  defp task_states(nil), do: nil
+  defp task_states(task_states) do
+    task_states
     |> Enum.reject(&is_nil/1)
     |> Enum.map(fn({k,v}) -> {k, TaskState.from_map(v)} end)
   end

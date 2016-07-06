@@ -10,7 +10,6 @@ defmodule NebulaJob do
   """
   def rewrite_nomad_job!(job_spec, slug) do
     job_spec
-    |> IO.inspect
     |> update_nebula_entrypoint_service(slug)
     |> update_job_name(slug)
     |> update_job_id(slug)

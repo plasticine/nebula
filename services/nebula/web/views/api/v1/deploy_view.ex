@@ -8,6 +8,7 @@ defmodule Nebula.Api.V1.DeployView do
     rev
     inserted_at
     updated_at
+    expire_at
     state
     slug
   )a

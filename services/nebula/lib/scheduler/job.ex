@@ -27,8 +27,6 @@ defmodule Nebula.Scheduler.Job do
     {:ok, job_spec} = Nomad.Binary.parse!(pid)
     nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, job.deploy.slug)
 
-    IO.inspect nebula_job
-
     nomad_job = Nomad.API.Jobs.create(nebula_job)
     allocations = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
 
