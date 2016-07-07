@@ -2,7 +2,10 @@ defmodule Nebula.Deploy do
   use Nebula.Web, :model
 
   defmodule States do
-    defstruct pending: "pending", running: "running", dead: "dead"
+    defstruct accepted: "accepted",
+              pending: "pending",
+              running: "running",
+              dead: "dead"
   end
 
   schema "deploys" do

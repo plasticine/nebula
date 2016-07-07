@@ -25,10 +25,13 @@ defmodule Nebula.Scheduler.Job do
     # TODO Add error handling here...
     {:ok, output} = Nomad.Binary.validate!(pid)
     {:ok, job_spec} = Nomad.Binary.parse!(pid)
-    nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, job.deploy.slug)
 
+    nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, job.deploy.slug)
     nomad_job = Nomad.API.Jobs.create(nebula_job)
     allocations = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
+
+    IO.inspect nomad_job
+    IO.inspect allocations
 
     {:noreply, job, job}
   end
@@ -52,7 +55,5 @@ defmodule Nebula.Scheduler.Job do
   @doc """
   Find a job process by its Job id.
   """
-  def get(id) do
-    :gproc.where({:n, :l, {:job, id}})
-  end
+  def get(id), do: :gproc.where({:n, :l, {:job, id}})
 end

@@ -55,7 +55,7 @@ defmodule Nebula.Api.V1.DeployController do
       ref: Map.get(deploy_params, "ref"),
       rev: Map.get(deploy_params, "rev"),
       slug: Sluginator.build,
-      state: Deploy.states.pending,
+      state: Deploy.states.accepted,
     }
   end
 
