@@ -3,7 +3,7 @@ job "simple-example" {
     datacenters = ["dc1"]
 
     update {
-        stagger = "30s"
+        stagger = "10s"
         max_parallel = 1
     }
 

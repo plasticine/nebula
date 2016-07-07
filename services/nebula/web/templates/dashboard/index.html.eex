@@ -12,19 +12,27 @@
     <th>Inserted</th>
     <th>Updated</th>
     <th>Expires</th>
+
+    <th></th>
   </thead>
   <tbody>
     <%= for deploy <- deploys do %>
       <tr>
         <td><%= deploy.id %></td>
-        <td><%= link deploy.slug, to: deploy_path(@conn, :show, deploy)  %></td>
+        <td><%= link deploy.slug, to: deploy_path(@conn, :show, deploy) %></td>
         <td><%= link deploy.project.name, to: project_path(@conn, :show, deploy.project) %></td>
-        <td><code><%= deploy.ref %></code></td>
-        <td><code><%= deploy.rev %></code></td>
+        <td><%= deploy.ref %></td>
+        <td><%= deploy.rev %></td>
         <td><%= deploy.state %></td>
         <td><%= deploy.inserted_at %></td>
         <td><%= deploy.updated_at %></td>
         <td><%= deploy.expire_at %></td>
+        <td>
+          <%= button "Destroy",
+              to: deploy_path(@conn, :delete, deploy),
+              disabled: deploy.state == "dead",
+              method: 'delete' %>
+        </td>
       </tr>
     <% end %>
   </tbody>

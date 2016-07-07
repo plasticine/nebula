@@ -46,12 +46,6 @@ defmodule Nebula.Api.V1.DeployController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    deploy = Repo.get!(Deploy, id)
-    Repo.delete!(deploy)
-    send_resp(conn, :no_content, "")
-  end
-
   defp filter_deploy_params(%{"deploy" => deploy_params}) do
     project = Repo.get!(Nebula.Project, Map.get(deploy_params, "project_id"))
 
@@ -61,7 +55,7 @@ defmodule Nebula.Api.V1.DeployController do
       ref: Map.get(deploy_params, "ref"),
       rev: Map.get(deploy_params, "rev"),
       slug: Sluginator.build,
-      state: "accepted",
+      state: Deploy.states.pending,
     }
   end
 

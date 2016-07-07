@@ -26,7 +26,7 @@ defmodule Sluginator do
 
     [@adjectives, @nouns]
     |> Enum.map(&sample/1)
-    |> Enum.concat(List.wrap(random(9999)))
+    # |> Enum.concat(List.wrap(random(9999)))
     |> Enum.join("-")
   end
 

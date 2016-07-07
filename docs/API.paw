@@ -154,7 +154,7 @@
     </object>
     <object type="LMREQUEST" id="z112">
         <attribute name="uuid" type="string">78B66A8C-3499-4BB2-AA8D-CA1D91039AD9</attribute>
-        <attribute name="url" type="string">http://172.20.10.10:4646/v1/job/example</attribute>
+        <attribute name="url" type="string">http://172.20.10.10:4646/v1/job/wild-river-5747</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

@@ -1,6 +1,10 @@
 defmodule Nebula.Deploy do
   use Nebula.Web, :model
 
+  defmodule States do
+    defstruct pending: "pending", running: "running", dead: "dead"
+  end
+
   schema "deploys" do
     belongs_to :project, Nebula.Project
     has_one :job, Nebula.Job
@@ -26,5 +30,9 @@ defmodule Nebula.Deploy do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def states do
+    %Nebula.Deploy.States{}
   end
 end

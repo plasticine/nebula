@@ -3,6 +3,8 @@ defmodule Nebula.Scheduler.Reaper do
   use GenServer
   use Timex
   require Logger
+  alias Nebula.Repo
+  alias Ecto.Changeset
 
   def start_link do
     GenServer.start_link(__MODULE__, [], name: :reaper)
@@ -19,7 +21,7 @@ defmodule Nebula.Scheduler.Reaper do
     expired_deploys |> Enum.map(fn(deploy) ->
       Logger.debug "[scheduler] Reaping #{deploy.slug}"
       Nomad.API.Job.delete(deploy.slug)
-      Nebula.Repo.update(%{deploy | state: "expired"})
+      Repo.update(Changeset.change(deploy, %{state: Deploy.states.dead}))
     end)
 
     Process.send_after(self(), :work, 30_000)

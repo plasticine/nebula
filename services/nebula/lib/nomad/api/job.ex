@@ -21,7 +21,6 @@ defmodule Nomad.API.Job do
   Register a new job.
   """
   def delete(id) do
-    IO.inspect Path.join([@endpoint, id])
     delete!(Path.join([@endpoint, id]))
   end
 end
