@@ -18,7 +18,3 @@ variable "region_zone" {
 variable "base_image_name" {
   description = "..."
 }
-
-variable "consul_image_name" {
-  description = "..."
-}

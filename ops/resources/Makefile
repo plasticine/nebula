@@ -14,7 +14,6 @@ get:
 plan: get
 	terraform plan \
 		-var-file="images/base/image.json" \
-		-var-file="images/consul/image.json" \
 		-out=plan
 
 .DELETE_ON_ERROR:
@@ -25,4 +24,3 @@ apply: plan
 destroy:
 	terraform destroy \
 		-var-file="images/base/image.json" \
-		-var-file="images/consul/image.json" \

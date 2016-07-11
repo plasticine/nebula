@@ -3,12 +3,12 @@
 set -euo pipefail
 IFS=' '
 
-apt-get install -y dnsmasq
+sudo apt-get install -y dnsmasq
 
-mkdir -p /etc/dnsmasq.d
-cat > /etc/dnsmasq.d/10-consul <<'EOF'
+sudo mkdir -p /etc/dnsmasq.d
+sudo tee /etc/dnsmasq.d/10-consul <<EOF
 server=/consul/127.0.0.1#8600
 EOF
 
-systemctl enable dnsmasq
-systemctl start dnsmasq
+sudo systemctl enable dnsmasq
+sudo systemctl start dnsmasq
