@@ -34,6 +34,10 @@ sudo mv /tmp/provision/consul.rsyslog /etc/rsyslog.d/10-consul.conf
 sudo mv /tmp/provision/consul.logrotate /etc/logrotate.d/consul
 sudo service rsyslog restart
 
-# Install consul-join
+# Install consul-join-cluster
 sudo mv /tmp/provision/consul-join-cluster /usr/local/bin/consul-join-cluster
 sudo chmod +x /usr/local/bin/consul-join-cluster
+
+# Install consul-servers
+sudo mv /tmp/provision/consul-servers /usr/local/bin/consul-servers
+sudo chmod +x /usr/local/bin/consul-servers

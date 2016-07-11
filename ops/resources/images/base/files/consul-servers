@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+main() {
+  gcloud compute instances list \
+    --filter="(tags.items:consul-server)AND(status:running)" \
+    --format json \
+  | jq -r ".[].networkInterfaces[].networkIP"
+}
+
+main

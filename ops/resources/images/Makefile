@@ -12,7 +12,7 @@ packer build -var-file=variables.json $(2) $(1)/main.json | tee log/packer.image
 $(eval $@_image_name := $(shell grep "A disk image was created:" log/packer.image.$(1).log | cut -d ' ' -f8))
 @echo "$($@_image_name)"
 @echo "{\"$(1)_image_name\":\"$($@_image_name)\"}" > $@
-cat $@
+@cat $@
 # TODO should also clean up the old image here...
 endef
 
