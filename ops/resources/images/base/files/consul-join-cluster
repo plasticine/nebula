@@ -3,6 +3,9 @@
 set -euo pipefail
 IFS=' '
 
+# https://cloud.google.com/sdk/gcloud/reference/compute/instances/list
+# Refactor this for usage in google compute.
+
 readonly REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
 readonly PRIVATE_IPV4=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .privateIp)
 readonly PEERS=$(aws --region $REGION ec2 describe-instances \

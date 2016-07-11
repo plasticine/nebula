@@ -1,7 +1,7 @@
 SHELL = /bin/bash -o pipefail
 NUMPROCS:=$(shell sysctl -n hw.ncpu)
 
-BASE_FILES   = $(shell find base ! -name 'image.json' ! -name '.DS_Store')
+BASE_FILES = $(shell find base ! -name 'image.json' ! -name '.DS_Store')
 
 .PHONY: all clean
 
