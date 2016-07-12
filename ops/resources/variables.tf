@@ -18,3 +18,7 @@ variable "region_zone" {
 variable "base_image_name" {
   description = "..."
 }
+
+variable "nat_image_name" {
+  description = "..."
+}

@@ -2,15 +2,16 @@ resource "template_file" "consul-server" {
   template = "${file("${path.module}/resources/user_data.bash.template")}"
 }
 
-resource "google_compute_instance_template" "consul-cluster-instance_template" {
-  name         = "consul-cluster"
-  machine_type = "f1-micro"
+resource "google_compute_instance_template" "consul-cluster" {
+  name           = "consul-cluster"
+  machine_type   = "f1-micro"
+  can_ip_forward = true
 
   metadata = {
     startup-script = "${template_file.consul-server.rendered}"
   }
 
-  tags = ["consul-server", "consul"]
+  tags = ["consul-server", "consul", "internal"]
 
   disk {
     source_image = "${var.consul_image_name}"
@@ -20,7 +21,6 @@ resource "google_compute_instance_template" "consul-cluster-instance_template" {
 
   network_interface {
     network = "default"
-    access_config {}
   }
 
   service_account {
@@ -42,7 +42,7 @@ resource "google_compute_instance_group_manager" "consul-cluster" {
   base_instance_name = "consul-server"
 }
 
-resource "google_compute_autoscaler" "consul-server-autoscaler" {
+resource "google_compute_autoscaler" "consul-server" {
   name   = "consul-server"
   zone   = "us-central1-a"
   target = "${google_compute_instance_group_manager.consul-cluster.self_link}"
