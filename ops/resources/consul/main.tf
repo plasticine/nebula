@@ -1,22 +1,26 @@
 resource "template_file" "consul-server" {
   template = "${file("${path.module}/resources/user_data.bash.template")}"
+
+  vars {
+    consul_bootstrap_expect = "${var.consul_bootstrap_expect}"
+  }
 }
 
 resource "google_compute_instance_template" "consul-cluster" {
-  name           = "consul-cluster"
-  machine_type   = "f1-micro"
+  name = "consul-cluster"
+  machine_type = "f1-micro"
   can_ip_forward = true
 
   metadata = {
     startup-script = "${template_file.consul-server.rendered}"
   }
 
-  tags = ["consul-server", "consul", "internal"]
+  tags = ["consul-server", "consul", "no-ip"]
 
   disk {
     source_image = "${var.consul_image_name}"
-    auto_delete  = true
-    boot         = true
+    auto_delete = true
+    boot = true
   }
 
   network_interface {
@@ -48,12 +52,12 @@ resource "google_compute_autoscaler" "consul-server" {
   target = "${google_compute_instance_group_manager.consul-cluster.self_link}"
 
   autoscaling_policy = {
-    max_replicas    = 5
-    min_replicas    = 1
-    cooldown_period = 60
+    max_replicas    = "5"
+    min_replicas    = "${var.consul_bootstrap_expect}"
+    cooldown_period = "60"
 
     cpu_utilization {
-      target = 0.5
+      target = "0.75"
     }
   }
 }
