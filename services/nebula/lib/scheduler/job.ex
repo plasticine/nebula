@@ -19,7 +19,9 @@ defmodule Nebula.Scheduler.Job do
   Register a new job to be scheduled.
   Saves the Job is a queue for later use.
   """
-  def handle_cast(:work, job) do
+  def handle_cast(:start, job) do
+    Logger.info "[scheduler] [job:#{job.id}] Starting new job '#{job.deploy.slug}'"
+
     {:ok, pid} = GenServer.start_link(Nomad.Binary, job.spec)
 
     # TODO Add error handling here...
@@ -33,7 +35,24 @@ defmodule Nebula.Scheduler.Job do
     IO.inspect nomad_job
     IO.inspect allocations
 
+    Process.send(self(), :monitor) |> IO.inspect
+
     {:noreply, job, job}
+  end
+
+  def handle_info(:monitor, job) do
+    Logger.info "[scheduler] [job:#{job.id}] Checking status of job..."
+
+    IO.inspect job
+
+    Process.send_after(self(), :monitor, 30_000)
+    {:noreply, job}
+  end
+
+  @doc """
+  Kill a job.
+  """
+  def handle_cast(:kill, job) do
   end
 
   @doc """
@@ -43,8 +62,7 @@ defmodule Nebula.Scheduler.Job do
   def create(job) do
     case Nebula.Scheduler.register_job(job.id) do
       {:ok, child} ->
-        Logger.info "[scheduler] Created new Job [id:#{job.id}]"
-        GenServer.cast(child, :work)
+        GenServer.cast(child, :start)
         {:ok, child}
       {:error, error} ->
         Logger.error "[scheduler] Failed to create job [id:#{job.id}]"

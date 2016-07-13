@@ -62,8 +62,9 @@ defmodule NebulaJob do
     |> Enum.join("-")
   end
 
-  defp urlprefix_for_slug(slug), do: "urlprefix-#{slug}.#{host}/"
-  defp host, do: "nebula.dev:9999"  # TODO read this from config
+  defp urlprefix_for_slug(slug) do
+    "urlprefix-#{slug}.#{Application.get_env(:nebula, :domain_name)}/"
+  end
 
   defp items(:get_and_update, data, next), do: Enum.map(data, next) |> :lists.unzip
 end

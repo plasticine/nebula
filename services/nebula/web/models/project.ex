@@ -36,6 +36,11 @@ defmodule Nebula.Project do
   end
 
   def push_url(project) do
-    Path.join(["https://git.sploosh.cool/", project.slug <> ".git"])
+    Path.join([
+      "http://",
+      Application.get_env(:nebula, :domain_name),
+      "git",
+      project.slug <> ".git"
+    ])
   end
 end

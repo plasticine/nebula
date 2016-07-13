@@ -38,4 +38,11 @@ defmodule Nebula.Deploy do
   def states do
     %Nebula.Deploy.States{}
   end
+
+  def web_url(deploy) do
+    Path.join([
+      "http://",
+      deploy.slug <> "." <> Application.get_env(:nebula, :domain_name)
+    ])
+  end
 end

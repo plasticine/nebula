@@ -1,30 +1,30 @@
-<h2>Deploy</h2>
+<h1>Deploy</h1>
 
 <hr />
 
 <table style="width: 100%; text-align: left;">
   <thead>
     <th>ID</th>
-    <th>Slug</th>
     <th>State</th>
     <th>Refspec</th>
     <th>Revision</th>
     <td>Project</td>
+    <th>Endpoint</th>
   </thead>
   <tbody>
     <tr>
       <td><%= @deploy.id %></td>
-      <td><%= @deploy.slug %></td>
       <td><%= @deploy.state %></td>
       <td><code><%= @deploy.ref %></code></td>
-      <td><code><%= @deploy.rev %></code></td>
+      <td><code><%= String.slice(@deploy.rev, 0, 8) %></code></td>
       <td><%= link @deploy.project.name, to: project_path(@conn, :show, @deploy.project) %></td>
+      <td><%= link web_url(@deploy), to: web_url(@deploy) %></td>
     </tr>
   </tbody>
 </table>
 
 <h3>Job Specification</h3>
-<code style="line-height: 11px;">
+<code style="line-height: 9px; font-size: 10px;">
   <pre>
     <%= text_to_html @deploy.job.spec %>
   </pre>

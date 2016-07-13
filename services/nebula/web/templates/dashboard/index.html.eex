@@ -4,11 +4,10 @@
 <table style="width: 100%; text-align: left;">
   <thead>
     <th>ID</th>
-    <th>Slug</th>
-    <th>Project</th>
-    <th>Refspec</th>
-    <th>Revision</th>
     <th>State</th>
+    <th>Endpoint</th>
+    <th>Project</th>
+    <th>Refspec@Revision</th>
     <th>Inserted</th>
     <th>Updated</th>
     <th>Expires</th>
@@ -18,12 +17,11 @@
   <tbody>
     <%= for deploy <- deploys do %>
       <tr>
-        <td><%= deploy.id %></td>
-        <td><%= link deploy.slug, to: deploy_path(@conn, :show, deploy) %></td>
-        <td><%= link deploy.project.name, to: project_path(@conn, :show, deploy.project) %></td>
-        <td><%= deploy.ref %></td>
-        <td><%= deploy.rev %></td>
+        <td><%= link "##{deploy.id}", to: deploy_path(@conn, :show, deploy) %></td>
         <td><%= deploy.state %></td>
+        <td><%= link deploy.slug, to: Deploy.web_url(deploy) %></td>
+        <td><%= link deploy.project.name, to: project_path(@conn, :show, deploy.project) %></td>
+        <td><%= deploy.ref %>@<%= String.slice(deploy.rev, 0, 8) %></td>
         <td><%= deploy.inserted_at %></td>
         <td><%= deploy.updated_at %></td>
         <td><%= deploy.expire_at %></td>

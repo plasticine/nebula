@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+IO.inspect System.get_env("DOMAIN_NAME")
+
 # Configures the endpoint
 config :nebula, Nebula.Endpoint,
   url: [host: "localhost"],
@@ -28,3 +30,5 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
+config :nebula,
+  domain_name: System.get_env("DOMAIN_NAME")

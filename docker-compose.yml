@@ -24,7 +24,7 @@ services:
       SERVICE_80_CHECK_HTTP: /health
       SERVICE_80_CHECK_INTERVAL: 5s
       SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_80_TAGS: urlprefix-${DOMAINNAME}/
+      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/
     links:
       - nebula
 
@@ -38,7 +38,7 @@ services:
       SERVICE_80_CHECK_HTTP: /health
       SERVICE_80_CHECK_INTERVAL: 5s
       SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_80_TAGS: urlprefix-${DOMAINNAME}/git
+      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/git
     volumes_from:
       - project_data
     volumes:
@@ -58,6 +58,7 @@ services:
       MIX_ENV: dev
       SERVICE_NAME: nebula
       SERVICE_TAGS: nebula
+      DOMAIN_NAME: ${DOMAIN_NAME}
       # SERVICE_80_CHECK_HTTP: /health
       # SERVICE_80_CHECK_INTERVAL: 5s
       # SERVICE_80_CHECK_TIMEOUT: 1s
