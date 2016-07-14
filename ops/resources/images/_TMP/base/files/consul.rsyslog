@@ -1,0 +1,4 @@
+daemon.* {
+  /var/log/consul.log
+  stop
+}

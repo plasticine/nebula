@@ -1,0 +1,9 @@
+{
+  "disable_anonymous_signature": true,
+  "disable_update_check": true,
+  "addresses": {
+    "http": "0.0.0.0"
+  },
+  "enable_syslog": true,
+  "log_level": "INFO"
+}

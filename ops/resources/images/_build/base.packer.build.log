@@ -1,0 +1,572 @@
+[1;32mbase output will be in this color.[0m
+
+[1;32m==> base: Checking image does not exist...[0m
+[1;32m==> base: Creating temporary SSH key for instance...[0m
+[1;32m==> base: Creating instance...[0m
+[0;32m    base: Loading zone: us-central1-a[0m
+[0;32m    base: Loading image: ubuntu-1604-xenial-v20160610 in project nebula-1338[0m
+[0;32m    base: Loading machine type: n1-standard-1[0m
+[0;32m    base: Loading network: default[0m
+[0;32m    base: Requesting instance creation...[0m
+[0;32m    base: Waiting for creation operation to complete...[0m
+[0;32m    base: Instance has been created![0m
+[1;32m==> base: Waiting for the instance to become running...[0m
+[0;32m    base: IP: 104.198.202.86[0m
+[1;32m==> base: Waiting for SSH to become available...[0m
+[1;32m==> base: Connected to SSH![0m
+[1;32m==> base: Provisioning with shell script: /Users/justin/Projects/plasticine/nebula/ops/resources/images/base/scripts/base.bash[0m
+[0;32m    base: Hit:1 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial InRelease[0m
+[0;32m    base: Get:2 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates InRelease [95.7 kB][0m
+[0;32m    base: Get:3 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports InRelease [92.2 kB][0m
+[0;32m    base: Get:4 http://security.ubuntu.com/ubuntu xenial-security InRelease [94.5 kB][0m
+[0;32m    base: Get:5 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/main Sources [868 kB][0m
+[0;32m    base: Get:6 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/restricted Sources [4,808 B][0m
+[0;32m    base: Get:7 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/universe Sources [7,728 kB][0m
+[0;32m    base: Get:8 http://archive.canonical.com/ubuntu xenial InRelease [11.5 kB][0m
+[0;32m    base: Get:9 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/multiverse Sources [179 kB][0m
+[0;32m    base: Get:10 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main Sources [163 kB][0m
+[0;32m    base: Get:11 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/universe Sources [82.1 kB][0m
+[0;32m    base: Get:12 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/multiverse Sources [2,552 B][0m
+[0;32m    base: Get:13 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [315 kB][0m
+[0;32m    base: Get:14 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [119 kB][0m
+[0;32m    base: Get:15 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [294 kB][0m
+[0;32m    base: Get:16 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [98.8 kB][0m
+[0;32m    base: Get:17 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [4,688 B][0m
+[0;32m    base: Get:18 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/multiverse Translation-en [2,140 B][0m
+[0;32m    base: Get:19 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports/main Sources [752 B][0m
+[0;32m    base: Get:20 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports/universe Sources [800 B][0m
+[0;32m    base: Get:21 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [676 B][0m
+[0;32m    base: Get:22 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports/main Translation-en [524 B][0m
+[0;32m    base: Get:23 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [608 B][0m
+[0;32m    base: Get:24 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports/universe Translation-en [300 B][0m
+[0;32m    base: Get:25 http://security.ubuntu.com/ubuntu xenial-security/main Sources [31.7 kB][0m
+[0;32m    base: Get:26 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [8,508 B][0m
+[0;32m    base: Get:27 http://security.ubuntu.com/ubuntu xenial-security/multiverse Sources [728 B][0m
+[0;32m    base: Get:28 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [121 kB][0m
+[0;32m    base: Get:29 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [46.6 kB][0m
+[0;32m    base: Get:30 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [35.7 kB][0m
+[0;32m    base: Get:31 http://archive.canonical.com/ubuntu xenial/partner amd64 Packages [2,712 B][0m
+[0;32m    base: Get:32 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [21.5 kB][0m
+[0;32m    base: Get:33 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages [1,176 B][0m
+[0;32m    base: Fetched 10.4 MB in 2s (4,684 kB/s)[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Building dependency tree...[0m
+[0;32m    base: Reading state information...[0m
+[0;32m    base: Calculating upgrade...[0m
+[0;32m    base: The following packages have been kept back:[0m
+[0;32m    base: linux-headers-generic linux-headers-virtual linux-image-virtual[0m
+[0;32m    base: linux-virtual vim vim-common vim-runtime vim-tiny[0m
+[0;32m    base: The following packages will be upgraded:[0m
+[0;32m    base: base-files bash cloud-init command-not-found command-not-found-data[0m
+[0;32m    base: dnsmasq-base gcc-5-base grub-common grub-pc grub-pc-bin grub2-common[0m
+[0;32m    base: initramfs-tools initramfs-tools-bin initramfs-tools-core libexpat1[0m
+[0;32m    base: libglib2.0-0 libglib2.0-data libgnutls-openssl27 libgnutls30 liblxc1[0m
+[0;32m    base: libpython2.7-minimal libpython2.7-stdlib libstdc++6 lsb-base lsb-release[0m
+[0;32m    base: lshw lxc-common lxcfs lxd lxd-client python2.7 python2.7-minimal[0m
+[0;32m    base: python3-commandnotfound python3-software-properties shared-mime-info snapd[0m
+[0;32m    base: software-properties-common tzdata wget[0m
+[0;32m    base: 39 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.[0m
+[0;32m    base: Need to get 22.9 MB of archives.[0m
+[0;32m    base: After this operation, 4,506 kB of additional disk space will be used.[0m
+[0;32m    base: Get:1 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 base-files amd64 9.4ubuntu4.1 [68.4 kB][0m
+[0;32m    base: Get:2 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 bash amd64 4.3-14ubuntu1.1 [583 kB][0m
+[0;32m    base: Get:3 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 grub-pc amd64 2.02~beta2-36ubuntu3.1 [197 kB][0m
+[0;32m    base: Get:4 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 grub2-common amd64 2.02~beta2-36ubuntu3.1 [512 kB][0m
+[0;32m    base: Get:5 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 grub-pc-bin amd64 2.02~beta2-36ubuntu3.1 [884 kB][0m
+[0;32m    base: Get:6 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lsb-base all 9.20160110ubuntu0.2 [13.7 kB][0m
+[0;32m    base: Get:7 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 grub-common amd64 2.02~beta2-36ubuntu3.1 [1,706 kB][0m
+[0;32m    base: Get:8 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 dnsmasq-base amd64 2.75-1ubuntu0.16.04.1 [294 kB][0m
+[0;32m    base: Get:9 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 liblxc1 amd64 2.0.3-0ubuntu1~ubuntu16.04.1 [200 kB][0m
+[0;32m    base: Get:10 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lxc-common amd64 2.0.3-0ubuntu1~ubuntu16.04.1 [27.7 kB][0m
+[0;32m    base: Get:11 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lxcfs amd64 2.0.2-0ubuntu1~ubuntu16.04.1 [34.4 kB][0m
+[0;32m    base: Get:12 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lxd amd64 2.0.3-0ubuntu1~ubuntu16.04.2 [3,664 kB][0m
+[0;32m    base: Get:13 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7 amd64 2.7.12-1~16.04 [224 kB][0m
+[0;32m    base: Get:14 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libexpat1 amd64 2.1.0-7ubuntu0.16.04.2 [71.3 kB][0m
+[0;32m    base: Get:15 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-stdlib amd64 2.7.12-1~16.04 [1,877 kB][0m
+[0;32m    base: Get:16 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7-minimal amd64 2.7.12-1~16.04 [1,294 kB][0m
+[0;32m    base: Get:17 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-minimal amd64 2.7.12-1~16.04 [339 kB][0m
+[0;32m    base: Get:18 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 gcc-5-base amd64 5.4.0-6ubuntu1~16.04.1 [16.6 kB][0m
+[0;32m    base: Get:19 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libstdc++6 amd64 5.4.0-6ubuntu1~16.04.1 [393 kB][0m
+[0;32m    base: Get:20 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 tzdata all 2016f-0ubuntu0.16.04 [168 kB][0m
+[0;32m    base: Get:21 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 initramfs-tools all 0.122ubuntu8.1 [8,602 B][0m
+[0;32m    base: Get:22 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 initramfs-tools-core all 0.122ubuntu8.1 [42.2 kB][0m
+[0;32m    base: Get:23 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 initramfs-tools-bin amd64 0.122ubuntu8.1 [10.8 kB][0m
+[0;32m    base: Get:24 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgnutls-openssl27 amd64 3.4.10-4ubuntu1.1 [21.9 kB][0m
+[0;32m    base: Get:25 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgnutls30 amd64 3.4.10-4ubuntu1.1 [547 kB][0m
+[0;32m    base: Get:26 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lsb-release all 9.20160110ubuntu0.2 [11.8 kB][0m
+[0;32m    base: Get:27 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 command-not-found-data amd64 0.3ubuntu16.04.2 [879 kB][0m
+[0;32m    base: Get:28 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python3-commandnotfound all 0.3ubuntu16.04.2 [5,766 B][0m
+[0;32m    base: Get:29 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 command-not-found all 0.3ubuntu16.04.2 [3,696 B][0m
+[0;32m    base: Get:30 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libglib2.0-0 amd64 2.48.1-1~ubuntu16.04.1 [1,118 kB][0m
+[0;32m    base: Get:31 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libglib2.0-data all 2.48.1-1~ubuntu16.04.1 [132 kB][0m
+[0;32m    base: Get:32 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lshw amd64 02.17-1.1ubuntu3.2 [215 kB][0m
+[0;32m    base: Get:33 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 shared-mime-info amd64 1.5-2ubuntu0.1 [405 kB][0m
+[0;32m    base: Get:34 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 wget amd64 1.17.1-1ubuntu1.1 [298 kB][0m
+[0;32m    base: Get:35 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 lxd-client amd64 2.0.3-0ubuntu1~ubuntu16.04.2 [1,833 kB][0m
+[0;32m    base: Get:36 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 software-properties-common all 0.96.20.2 [9,420 B][0m
+[0;32m    base: Get:37 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python3-software-properties all 0.96.20.2 [19.6 kB][0m
+[0;32m    base: Get:38 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 snapd amd64 2.0.10 [4,530 kB][0m
+[0;32m    base: Get:39 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 cloud-init all 0.7.7~bzr1246-0ubuntu1~16.04.1 [253 kB][0m
+[0;32m    base: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    base: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    base: debconf: falling back to frontend: Readline[0m
+[0;32m    base: debconf: unable to initialize frontend: Readline[0m
+[0;32m    base: debconf: (This frontend requires a controlling tty.)[0m
+[0;32m    base: debconf: falling back to frontend: Teletype[0m
+[0;32m    base: dpkg-preconfigure: unable to re-open stdin:[0m
+[0;32m    base: Fetched 22.9 MB in 0s (46.7 MB/s)[0m
+[0;32m    base: (Reading database ... 59810 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../base-files_9.4ubuntu4.1_amd64.deb ...[0m
+[0;32m    base: Unpacking base-files (9.4ubuntu4.1) over (9.4ubuntu4) ...[0m
+[0;32m    base: Processing triggers for plymouth-theme-ubuntu-text (0.9.2-3ubuntu13.1) ...[0m
+[0;32m    base: update-initramfs: deferring update (trigger activated)[0m
+[0;32m    base: Processing triggers for install-info (6.1.0.dfsg.1-5) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Processing triggers for initramfs-tools (0.122ubuntu8) ...[0m
+[0;32m    base: update-initramfs: Generating /boot/initrd.img-4.4.0-24-generic[0m
+[0;32m    base: W: mdadm: /etc/mdadm/mdadm.conf defines no arrays.[0m
+[0;32m    base: Setting up base-files (9.4ubuntu4.1) ...[0m
+[0;32m    base: Installing new version of config file /etc/update-motd.d/10-help-text ...[0m
+[0;32m    base: (Reading database ... 59810 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../bash_4.3-14ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking bash (4.3-14ubuntu1.1) over (4.3-14ubuntu1) ...[0m
+[0;32m    base: Processing triggers for install-info (6.1.0.dfsg.1-5) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Setting up bash (4.3-14ubuntu1.1) ...[0m
+[0;32m    base: Installing new version of config file /etc/skel/.profile ...[0m
+[0;32m    base: update-alternatives: using /usr/share/man/man7/bash-builtins.7.gz to provide /usr/share/man/man7/builtins.7.gz (builtins.7.gz) in auto mode[0m
+[0;32m    base: (Reading database ... 59810 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../grub-pc_2.02~beta2-36ubuntu3.1_amd64.deb ...[0m
+[0;32m    base: Unpacking grub-pc (2.02~beta2-36ubuntu3.1) over (2.02~beta2-36ubuntu3) ...[0m
+[0;32m    base: Preparing to unpack .../grub2-common_2.02~beta2-36ubuntu3.1_amd64.deb ...[0m
+[0;32m    base: Unpacking grub2-common (2.02~beta2-36ubuntu3.1) over (2.02~beta2-36ubuntu3) ...[0m
+[0;32m    base: Preparing to unpack .../grub-pc-bin_2.02~beta2-36ubuntu3.1_amd64.deb ...[0m
+[0;32m    base: Unpacking grub-pc-bin (2.02~beta2-36ubuntu3.1) over (2.02~beta2-36ubuntu3) ...[0m
+[0;32m    base: Preparing to unpack .../lsb-base_9.20160110ubuntu0.2_all.deb ...[0m
+[0;32m    base: Unpacking lsb-base (9.20160110ubuntu0.2) over (9.20160110) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Processing triggers for install-info (6.1.0.dfsg.1-5) ...[0m
+[0;32m    base: Setting up lsb-base (9.20160110ubuntu0.2) ...[0m
+[0;32m    base: (Reading database ... 59810 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../grub-common_2.02~beta2-36ubuntu3.1_amd64.deb ...[0m
+[0;32m    base: Unpacking grub-common (2.02~beta2-36ubuntu3.1) over (2.02~beta2-36ubuntu3) ...[0m
+[0;32m    base: Preparing to unpack .../dnsmasq-base_2.75-1ubuntu0.16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking dnsmasq-base (2.75-1ubuntu0.16.04.1) over (2.75-1) ...[0m
+[0;32m    base: Preparing to unpack .../liblxc1_2.0.3-0ubuntu1~ubuntu16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking liblxc1 (2.0.3-0ubuntu1~ubuntu16.04.1) over (2.0.1-0ubuntu1~16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../lxc-common_2.0.3-0ubuntu1~ubuntu16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking lxc-common (2.0.3-0ubuntu1~ubuntu16.04.1) over (2.0.1-0ubuntu1~16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../lxcfs_2.0.2-0ubuntu1~ubuntu16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking lxcfs (2.0.2-0ubuntu1~ubuntu16.04.1) over (2.0.1-0ubuntu1~16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../lxd_2.0.3-0ubuntu1~ubuntu16.04.2_amd64.deb ...[0m
+[0;32m    base: Warning: Stopping lxd.service, but it can still be activated by:[0m
+[0;32m    base: lxd.socket[0m
+[0;32m    base: Unpacking lxd (2.0.3-0ubuntu1~ubuntu16.04.2) over (2.0.2-0ubuntu1~16.04.1) ...[0m
+[0;32m    base: Warning: Stopping lxd.service, but it can still be activated by:[0m
+[0;32m    base: lxd.socket[0m
+[0;32m    base: Preparing to unpack .../python2.7_2.7.12-1~16.04_amd64.deb ...[0m
+[0;32m    base: Unpacking python2.7 (2.7.12-1~16.04) over (2.7.11-7ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../libexpat1_2.1.0-7ubuntu0.16.04.2_amd64.deb ...[0m
+[0;32m    base: Unpacking libexpat1:amd64 (2.1.0-7ubuntu0.16.04.2) over (2.1.0-7ubuntu0.16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../libpython2.7-stdlib_2.7.12-1~16.04_amd64.deb ...[0m
+[0;32m    base: Unpacking libpython2.7-stdlib:amd64 (2.7.12-1~16.04) over (2.7.11-7ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../python2.7-minimal_2.7.12-1~16.04_amd64.deb ...[0m
+[0;32m    base: Unpacking python2.7-minimal (2.7.12-1~16.04) over (2.7.11-7ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../libpython2.7-minimal_2.7.12-1~16.04_amd64.deb ...[0m
+[0;32m    base: Unpacking libpython2.7-minimal:amd64 (2.7.12-1~16.04) over (2.7.11-7ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../gcc-5-base_5.4.0-6ubuntu1~16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking gcc-5-base:amd64 (5.4.0-6ubuntu1~16.04.1) over (5.3.1-14ubuntu2.1) ...[0m
+[0;32m    base: Processing triggers for systemd (229-4ubuntu6) ...[0m
+[0;32m    base: Processing triggers for ureadahead (0.100.0-19) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: Processing triggers for mime-support (3.59ubuntu1) ...[0m
+[0;32m    base: Setting up gcc-5-base:amd64 (5.4.0-6ubuntu1~16.04.1) ...[0m
+[0;32m    base: (Reading database ... 59810 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../libstdc++6_5.4.0-6ubuntu1~16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking libstdc++6:amd64 (5.4.0-6ubuntu1~16.04.1) over (5.3.1-14ubuntu2.1) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: Setting up libstdc++6:amd64 (5.4.0-6ubuntu1~16.04.1) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: (Reading database ... 59810 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../tzdata_2016f-0ubuntu0.16.04_all.deb ...[0m
+[0;32m    base: Unpacking tzdata (2016f-0ubuntu0.16.04) over (2016d-0ubuntu0.16.04) ...[0m
+[0;32m    base: Preparing to unpack .../initramfs-tools_0.122ubuntu8.1_all.deb ...[0m
+[0;32m    base: Unpacking initramfs-tools (0.122ubuntu8.1) over (0.122ubuntu8) ...[0m
+[0;32m    base: Preparing to unpack .../initramfs-tools-core_0.122ubuntu8.1_all.deb ...[0m
+[0;32m    base: Unpacking initramfs-tools-core (0.122ubuntu8.1) over (0.122ubuntu8) ...[0m
+[0;32m    base: Preparing to unpack .../initramfs-tools-bin_0.122ubuntu8.1_amd64.deb ...[0m
+[0;32m    base: Unpacking initramfs-tools-bin (0.122ubuntu8.1) over (0.122ubuntu8) ...[0m
+[0;32m    base: Preparing to unpack .../libgnutls-openssl27_3.4.10-4ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking libgnutls-openssl27:amd64 (3.4.10-4ubuntu1.1) over (3.4.10-4ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../libgnutls30_3.4.10-4ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking libgnutls30:amd64 (3.4.10-4ubuntu1.1) over (3.4.10-4ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../lsb-release_9.20160110ubuntu0.2_all.deb ...[0m
+[0;32m    base: Unpacking lsb-release (9.20160110ubuntu0.2) over (9.20160110) ...[0m
+[0;32m    base: Preparing to unpack .../command-not-found-data_0.3ubuntu16.04.2_amd64.deb ...[0m
+[0;32m    base: Unpacking command-not-found-data (0.3ubuntu16.04.2) over (0.3ubuntu16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../python3-commandnotfound_0.3ubuntu16.04.2_all.deb ...[0m
+[0;32m    base: Unpacking python3-commandnotfound (0.3ubuntu16.04.2) over (0.3ubuntu16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../command-not-found_0.3ubuntu16.04.2_all.deb ...[0m
+[0;32m    base: Unpacking command-not-found (0.3ubuntu16.04.2) over (0.3ubuntu16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../libglib2.0-0_2.48.1-1~ubuntu16.04.1_amd64.deb ...[0m
+[0;32m    base: Unpacking libglib2.0-0:amd64 (2.48.1-1~ubuntu16.04.1) over (2.48.0-1ubuntu4) ...[0m
+[0;32m    base: Preparing to unpack .../libglib2.0-data_2.48.1-1~ubuntu16.04.1_all.deb ...[0m
+[0;32m    base: Unpacking libglib2.0-data (2.48.1-1~ubuntu16.04.1) over (2.48.0-1ubuntu4) ...[0m
+[0;32m    base: Preparing to unpack .../lshw_02.17-1.1ubuntu3.2_amd64.deb ...[0m
+[0;32m    base: Unpacking lshw (02.17-1.1ubuntu3.2) over (02.17-1.1ubuntu3.1) ...[0m
+[0;32m    base: Preparing to unpack .../shared-mime-info_1.5-2ubuntu0.1_amd64.deb ...[0m
+[0;32m    base: Unpacking shared-mime-info (1.5-2ubuntu0.1) over (1.5-2) ...[0m
+[0;32m    base: Preparing to unpack .../wget_1.17.1-1ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking wget (1.17.1-1ubuntu1.1) over (1.17.1-1ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../lxd-client_2.0.3-0ubuntu1~ubuntu16.04.2_amd64.deb ...[0m
+[0;32m    base: Unpacking lxd-client (2.0.3-0ubuntu1~ubuntu16.04.2) over (2.0.2-0ubuntu1~16.04.1) ...[0m
+[0;32m    base: Preparing to unpack .../software-properties-common_0.96.20.2_all.deb ...[0m
+[0;32m    base: Unpacking software-properties-common (0.96.20.2) over (0.96.20) ...[0m
+[0;32m    base: Preparing to unpack .../python3-software-properties_0.96.20.2_all.deb ...[0m
+[0;32m    base: Unpacking python3-software-properties (0.96.20.2) over (0.96.20) ...[0m
+[0;32m    base: Preparing to unpack .../snapd_2.0.10_amd64.deb ...[0m
+[0;32m    base: Unpacking snapd (2.0.10) over (2.0.5) ...[0m
+[0;32m    base: Preparing to unpack .../cloud-init_0.7.7~bzr1246-0ubuntu1~16.04.1_all.deb ...[0m
+[0;32m    base: Unpacking cloud-init (0.7.7~bzr1246-0ubuntu1~16.04.1) over (0.7.7~bzr1212-0ubuntu1) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: Processing triggers for install-info (6.1.0.dfsg.1-5) ...[0m
+[0;32m    base: Processing triggers for ureadahead (0.100.0-19) ...[0m
+[0;32m    base: Setting up grub-common (2.02~beta2-36ubuntu3.1) ...[0m
+[0;32m    base: update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults[0m
+[0;32m    base: Setting up grub2-common (2.02~beta2-36ubuntu3.1) ...[0m
+[0;32m    base: Setting up grub-pc-bin (2.02~beta2-36ubuntu3.1) ...[0m
+[0;32m    base: Setting up grub-pc (2.02~beta2-36ubuntu3.1) ...[0m
+[0;32m    base: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    base: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    base: debconf: falling back to frontend: Readline[0m
+[0;32m    base: Replacing config file /etc/default/grub with new version[0m
+[0;32m    base: Installing for i386-pc platform.[0m
+[0;32m    base: Installation finished. No error reported.[0m
+[0;32m    base: Generating grub configuration file ...[0m
+[0;32m    base: Found linux image: /boot/vmlinuz-4.4.0-24-generic[0m
+[0;32m    base: Found initrd image: /boot/initrd.img-4.4.0-24-generic[0m
+[0;32m    base: done[0m
+[0;32m    base: Setting up dnsmasq-base (2.75-1ubuntu0.16.04.1) ...[0m
+[0;32m    base: Setting up lxcfs (2.0.2-0ubuntu1~ubuntu16.04.1) ...[0m
+[0;32m    base: Setting up libpython2.7-minimal:amd64 (2.7.12-1~16.04) ...[0m
+[0;32m    base: Setting up python2.7-minimal (2.7.12-1~16.04) ...[0m
+[0;32m    base: Setting up libexpat1:amd64 (2.1.0-7ubuntu0.16.04.2) ...[0m
+[0;32m    base: Setting up libpython2.7-stdlib:amd64 (2.7.12-1~16.04) ...[0m
+[0;32m    base: Setting up python2.7 (2.7.12-1~16.04) ...[0m
+[0;32m    base: Setting up tzdata (2016f-0ubuntu0.16.04) ...[0m
+[0;32m    base: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    base: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    base: debconf: falling back to frontend: Readline[0m
+[0;32m    base:[0m
+[0;32m    base: Current default time zone: 'Etc/UTC'[0m
+[0;32m    base: Local time is now:      Thu Jul 14 22:37:00 UTC 2016.[0m
+[0;32m    base: Universal Time is now:  Thu Jul 14 22:37:00 UTC 2016.[0m
+[0;32m    base: Run 'dpkg-reconfigure tzdata' if you wish to change it.[0m
+[0;32m    base:[0m
+[0;32m    base: Setting up initramfs-tools-bin (0.122ubuntu8.1) ...[0m
+[0;32m    base: Setting up initramfs-tools-core (0.122ubuntu8.1) ...[0m
+[0;32m    base: Setting up initramfs-tools (0.122ubuntu8.1) ...[0m
+[0;32m    base: update-initramfs: deferring update (trigger activated)[0m
+[0;32m    base: Setting up libgnutls30:amd64 (3.4.10-4ubuntu1.1) ...[0m
+[0;32m    base: Setting up libgnutls-openssl27:amd64 (3.4.10-4ubuntu1.1) ...[0m
+[0;32m    base: Setting up lsb-release (9.20160110ubuntu0.2) ...[0m
+[0;32m    base: Setting up command-not-found-data (0.3ubuntu16.04.2) ...[0m
+[0;32m    base: Setting up python3-commandnotfound (0.3ubuntu16.04.2) ...[0m
+[0;32m    base: Setting up command-not-found (0.3ubuntu16.04.2) ...[0m
+[0;32m    base: Setting up libglib2.0-0:amd64 (2.48.1-1~ubuntu16.04.1) ...[0m
+[0;32m    base: No schema files found: doing nothing.[0m
+[0;32m    base: Setting up libglib2.0-data (2.48.1-1~ubuntu16.04.1) ...[0m
+[0;32m    base: Setting up lshw (02.17-1.1ubuntu3.2) ...[0m
+[0;32m    base: Setting up shared-mime-info (1.5-2ubuntu0.1) ...[0m
+[0;32m    base: Setting up wget (1.17.1-1ubuntu1.1) ...[0m
+[0;32m    base: Setting up lxd-client (2.0.3-0ubuntu1~ubuntu16.04.2) ...[0m
+[0;32m    base: Setting up python3-software-properties (0.96.20.2) ...[0m
+[0;32m    base: Setting up software-properties-common (0.96.20.2) ...[0m
+[0;32m    base: Setting up snapd (2.0.10) ...[0m
+[0;32m    base: Removing obsolete conffile /etc/ld.so.conf.d/snappy.conf ...[0m
+[0;32m    base: Setting up cloud-init (0.7.7~bzr1246-0ubuntu1~16.04.1) ...[0m
+[0;32m    base: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    base: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    base: debconf: falling back to frontend: Readline[0m
+[0;32m    base: Leaving 'diversion of /etc/init/ureadahead.conf to /etc/init/ureadahead.conf.disabled by cloud-init'[0m
+[0;32m    base: Setting up liblxc1 (2.0.3-0ubuntu1~ubuntu16.04.1) ...[0m
+[0;32m    base: Setting up lxc-common (2.0.3-0ubuntu1~ubuntu16.04.1) ...[0m
+[0;32m    base: Installing new version of config file /etc/apparmor.d/abstractions/lxc/container-base ...[0m
+[0;32m    base: Installing new version of config file /etc/apparmor.d/abstractions/lxc/start-container ...[0m
+[0;32m    base: Setting up lxd (2.0.3-0ubuntu1~ubuntu16.04.2) ...[0m
+[0;32m    base: Processing triggers for dbus (1.10.6-1ubuntu3) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: Processing triggers for initramfs-tools (0.122ubuntu8.1) ...[0m
+[0;32m    base: update-initramfs: Generating /boot/initrd.img-4.4.0-24-generic[0m
+[0;32m    base: W: mdadm: /etc/mdadm/mdadm.conf defines no arrays.[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Building dependency tree...[0m
+[0;32m    base: Reading state information...[0m
+[0;32m    base: 0 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.[0m
+[0;32m    base: Hit:1 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial InRelease[0m
+[0;32m    base: Hit:2 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates InRelease[0m
+[0;32m    base: Hit:3 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-backports InRelease[0m
+[0;32m    base: Hit:4 http://security.ubuntu.com/ubuntu xenial-security InRelease[0m
+[0;32m    base: Hit:5 http://archive.canonical.com/ubuntu xenial InRelease[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Building dependency tree...[0m
+[0;32m    base: Reading state information...[0m
+[0;32m    base: Calculating upgrade...[0m
+[0;32m    base: The following NEW packages will be installed:[0m
+[0;32m    base: libpython3.5 linux-headers-4.4.0-31 linux-headers-4.4.0-31-generic[0m
+[0;32m    base: linux-image-4.4.0-31-generic[0m
+[0;32m    base: The following packages will be upgraded:[0m
+[0;32m    base: linux-headers-generic linux-headers-virtual linux-image-virtual[0m
+[0;32m    base: linux-virtual vim vim-common vim-runtime vim-tiny[0m
+[0;32m    base: 8 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.[0m
+[0;32m    base: Need to get 37.6 MB of archives.[0m
+[0;32m    base: After this operation, 138 MB of additional disk space will be used.[0m
+[0;32m    base: Get:1 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim amd64 2:7.4.1689-3ubuntu1.1 [1,036 kB][0m
+[0;32m    base: Get:2 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim-tiny amd64 2:7.4.1689-3ubuntu1.1 [445 kB][0m
+[0;32m    base: Get:3 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim-runtime all 2:7.4.1689-3ubuntu1.1 [5,174 kB][0m
+[0;32m    base: Get:4 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/main amd64 libpython3.5 amd64 3.5.1-10 [1,360 kB][0m
+[0;32m    base: Get:5 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 vim-common amd64 2:7.4.1689-3ubuntu1.1 [104 kB][0m
+[0;32m    base: Get:6 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-headers-4.4.0-31 all 4.4.0-31.50 [9,935 kB][0m
+[0;32m    base: Get:7 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-headers-4.4.0-31-generic amd64 4.4.0-31.50 [782 kB][0m
+[0;32m    base: Get:8 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-image-4.4.0-31-generic amd64 4.4.0-31.50 [18.7 MB][0m
+[0;32m    base: Get:9 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-virtual amd64 4.4.0.31.33 [1,782 B][0m
+[0;32m    base: Get:10 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-image-virtual amd64 4.4.0.31.33 [2,298 B][0m
+[0;32m    base: Get:11 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-headers-virtual amd64 4.4.0.31.33 [1,758 B][0m
+[0;32m    base: Get:12 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial-updates/main amd64 linux-headers-generic amd64 4.4.0.31.33 [2,294 B][0m
+[0;32m    base: Fetched 37.6 MB in 0s (61.7 MB/s)[0m
+[0;32m    base: (Reading database ... 59819 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../vim_2%3a7.4.1689-3ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking vim (2:7.4.1689-3ubuntu1.1) over (2:7.4.1689-3ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../vim-tiny_2%3a7.4.1689-3ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking vim-tiny (2:7.4.1689-3ubuntu1.1) over (2:7.4.1689-3ubuntu1) ...[0m
+[0;32m    base: Preparing to unpack .../vim-runtime_2%3a7.4.1689-3ubuntu1.1_all.deb ...[0m
+[0;32m    base: Unpacking vim-runtime (2:7.4.1689-3ubuntu1.1) over (2:7.4.1689-3ubuntu1) ...[0m
+[0;32m    base: Selecting previously unselected package libpython3.5:amd64.[0m
+[0;32m    base: Preparing to unpack .../libpython3.5_3.5.1-10_amd64.deb ...[0m
+[0;32m    base: Unpacking libpython3.5:amd64 (3.5.1-10) ...[0m
+[0;32m    base: Preparing to unpack .../vim-common_2%3a7.4.1689-3ubuntu1.1_amd64.deb ...[0m
+[0;32m    base: Unpacking vim-common (2:7.4.1689-3ubuntu1.1) over (2:7.4.1689-3ubuntu1) ...[0m
+[0;32m    base: Selecting previously unselected package linux-headers-4.4.0-31.[0m
+[0;32m    base: Preparing to unpack .../linux-headers-4.4.0-31_4.4.0-31.50_all.deb ...[0m
+[0;32m    base: Unpacking linux-headers-4.4.0-31 (4.4.0-31.50) ...[0m
+[0;32m    base: Selecting previously unselected package linux-headers-4.4.0-31-generic.[0m
+[0;32m    base: Preparing to unpack .../linux-headers-4.4.0-31-generic_4.4.0-31.50_amd64.deb ...[0m
+[0;32m    base: Unpacking linux-headers-4.4.0-31-generic (4.4.0-31.50) ...[0m
+[0;32m    base: Selecting previously unselected package linux-image-4.4.0-31-generic.[0m
+[0;32m    base: Preparing to unpack .../linux-image-4.4.0-31-generic_4.4.0-31.50_amd64.deb ...[0m
+[0;32m    base: Done.[0m
+[0;32m    base: Unpacking linux-image-4.4.0-31-generic (4.4.0-31.50) ...[0m
+[0;32m    base: Preparing to unpack .../linux-virtual_4.4.0.31.33_amd64.deb ...[0m
+[0;32m    base: Unpacking linux-virtual (4.4.0.31.33) over (4.4.0.24.25) ...[0m
+[0;32m    base: Preparing to unpack .../linux-image-virtual_4.4.0.31.33_amd64.deb ...[0m
+[0;32m    base: Unpacking linux-image-virtual (4.4.0.31.33) over (4.4.0.24.25) ...[0m
+[0;32m    base: Preparing to unpack .../linux-headers-virtual_4.4.0.31.33_amd64.deb ...[0m
+[0;32m    base: Unpacking linux-headers-virtual (4.4.0.31.33) over (4.4.0.24.25) ...[0m
+[0;32m    base: Preparing to unpack .../linux-headers-generic_4.4.0.31.33_amd64.deb ...[0m
+[0;32m    base: Unpacking linux-headers-generic (4.4.0.31.33) over (4.4.0.24.25) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: Processing triggers for mime-support (3.59ubuntu1) ...[0m
+[0;32m    base: Setting up vim-common (2:7.4.1689-3ubuntu1.1) ...[0m
+[0;32m    base: Setting up vim-runtime (2:7.4.1689-3ubuntu1.1) ...[0m
+[0;32m    base: Setting up libpython3.5:amd64 (3.5.1-10) ...[0m
+[0;32m    base: Setting up vim (2:7.4.1689-3ubuntu1.1) ...[0m
+[0;32m    base: Setting up vim-tiny (2:7.4.1689-3ubuntu1.1) ...[0m
+[0;32m    base: Setting up linux-headers-4.4.0-31 (4.4.0-31.50) ...[0m
+[0;32m    base: Setting up linux-headers-4.4.0-31-generic (4.4.0-31.50) ...[0m
+[0;32m    base: Setting up linux-image-4.4.0-31-generic (4.4.0-31.50) ...[0m
+[0;32m    base: Running depmod.[0m
+[0;32m    base: update-initramfs: deferring update (hook will be called later)[0m
+[0;32m    base: Examining /etc/kernel/postinst.d.[0m
+[0;32m    base: run-parts: executing /etc/kernel/postinst.d/apt-auto-removal 4.4.0-31-generic /boot/vmlinuz-4.4.0-31-generic[0m
+[0;32m    base: run-parts: executing /etc/kernel/postinst.d/initramfs-tools 4.4.0-31-generic /boot/vmlinuz-4.4.0-31-generic[0m
+[0;32m    base: update-initramfs: Generating /boot/initrd.img-4.4.0-31-generic[0m
+[0;32m    base: W: mdadm: /etc/mdadm/mdadm.conf defines no arrays.[0m
+[0;32m    base: run-parts: executing /etc/kernel/postinst.d/unattended-upgrades 4.4.0-31-generic /boot/vmlinuz-4.4.0-31-generic[0m
+[0;32m    base: run-parts: executing /etc/kernel/postinst.d/update-notifier 4.4.0-31-generic /boot/vmlinuz-4.4.0-31-generic[0m
+[0;32m    base: run-parts: executing /etc/kernel/postinst.d/zz-update-grub 4.4.0-31-generic /boot/vmlinuz-4.4.0-31-generic[0m
+[0;32m    base: Generating grub configuration file ...[0m
+[0;32m    base: Found linux image: /boot/vmlinuz-4.4.0-31-generic[0m
+[0;32m    base: Found initrd image: /boot/initrd.img-4.4.0-31-generic[0m
+[0;32m    base: Found linux image: /boot/vmlinuz-4.4.0-24-generic[0m
+[0;32m    base: Found initrd image: /boot/initrd.img-4.4.0-24-generic[0m
+[0;32m    base: done[0m
+[0;32m    base: Setting up linux-image-virtual (4.4.0.31.33) ...[0m
+[0;32m    base: Setting up linux-headers-generic (4.4.0.31.33) ...[0m
+[0;32m    base: Setting up linux-headers-virtual (4.4.0.31.33) ...[0m
+[0;32m    base: Setting up linux-virtual (4.4.0.31.33) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Building dependency tree...[0m
+[0;32m    base: Reading state information...[0m
+[0;32m    base: 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.[0m
+[0;32m    base: Reading package lists...[0m
+[0;32m    base: Building dependency tree...[0m
+[0;32m    base: Reading state information...[0m
+[0;32m    base: curl is already the newest version (7.47.0-1ubuntu2).[0m
+[0;32m    base: wget is already the newest version (1.17.1-1ubuntu1.1).[0m
+[0;32m    base: Suggested packages:[0m
+[0;32m    base: ttf-bitstream-vera[0m
+[0;32m    base: The following NEW packages will be installed:[0m
+[0;32m    base: git-core htop httpie jq libonig2 python-pygments traceroute unzip zip[0m
+[0;32m    base: 0 upgraded, 9 newly installed, 0 to remove and 0 not upgraded.[0m
+[0;32m    base: Need to get 1,252 kB of archives.[0m
+[0;32m    base: After this operation, 5,471 kB of additional disk space will be used.[0m
+[0;32m    base: Get:1 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/universe amd64 libonig2 amd64 5.9.6-1 [88.1 kB][0m
+[0;32m    base: Get:2 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/main amd64 git-core all 1:2.7.4-0ubuntu1 [1,464 B][0m
+[0;32m    base: Get:3 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/universe amd64 htop amd64 2.0.1-1 [76.6 kB][0m
+[0;32m    base: Get:4 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/universe amd64 jq amd64 1.5+dfsg-1 [144 kB][0m
+[0;32m    base: Get:5 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/main amd64 python-pygments all 2.1+dfsg-1 [522 kB][0m
+[0;32m    base: Get:6 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/universe amd64 traceroute amd64 1:2.0.21-1 [45.5 kB][0m
+[0;32m    base: Get:7 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/main amd64 unzip amd64 6.0-20ubuntu1 [158 kB][0m
+[0;32m    base: Get:8 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/main amd64 zip amd64 3.0-11 [158 kB][0m
+[0;32m    base: Get:9 http://us-central1.gce.archive.ubuntu.com/ubuntu xenial/universe amd64 httpie all 0.9.2-1 [57.2 kB][0m
+[0;32m    base: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    base: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    base: debconf: falling back to frontend: Readline[0m
+[0;32m    base: debconf: unable to initialize frontend: Readline[0m
+[0;32m    base: debconf: (This frontend requires a controlling tty.)[0m
+[0;32m    base: debconf: falling back to frontend: Teletype[0m
+[0;32m    base: dpkg-preconfigure: unable to re-open stdin:[0m
+[0;32m    base: Fetched 1,252 kB in 0s (2,842 kB/s)[0m
+[0;32m    base: Selecting previously unselected package libonig2:amd64.[0m
+[0;32m    base: (Reading database ... 87517 files and directories currently installed.)[0m
+[0;32m    base: Preparing to unpack .../libonig2_5.9.6-1_amd64.deb ...[0m
+[0;32m    base: Unpacking libonig2:amd64 (5.9.6-1) ...[0m
+[0;32m    base: Selecting previously unselected package git-core.[0m
+[0;32m    base: Preparing to unpack .../git-core_1%3a2.7.4-0ubuntu1_all.deb ...[0m
+[0;32m    base: Unpacking git-core (1:2.7.4-0ubuntu1) ...[0m
+[0;32m    base: Selecting previously unselected package htop.[0m
+[0;32m    base: Preparing to unpack .../htop_2.0.1-1_amd64.deb ...[0m
+[0;32m    base: Unpacking htop (2.0.1-1) ...[0m
+[0;32m    base: Selecting previously unselected package jq.[0m
+[0;32m    base: Preparing to unpack .../jq_1.5+dfsg-1_amd64.deb ...[0m
+[0;32m    base: Unpacking jq (1.5+dfsg-1) ...[0m
+[0;32m    base: Selecting previously unselected package python-pygments.[0m
+[0;32m    base: Preparing to unpack .../python-pygments_2.1+dfsg-1_all.deb ...[0m
+[0;32m    base: Unpacking python-pygments (2.1+dfsg-1) ...[0m
+[0;32m    base: Selecting previously unselected package traceroute.[0m
+[0;32m    base: Preparing to unpack .../traceroute_1%3a2.0.21-1_amd64.deb ...[0m
+[0;32m    base: Unpacking traceroute (1:2.0.21-1) ...[0m
+[0;32m    base: Selecting previously unselected package unzip.[0m
+[0;32m    base: Preparing to unpack .../unzip_6.0-20ubuntu1_amd64.deb ...[0m
+[0;32m    base: Unpacking unzip (6.0-20ubuntu1) ...[0m
+[0;32m    base: Selecting previously unselected package zip.[0m
+[0;32m    base: Preparing to unpack .../archives/zip_3.0-11_amd64.deb ...[0m
+[0;32m    base: Unpacking zip (3.0-11) ...[0m
+[0;32m    base: Selecting previously unselected package httpie.[0m
+[0;32m    base: Preparing to unpack .../httpie_0.9.2-1_all.deb ...[0m
+[0;32m    base: Unpacking httpie (0.9.2-1) ...[0m
+[0;32m    base: Processing triggers for mime-support (3.59ubuntu1) ...[0m
+[0;32m    base: Processing triggers for man-db (2.7.5-1) ...[0m
+[0;32m    base: Setting up libonig2:amd64 (5.9.6-1) ...[0m
+[0;32m    base: Setting up git-core (1:2.7.4-0ubuntu1) ...[0m
+[0;32m    base: Setting up htop (2.0.1-1) ...[0m
+[0;32m    base: Setting up jq (1.5+dfsg-1) ...[0m
+[0;32m    base: Setting up python-pygments (2.1+dfsg-1) ...[0m
+[0;32m    base: Setting up traceroute (1:2.0.21-1) ...[0m
+[0;32m    base: update-alternatives: using /usr/bin/traceroute.db to provide /usr/bin/traceroute (traceroute) in auto mode[0m
+[0;32m    base: update-alternatives: using /usr/bin/lft.db to provide /usr/bin/lft (lft) in auto mode[0m
+[0;32m    base: update-alternatives: using /usr/bin/traceproto.db to provide /usr/bin/traceproto (traceproto) in auto mode[0m
+[0;32m    base: update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptraceroute (tcptraceroute) in auto mode[0m
+[0;32m    base: Setting up unzip (6.0-20ubuntu1) ...[0m
+[0;32m    base: Setting up zip (3.0-11) ...[0m
+[0;32m    base: Setting up httpie (0.9.2-1) ...[0m
+[0;32m    base: Processing triggers for libc-bin (2.23-0ubuntu3) ...[0m
+[1;32m==> base: Provisioning with shell script: /Users/justin/Projects/plasticine/nebula/ops/resources/images/base/scripts/reboot.bash[0m
+[0;32m    base: Rebooting the machine...[0m
+[1;32m==> base: Uploading /Users/justin/Projects/plasticine/nebula/ops/resources/images/base/files => /tmp/provision[0m
+[1;32m==> base: Provisioning with shell script: /Users/justin/Projects/plasticine/nebula/ops/resources/images/base/scripts/network-environment.bash[0m
+[0;32m    base: --2016-07-14 22:38:45--  https://github.com/kelseyhightower/setup-network-environment/releases/download/1.0.1/setup-network-environment[0m
+[0;32m    base: Resolving github.com (github.com)... 192.30.253.112[0m
+[0;32m    base: Connecting to github.com (github.com)|192.30.253.112|:443... connected.[0m
+[0;32m    base: HTTP request sent, awaiting response... 302 Found[0m
+[0;32m    base: Location: https://github-cloud.s3.amazonaws.com/releases/24030064/e22973ac-3ff8-11e5-9525-dfc9a90d875d?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAISTNZFOVBIJMK3TQ%2F20160714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20160714T223845Z&X-Amz-Expires=300&X-Amz-Signature=d4703c26062b149a03af0ee7d4f96c996aeaff006d485a70d72124cbc5fdf6d6&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3Dsetup-network-environment&response-content-type=application%2Foctet-stream [following][0m
+[0;32m    base: --2016-07-14 22:38:45--  https://github-cloud.s3.amazonaws.com/releases/24030064/e22973ac-3ff8-11e5-9525-dfc9a90d875d?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAISTNZFOVBIJMK3TQ%2F20160714%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20160714T223845Z&X-Amz-Expires=300&X-Amz-Signature=d4703c26062b149a03af0ee7d4f96c996aeaff006d485a70d72124cbc5fdf6d6&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3Dsetup-network-environment&response-content-type=application%2Foctet-stream[0m
+[0;32m    base: Resolving github-cloud.s3.amazonaws.com (github-cloud.s3.amazonaws.com)... 54.231.10.73[0m
+[0;32m    base: Connecting to github-cloud.s3.amazonaws.com (github-cloud.s3.amazonaws.com)|54.231.10.73|:443... connected.[0m
+[0;32m    base: HTTP request sent, awaiting response... 200 OK[0m
+[0;32m    base: Length: 3183760 (3.0M) [application/octet-stream][0m
+[0;32m    base: Saving to: ‘/opt/bin/setup-network-environment’[0m
+[0;32m    base:[0m
+[0;32m    base: 0K .......... .......... .......... .......... ..........  1%  608K 5s[0m
+[0;32m    base: 50K .......... .......... .......... .......... ..........  3%  905K 4s[0m
+[0;32m    base: 100K .......... .......... .......... .......... ..........  4%  910K 4s[0m
+[0;32m    base: 150K .......... .......... .......... .......... ..........  6% 1.76M 3s[0m
+[0;32m    base: 200K .......... .......... .......... .......... ..........  8%  914K 3s[0m
+[0;32m    base: 250K .......... .......... .......... .......... ..........  9% 1.77M 3s[0m
+[0;32m    base: 300K .......... .......... .......... .......... .......... 11% 1.77M 3s[0m
+[0;32m    base: 350K .......... .......... .......... .......... .......... 12% 1.81M 2s[0m
+[0;32m    base: 400K .......... .......... .......... .......... .......... 14% 1.75M 2s[0m
+[0;32m    base: 450K .......... .......... .......... .......... .......... 16% 1.81M 2s[0m
+[0;32m    base: 500K .......... .......... .......... .......... .......... 17% 1.78M 2s[0m
+[0;32m    base: 550K .......... .......... .......... .......... .......... 19% 65.2M 2s[0m
+[0;32m    base: 600K .......... .......... .......... .......... .......... 20% 1.78M 2s[0m
+[0;32m    base: 650K .......... .......... .......... .......... .......... 22% 1.83M 2s[0m
+[0;32m    base: 700K .......... .......... .......... .......... .......... 24% 42.8M 2s[0m
+[0;32m    base: 750K .......... .......... .......... .......... .......... 25% 1.85M 2s[0m
+[0;32m    base: 800K .......... .......... .......... .......... .......... 27% 56.6M 1s[0m
+[0;32m    base: 850K .......... .......... .......... .......... .......... 28% 1.80M 1s[0m
+[0;32m    base: 900K .......... .......... .......... .......... .......... 30%  268M 1s[0m
+[0;32m    base: 950K .......... .......... .......... .......... .......... 32% 1.80M 1s[0m
+[0;32m    base: 1000K .......... .......... .......... .......... .......... 33%  137M 1s[0m
+[0;32m    base: 1050K .......... .......... .......... .......... .......... 35% 1.77M 1s[0m
+[0;32m    base: 1100K .......... .......... .......... .......... .......... 36% 54.4M 1s[0m
+[0;32m    base: 1150K .......... .......... .......... .......... .......... 38%  319M 1s[0m
+[0;32m    base: 1200K .......... .......... .......... .......... .......... 40% 1.85M 1s[0m
+[0;32m    base: 1250K .......... .......... .......... .......... .......... 41% 62.7M 1s[0m
+[0;32m    base: 1300K .......... .......... .......... .......... .......... 43% 1.84M 1s[0m
+[0;32m    base: 1350K .......... .......... .......... .......... .......... 45%  103M 1s[0m
+[0;32m    base: 1400K .......... .......... .......... .......... .......... 46%  235M 1s[0m
+[0;32m    base: 1450K .......... .......... .......... .......... .......... 48% 1.82M 1s[0m
+[0;32m    base: 1500K .......... .......... .......... .......... .......... 49% 57.2M 1s[0m
+[0;32m    base: 1550K .......... .......... .......... .......... .......... 51%  322M 1s[0m
+[0;32m    base: 1600K .......... .......... .......... .......... .......... 53% 1.81M 1s[0m
+[0;32m    base: 1650K .......... .......... .......... .......... .......... 54% 73.3M 1s[0m
+[0;32m    base: 1700K .......... .......... .......... .......... .......... 56%  336M 1s[0m
+[0;32m    base: 1750K .......... .......... .......... .......... .......... 57% 1.88M 1s[0m
+[0;32m    base: 1800K .......... .......... .......... .......... .......... 59% 44.8M 1s[0m
+[0;32m    base: 1850K .......... .......... .......... .......... .......... 61%  310M 0s[0m
+[0;32m    base: 1900K .......... .......... .......... .......... .......... 62% 1.84M 0s[0m
+[0;32m    base: 1950K .......... .......... .......... .......... .......... 64% 50.1M 0s[0m
+[0;32m    base: 2000K .......... .......... .......... .......... .......... 65%  202M 0s[0m
+[0;32m    base: 2050K .......... .......... .......... .......... .......... 67%  207M 0s[0m
+[0;32m    base: 2100K .......... .......... .......... .......... .......... 69% 1.88M 0s[0m
+[0;32m    base: 2150K .......... .......... .......... .......... .......... 70% 42.2M 0s[0m
+[0;32m    base: 2200K .......... .......... .......... .......... .......... 72%  320M 0s[0m
+[0;32m    base: 2250K .......... .......... .......... .......... .......... 73% 1.93M 0s[0m
+[0;32m    base: 2300K .......... .......... .......... .......... .......... 75% 74.4M 0s[0m
+[0;32m    base: 2350K .......... .......... .......... .......... .......... 77% 33.4M 0s[0m
+[0;32m    base: 2400K .......... .......... .......... .......... .......... 78%  284M 0s[0m
+[0;32m    base: 2450K .......... .......... .......... .......... .......... 80% 1.93M 0s[0m
+[0;32m    base: 2500K .......... .......... .......... .......... .......... 82% 86.2M 0s[0m
+[0;32m    base: 2550K .......... .......... .......... .......... .......... 83% 41.7M 0s[0m
+[0;32m    base: 2600K .......... .......... .......... .......... .......... 85%  121M 0s[0m
+[0;32m    base: 2650K .......... .......... .......... .......... .......... 86%  299M 0s[0m
+[0;32m    base: 2700K .......... .......... .......... .......... .......... 88% 1.90M 0s[0m
+[0;32m    base: 2750K .......... .......... .......... .......... .......... 90%  294M 0s[0m
+[0;32m    base: 2800K .......... .......... .......... .......... .......... 91% 40.4M 0s[0m
+[0;32m    base: 2850K .......... .......... .......... .......... .......... 93%  259M 0s[0m
+[0;32m    base: 2900K .......... .......... .......... .......... .......... 94%  331M 0s[0m
+[0;32m    base: 2950K .......... .......... .......... .......... .......... 96% 1.89M 0s[0m
+[0;32m    base: 3000K .......... .......... .......... .......... .......... 98% 91.3M 0s[0m
+[0;32m    base: 3050K .......... .......... .......... .......... .......... 99% 62.6M 0s[0m
+[0;32m    base: 3100K .........                                             100%  441M=0.9s[0m
+[0;32m    base:[0m
+[0;32m    base: 2016-07-14 22:38:46 (3.34 MB/s) - ‘/opt/bin/setup-network-environment’ saved [3183760/3183760][0m
+[0;32m    base:[0m
+[0;32m    base: chown: cannot access '/tmp/provision/setup-network-environment.service': No such file or directory[0m
+[1;32m==> base: Deleting instance...[0m
+[0;32m    base: Instance has been deleted![0m
+[1;32m==> base: Deleting disk...[0m
+[0;32m    base: Disk has been deleted![0m
+[1;31mBuild 'base' errored: Script exited with non-zero exit status: 1[0m
+
+==> Some builds didn't complete successfully and had errors:
+--> base: Script exited with non-zero exit status: 1
+
+==> Builds finished but no artifacts were created.

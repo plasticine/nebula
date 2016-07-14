@@ -17,4 +17,6 @@ sudo curl -o /etc/cron.hourly/docker-gc -L https://raw.githubusercontent.com/spo
 sudo chmod +x /etc/cron.hourly/docker-gc
 
 # Setup docker logging
+sudo mv /tmp/provision/conf/docker.rsyslog /etc/rsyslog.d/10-docker.conf
+sudo mv /tmp/provision/conf/docker.logrotate /etc/logrotate.d/docker
 sudo service rsyslog restart

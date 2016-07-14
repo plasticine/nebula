@@ -1,32 +1,27 @@
 SHELL = /bin/bash -o pipefail
 NUMPROCS:=$(shell sysctl -n hw.ncpu)
+BUILD_DIR = _build
+IMAGES = base
 
-BASE_FILES = $(shell find base ! -name 'image.json' ! -name '.DS_Store')
-NAT_FILES = $(shell find nat ! -name 'image.json' ! -name '.DS_Store')
+.PHONY: all
 
-.PHONY: all clean
-
-define build-image
-rm log/packer.image.$(1).log || true
-packer build -var-file=variables.json $(2) $(1)/main.json | tee log/packer.image.$(1).log
+define logfile_path
+$(BUILD_DIR)/$(1).packer.build.log
 endef
 
-define save-image-id
-$(eval $@_image_name := $(shell grep "A disk image was created:" log/packer.image.$(1).log | cut -d ' ' -f8))
-echo "{\"$(1)_image_name\":\"$($@_image_name)\"}" > $@
+define get_image_id
+grep "A disk image was created:" $(call logfile_path,$(1)) | cut -d ' ' -f8
 endef
 
-all:
-	make -j$(NUMPROCS) \
-		base/image.json \
-		nat/image.json
+define IMAGE_template
+$(BUILD_DIR)/$(1).json:
+	@echo "Running IMAGE_template for $(1)"
+	$(eval @$_logfile = $(call logfile_path,$(1)))
+	@rm $(@$_logfile) || true
+	packer build -var-file=variables.json $(2) $(1)/main.json | tee $(@$_logfile)
+	@echo "{\"$(1)_image_name\":\"$(eval $(call get_image_id,$(1)))\"}" > $$@
+	rm $$@
+endef
 
-.DELETE_ON_ERROR:
-base/image.json: $(BASE_FILES)
-	$(call build-image,base)
-	$(call save-image-id,base)
-
-.DELETE_ON_ERROR:
-nat/image.json: base/image.json $(NAT_FILES)
-	$(call build-image,nat,-var-file=base/image.json)
-	$(call save-image-id,nat)
+$(foreach image,$(IMAGES), $(eval $(call IMAGE_template,$(image))))
+all: $(foreach image,$(IMAGES), $(BUILD_DIR)/$(image).json)

@@ -1,0 +1,4 @@
+daemon.* {
+  /var/log/docker.log
+  stop
+}
