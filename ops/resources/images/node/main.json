@@ -1,18 +1,18 @@
 {
   "variables": {
-    "node_image_name": ""
+    "base_image_name": ""
   },
   "builders": [
     {
-      "name": "client",
+      "name": "node",
       "type": "googlecompute",
       "zone": "us-central1-a",
-      "source_image": "{{user `node_image_name`}}",
+      "source_image": "{{user `base_image_name`}}",
       "project_id": "{{user `googlecompute_project_id`}}",
       "account_file": "{{user `config_path`}}/account.json",
       "ssh_username": "ubuntu",
-      "image_name": "nebula-client-{{timestamp}}",
-      "image_description": "Client instance image."
+      "image_name": "nebula-node-{{timestamp}}",
+      "image_description": "Node instance image."
     }
   ],
   "provisioners": [
@@ -25,6 +25,7 @@
       "type": "shell",
       "scripts": [
         "{{template_dir}}/scripts/copy-files.bash",
+        "{{template_dir}}/scripts/consul.bash",
         "{{template_dir}}/scripts/nomad.bash"
       ]
     }

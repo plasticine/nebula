@@ -16,23 +16,20 @@ sudo chown nomad:nomad /var/nomad
 sudo mkdir -p /opt/nomad
 sudo mkdir -p /opt/nomad/data
 
-wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -O /tmp/nomad.zip
-unzip /tmp/nomad.zip > /dev/null
-chmod +x /tmp/nomad
-sudo mv /tmp/nomad /usr/local/bin/nomad
+curl -o /tmp/nomad.zip -L https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip
+sudo unzip -d /usr/local/bin /tmp/nomad.zip
+sudo chmod +x /usr/local/bin/nomad
 
 # Install Nomad service
-sudo chown root:root /tmp/provision/nomad.service
+sudo chown root:root /etc/systemd/system/nomad.service
 sudo chmod 0644 /etc/systemd/system/nomad.service
 sudo systemctl daemon-reload
 
 # Restart logging
 sudo service rsyslog restart
 
-# Install nomad-join-cluster
-sudo chmod +x /usr/local/bin/nomad-join-cluster
-
-# Install nomad-servers
+# Install nomad-join and nomad-servers
+sudo chmod +x /usr/local/bin/nomad-join
 sudo chmod +x /usr/local/bin/nomad-servers
 
 # Install dnsmasq

@@ -8,18 +8,11 @@
       "project_id": "{{user `googlecompute_project_id`}}",
       "account_file": "{{user `config_path`}}/account.json",
       "ssh_username": "ubuntu",
-      "image_name": "nebula-ubuntu-base-{{timestamp}}",
+      "image_name": "nebula-base-{{timestamp}}",
       "image_description": "Base instance image."
     }
   ],
   "provisioners": [
-    {
-      "type": "shell",
-      "scripts": [
-        "{{template_dir}}/scripts/base.bash",
-        "{{template_dir}}/scripts/reboot.bash"
-      ]
-    },
     {
       "type": "file",
       "source": "{{template_dir}}/files",
@@ -28,8 +21,10 @@
     {
       "type": "shell",
       "scripts": [
+        "{{template_dir}}/scripts/base.bash",
         "{{template_dir}}/scripts/network-environment.bash",
-        "{{template_dir}}/scripts/docker.bash"
+        "{{template_dir}}/scripts/docker.bash",
+        "{{template_dir}}/scripts/reboot.bash"
       ]
     }
   ]
