@@ -5,17 +5,16 @@ IFS=' '
 
 readonly CONSUL_VERSION=0.6.4
 
+# Install Consul
 sudo mkdir -p /opt/consul
 sudo mkdir -p /opt/consul/data
-
-# Install Consul
 curl -o /tmp/consul.zip -L https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 sudo unzip /tmp/consul.zip -d /usr/local/bin
 sudo chmod +x /usr/local/bin/consul
 
 # Install Consul UI
-curl -o /tmp/consul_ui.zip -L https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_web_ui.zip
-sudo unzip consul_ui.zip -d /opt/consul/ui
+curl -o /tmp/consul_web_ui.zip -L https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_web_ui.zip
+sudo unzip /tmp/consul_web_ui.zip -d /opt/consul/ui
 
 # Install consul service
 sudo mkdir -p /etc/systemd/system/consul.d

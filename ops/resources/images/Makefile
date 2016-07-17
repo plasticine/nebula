@@ -1,7 +1,7 @@
 SHELL = /bin/bash -o pipefail
 NUMPROCS:=$(shell sysctl -n hw.ncpu)
 BUILD_DIR = _build
-IMAGES = base node client server
+IMAGES = base bastion node
 
 .PHONY: all $(IMAGES)
 
@@ -10,7 +10,7 @@ $(BUILD_DIR)/log/$(1).packer.build.log
 endef
 
 define BUILD_IMAGE_TEMPLATE
-$(BUILD_DIR)/$(1)_image.json: $(shell find $(1) ! -name '.DS_Store')
+$(BUILD_DIR)/$(1)_image.json: $(shell find $(1) -type f ! -name '.DS_Store')
 	$(eval @$_logfile = $(call logfile_path,$(1)))
 	@mkdir -p $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)/log
@@ -25,8 +25,9 @@ endef
 
 $(foreach image,$(IMAGES), $(eval $(call BUILD_IMAGE_TEMPLATE,$(image))))
 
-base: $(BUILD_DIR)/base_image.json
-node: base $(BUILD_DIR)/node_image.json
-# client: node $(BUILD_DIR)/client_image.json
-# server: node $(BUILD_DIR)/server_image.json
 all: $(IMAGES)
+base: $(BUILD_DIR)/base_image.json
+bastion: base $(BUILD_DIR)/bastion_image.json
+node: base $(BUILD_DIR)/node_image.json
+
+.DEFAULT_GOAL := all

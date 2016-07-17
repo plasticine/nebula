@@ -5,22 +5,15 @@ IFS=' '
 
 readonly NOMAD_VERSION=0.4.0
 
-# Copy essential files into place
-sudo cp -R /tmp/provision/root/* /
-
 # Install Nomad
-sudo adduser --disabled-password --gecos '' nomad
-sudo mkdir /var/nomad
-sudo chown nomad:nomad /var/nomad
-
 sudo mkdir -p /opt/nomad
 sudo mkdir -p /opt/nomad/data
-
 curl -o /tmp/nomad.zip -L https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip
 sudo unzip -d /usr/local/bin /tmp/nomad.zip
 sudo chmod +x /usr/local/bin/nomad
 
 # Install Nomad service
+sudo mkdir -p /etc/systemd/system/nomad.d
 sudo chown root:root /etc/systemd/system/nomad.service
 sudo chmod 0644 /etc/systemd/system/nomad.service
 sudo systemctl daemon-reload

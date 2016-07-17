@@ -21,6 +21,7 @@
     {
       "type": "shell",
       "scripts": [
+        "{{template_dir}}/scripts/copy-files.bash",
         "{{template_dir}}/scripts/base.bash",
         "{{template_dir}}/scripts/network-environment.bash",
         "{{template_dir}}/scripts/docker.bash",

@@ -1,4 +1,0 @@
-daemon.* {
-  /var/log/nomad.log
-  stop
-}
