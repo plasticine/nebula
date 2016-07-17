@@ -6,7 +6,7 @@ resource "google_compute_instance" "bastion" {
 
   tags = ["bastion", "nat"]
 
-  metadata_startup_script = "sudo iptables -t nat -A POSTROUTING -j MASQUERADE"
+  metadata_startup_script = "echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward && sudo iptables -t nat -A POSTROUTING -j MASQUERADE"
 
   disk {
     image = "${var.bastion_image_name}"
