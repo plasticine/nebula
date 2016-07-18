@@ -14,9 +14,7 @@ ExecStart=/usr/local/bin/consul agent \
   -client=${DEFAULT_IPV4} \
   -advertise=${DEFAULT_IPV4} \
   -config-dir=/etc/systemd/system/consul.d \
-  -data-dir=/opt/consul/data \
-  -ui-dir=/opt/consul/ui \
-  -ui
+  -data-dir=/opt/consul/data
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
