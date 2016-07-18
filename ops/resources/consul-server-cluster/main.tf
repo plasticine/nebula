@@ -9,6 +9,8 @@ resource "template_file" "consul-server" {
 }
 
 resource "google_compute_http_health_check" "consul-cluster-health-check" {
+  lifecycle { create_before_destroy = true }
+
   name = "consul-cluster-health-check"
   request_path = "/"
   port = 8500
