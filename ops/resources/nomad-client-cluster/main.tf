@@ -1,4 +1,4 @@
-resource "template_file" "nomad-server" {
+resource "template_file" "nomad-client" {
   lifecycle { create_before_destroy = true }
 
   template = "${file("${path.module}/resources/user_data.bash.template")}"
@@ -22,10 +22,10 @@ resource "google_compute_instance_template" "nomad-cluster-template" {
   can_ip_forward = true
 
   metadata = {
-    startup-script = "${template_file.nomad-server.rendered}"
+    startup-script = "${template_file.nomad-client.rendered}"
   }
 
-  tags = ["nomad-server", "nomad", "no-ip"]
+  tags = ["nomad-client", "nomad", "no-ip"]
 
   disk {
     source_image = "${var.nomad_image_name}"
@@ -57,7 +57,7 @@ resource "google_compute_instance_group_manager" "nomad-cluster-group-manager" {
 
   instance_template  = "${google_compute_instance_template.nomad-cluster-template.self_link}"
   target_pools       = ["${google_compute_target_pool.nomad-cluster-pool.self_link}"]
-  base_instance_name = "nomad-server"
+  base_instance_name = "nomad-client"
 }
 
 resource "google_compute_autoscaler" "nomad-cluster-autoscaler" {

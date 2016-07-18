@@ -12,8 +12,7 @@ ExecStart=/usr/local/bin/nomad agent \
   $NOMAD_OPTIONS \
   -bind=${DEFAULT_IPV4} \
   -config=/etc/systemd/system/nomad.d \
-  -data-dir=/opt/nomad/data \
-  -syslog
+  -data-dir=/opt/nomad/data
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 

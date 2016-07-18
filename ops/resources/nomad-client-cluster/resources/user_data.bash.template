@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+configure_nomad() {
+  echo "Configuring Nomad options"
+  echo "NOMAD_OPTIONS=-client" | sudo tee /etc/systemd/system/nomad.d/nomad.env
+}
+
+start_nomad() {
+  echo "Starting Nomad service"
+  sudo systemctl start nomad.service
+}
+
+join_cluster() {
+  echo "Joining Nomad server peers"
+  nomad-join
+}
+
+main() {
+  configure_nomad
+  start_nomad
+  join_cluster
+}
+
+main

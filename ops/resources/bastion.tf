@@ -1,3 +1,7 @@
+resource "template_file" "bastion-startup-script" {
+  template = "${file("${path.module}/resources/bastion-startup-script.bash.template")}"
+}
+
 resource "google_compute_instance" "bastion" {
   name           = "bastion"
   machine_type   = "f1-micro"
@@ -6,7 +10,7 @@ resource "google_compute_instance" "bastion" {
 
   tags = ["bastion", "nat"]
 
-  metadata_startup_script = "echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward && sudo iptables -t nat -A POSTROUTING -j MASQUERADE"
+  metadata_startup_script = "${template_file.bastion-startup-script.rendered}"
 
   disk {
     image = "${var.bastion_image_name}"
