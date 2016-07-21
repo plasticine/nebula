@@ -1,18 +1,20 @@
-resource "template_file" "consul-server" {
+resource "template_file" "consul-server-startup-script" {
   lifecycle { create_before_destroy = true }
-
-  template = "${file("${path.module}/resources/user_data.bash.template")}"
+  template = "${file("${path.module}/resources/consul-server-startup-script.bash.template")}"
 
   vars {
     consul_bootstrap_expect = "${var.consul_bootstrap_expect}"
   }
 }
 
-resource "google_compute_http_health_check" "consul-cluster-health-check" {
+resource "template_file" "consul-server-shutdown-script" {
   lifecycle { create_before_destroy = true }
+  template = "${file("${path.module}/resources/consul-server-shutdown-script.bash.template")}"
+}
 
+resource "google_compute_http_health_check" "consul-cluster-health-check" {
   name = "consul-cluster-health-check"
-  request_path = "/"
+  request_path = "/v1/status/peers"
   port = 8500
 }
 
@@ -24,7 +26,8 @@ resource "google_compute_instance_template" "consul-cluster-template" {
   can_ip_forward = true
 
   metadata = {
-    startup-script = "${template_file.consul-server.rendered}"
+    startup-script = "${template_file.consul-server-startup-script.rendered}"
+    shutdown-script = "${template_file.consul-server-shutdown-script.rendered}"
   }
 
   tags = ["consul-server", "consul", "no-ip"]
@@ -68,9 +71,9 @@ resource "google_compute_autoscaler" "consul-cluster-autoscaler" {
   target = "${google_compute_instance_group_manager.consul-cluster-group-manager.self_link}"
 
   autoscaling_policy = {
-    max_replicas    = "5"
     min_replicas    = "${var.consul_bootstrap_expect}"
-    cooldown_period = "60"
+    max_replicas    = "1"
+    cooldown_period = "240"
 
     cpu_utilization {
       target = "0.75"

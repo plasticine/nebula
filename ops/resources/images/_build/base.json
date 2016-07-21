@@ -1,1 +1,0 @@
-{"base_image_name":"grep A disk image was created: _build/base.packer.build.log | cut -d ' ' -f8"}

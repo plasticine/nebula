@@ -3,8 +3,6 @@ NUMPROCS:=$(shell sysctl -n hw.ncpu)
 BUILD_DIR = _build
 IMAGES = base bastion node
 
-.PHONY: all $(IMAGES)
-
 define logfile_path
 $(BUILD_DIR)/log/$(1).packer.build.log
 endef
@@ -30,4 +28,5 @@ base: $(BUILD_DIR)/base_image.json
 bastion: base $(BUILD_DIR)/bastion_image.json
 node: base $(BUILD_DIR)/node_image.json
 
+.PHONY: all $(IMAGES)
 .DEFAULT_GOAL := all

@@ -5,7 +5,7 @@ IFS=' '
 
 configure_consul() {
   echo "Configuring Consul options"
-  echo "CONSUL_OPTIONS=-server -dc=google -bootstrap-expect=${consul_bootstrap_expect}" | sudo tee /etc/systemd/system/consul.d/consul.env
+  echo "CONSUL_OPTIONS=-server -bootstrap-expect=${consul_bootstrap_expect}" | sudo tee /etc/systemd/system/consul.d/consul.env
 }
 
 start_consul() {
@@ -15,7 +15,7 @@ start_consul() {
 
 join_cluster() {
   echo "Joining Consul server peers"
-  consul-join
+  consul-join server
 }
 
 main() {

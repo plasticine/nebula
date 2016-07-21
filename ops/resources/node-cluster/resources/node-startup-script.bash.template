@@ -10,12 +10,12 @@ start_consul_agent() {
 
 join_consul_cluster() {
   echo "Joining Consul cluster"
-  consul-join
+  consul-join client
 }
 
 configure_nomad() {
   echo "Configuring Nomad options"
-  echo "NOMAD_OPTIONS=-client" | sudo tee /etc/systemd/system/nomad.d/nomad.env
+  echo "NOMAD_OPTIONS=-client -servers=$(nomad-servers | xargs | sed -e 's/ /,/g')" | sudo tee /etc/systemd/system/nomad.d/nomad.env
 }
 
 start_nomad_agent() {

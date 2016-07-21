@@ -1,18 +1,20 @@
-resource "template_file" "nomad-server" {
+resource "template_file" "nomad-server-startup-script" {
   lifecycle { create_before_destroy = true }
-
-  template = "${file("${path.module}/resources/user_data.bash.template")}"
+  template = "${file("${path.module}/resources/nomad-server-startup-script.bash.template")}"
 
   vars {
     nomad_bootstrap_expect = "${var.nomad_bootstrap_expect}"
   }
 }
 
-resource "google_compute_http_health_check" "nomad-server-cluster-health-check" {
+resource "template_file" "nomad-server-shutdown-script" {
   lifecycle { create_before_destroy = true }
+  template = "${file("${path.module}/resources/nomad-server-shutdown-script.bash.template")}"
+}
 
+resource "google_compute_http_health_check" "nomad-server-cluster-health-check" {
   name = "nomad-server-cluster-health-check"
-  request_path = "/"
+  request_path = "/v1/status/peers"
   port = 4646
 }
 
@@ -24,7 +26,8 @@ resource "google_compute_instance_template" "nomad-server-cluster-template" {
   can_ip_forward = true
 
   metadata = {
-    startup-script = "${template_file.nomad-server.rendered}"
+    startup-script = "${template_file.nomad-server-startup-script.rendered}"
+    shutdown-script = "${template_file.nomad-server-shutdown-script.rendered}"
   }
 
   tags = ["nomad-server", "nomad", "no-ip"]
@@ -68,12 +71,12 @@ resource "google_compute_autoscaler" "nomad-server-cluster-autoscaler" {
   target = "${google_compute_instance_group_manager.nomad-server-cluster-group-manager.self_link}"
 
   autoscaling_policy = {
-    max_replicas    = "5"
     min_replicas    = "${var.nomad_bootstrap_expect}"
-    cooldown_period = "60"
+    max_replicas    = "1"
+    cooldown_period = "240"
 
     cpu_utilization {
-      target = "0.75"
+      target = "0.8"
     }
   }
 }

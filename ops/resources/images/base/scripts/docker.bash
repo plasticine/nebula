@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=' '
 
-sudo apt-get install -y linux-image-extra-$(uname -r)
+sudo apt-get install -y linux-image-extra-4.4.0-31-generic
 sudo curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker ubuntu
 sudo service docker start
