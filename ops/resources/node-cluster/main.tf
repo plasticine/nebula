@@ -15,8 +15,8 @@ resource "template_file" "node-shutdown-script" {
 
 resource "google_compute_http_health_check" "node-health-check" {
   name = "node-health-check"
-  request_path = "/v1/status/peers"
-  port = 4646
+  request_path = "/health"
+  port = 9998
 }
 
 resource "google_compute_instance_template" "node-cluster-template" {

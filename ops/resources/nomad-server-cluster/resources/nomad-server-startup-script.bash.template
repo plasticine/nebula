@@ -3,9 +3,23 @@
 set -euo pipefail
 IFS=' '
 
+readonly DEFAULT_IPV4="$(curl --silent -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)"
+
 configure_nomad() {
   echo "Configuring Nomad options"
   echo "NOMAD_OPTIONS=-server -bootstrap-expect=${nomad_bootstrap_expect}" | sudo tee /etc/systemd/system/nomad.d/nomad.env
+
+  sudo tee /etc/systemd/system/nomad.d/client.hcl <<EOF
+addresses {
+  http = "$DEFAULT_IPV4"
+  rpc = "$DEFAULT_IPV4"
+}
+
+advertise {
+  http = "$DEFAULT_IPV4:4646"
+  rpc = "$DEFAULT_IPV4:4647"
+}
+EOF
 }
 
 start_nomad() {

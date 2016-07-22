@@ -10,9 +10,6 @@ Environment=GOMAXPROCS=2
 Restart=on-failure
 ExecStart=/usr/local/bin/consul agent \
   $CONSUL_OPTIONS \
-  -bind=${DEFAULT_IPV4} \
-  -client=${DEFAULT_IPV4} \
-  -advertise=${DEFAULT_IPV4} \
   -config-dir=/etc/systemd/system/consul.d \
   -data-dir=/opt/consul/data
 ExecReload=/bin/kill -HUP $MAINPID
