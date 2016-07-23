@@ -1,0 +1,10 @@
+[Unit]
+Description=Fabio
+Requires=nomad.service
+After=nomad.service setup-network-environment.service
+
+[Service]
+EnvironmentFile=/etc/network-environment
+ExecStart=/usr/local/bin/nomad run -address=http://${DEFAULT_IPV4}:4646 /etc/nebula/fabio.nomad
+RemainAfterExit=yes
+Type=oneshot

@@ -10,15 +10,14 @@ configure_consul() {
   sudo tee /etc/systemd/system/consul.d/client.json <<EOF
 {
   "advertise_addr": "$DEFAULT_IPV4",
-  "addresses": {
-    "https": "0.0.0.0"
-  }
+  "client_addr": "0.0.0.0"
 }
 EOF
 }
 
 start_consul_agent() {
   echo "Starting Consul service"
+  sudo systemctl enable consul.service
   sudo systemctl start consul.service
 }
 
@@ -46,7 +45,15 @@ EOF
 
 start_nomad_agent() {
   echo "Starting Nomad service"
+  sudo systemctl enable nomad.service
   sudo systemctl start nomad.service
+  nc -zv "$DEFAULT_IPV4" 4646
+}
+
+start_fabio() {
+  echo "Starting Fabio service"
+  sudo systemctl enable fabio.service
+  sudo systemctl start fabio.service
 }
 
 main() {
@@ -55,6 +62,7 @@ main() {
   join_consul_cluster
   configure_nomad
   start_nomad_agent
+  start_fabio
 }
 
 main

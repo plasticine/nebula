@@ -3,13 +3,24 @@
 set -euo pipefail
 IFS=' '
 
+readonly DEFAULT_IPV4="$(curl --silent -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)"
+
 configure_consul() {
   echo "Configuring Consul options"
   echo "CONSUL_OPTIONS=-server -bootstrap-expect=${consul_bootstrap_expect}" | sudo tee /etc/systemd/system/consul.d/consul.env
+
+  sudo tee /etc/systemd/system/consul.d/server.json <<EOF
+{
+  "advertise_addr": "$DEFAULT_IPV4",
+  "bind_addr": "$DEFAULT_IPV4",
+  "client_addr": "0.0.0.0"
+}
+EOF
 }
 
 start_consul() {
   echo "Starting Consul service"
+  sudo systemctl enable consul.service
   sudo systemctl start consul.service
 }
 

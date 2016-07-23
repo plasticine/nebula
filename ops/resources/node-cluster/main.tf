@@ -23,7 +23,7 @@ resource "google_compute_instance_template" "node-cluster-template" {
   lifecycle { create_before_destroy = true }
 
   name_prefix = "node-cluster-template-"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-2"
   can_ip_forward = true
 
   metadata = {
@@ -82,7 +82,7 @@ resource "google_compute_autoscaler" "node-cluster-autoscaler" {
 
   autoscaling_policy = {
     min_replicas    = "${var.nomad_bootstrap_expect}"
-    max_replicas    = "2"
+    max_replicas    = "1"
     cooldown_period = "240"
 
     cpu_utilization {
@@ -90,23 +90,6 @@ resource "google_compute_autoscaler" "node-cluster-autoscaler" {
     }
   }
 }
-
-# resource "google_compute_backend_service" "node-cluster-backend" {
-#   name = "node-cluster-backend"
-#   port_name = "http"
-#   protocol = "HTTP"
-#   timeout_sec = 10
-#   health_checks = ["${google_compute_http_health_check.node-health-check.self_link}"]
-
-#   backend {
-#     group = "${google_compute_instance_group_manager.node-cluster-group-manager.instance_group}"
-#   }
-# }
-
-# resource "google_compute_url_map" "node-cluster-url-map" {
-#   name = "node-cluster-url-map"
-#   default_service = "${google_compute_backend_service.node-cluster-backend.self_link}"
-# }
 
 resource "google_compute_forwarding_rule" "node-cluster-forwarding-rule" {
   name = "node-cluster-forwarding-rule"

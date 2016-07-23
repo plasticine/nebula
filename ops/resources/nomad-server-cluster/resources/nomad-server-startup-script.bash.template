@@ -24,6 +24,7 @@ EOF
 
 start_nomad() {
   echo "Starting Nomad service"
+  sudo systemctl enable nomad.service
   sudo systemctl start nomad.service
 }
 
