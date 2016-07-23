@@ -1,5 +1,5 @@
-module "consul-server-cluster" {
-  source = "./consul-server-cluster"
+module "consul-cluster" {
+  source = "./consul-cluster"
 
   depend_on_bastion = "${google_compute_instance.bastion.self_link}"
 

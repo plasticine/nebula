@@ -47,13 +47,6 @@ start_nomad_agent() {
   echo "Starting Nomad service"
   sudo systemctl enable nomad.service
   sudo systemctl start nomad.service
-  nc -zv "$DEFAULT_IPV4" 4646
-}
-
-start_fabio() {
-  echo "Starting Fabio service"
-  sudo systemctl enable fabio.service
-  sudo systemctl start fabio.service
 }
 
 main() {
@@ -62,7 +55,6 @@ main() {
   join_consul_cluster
   configure_nomad
   start_nomad_agent
-  start_fabio
 }
 
 main

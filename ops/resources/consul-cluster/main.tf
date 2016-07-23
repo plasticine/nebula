@@ -62,7 +62,7 @@ resource "google_compute_instance_group_manager" "consul-cluster-group-manager" 
 
   instance_template  = "${google_compute_instance_template.consul-cluster-template.self_link}"
   target_pools       = ["${google_compute_target_pool.consul-cluster-pool.self_link}"]
-  base_instance_name = "consul-server"
+  base_instance_name = "consul"
 }
 
 resource "google_compute_autoscaler" "consul-cluster-autoscaler" {

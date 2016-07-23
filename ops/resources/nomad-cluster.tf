@@ -1,5 +1,5 @@
-module "nomad-server-cluster" {
-  source = "./nomad-server-cluster"
+module "nomad-cluster" {
+  source = "./nomad-cluster"
 
   depend_on_bastion = "${google_compute_instance.bastion.self_link}"
 

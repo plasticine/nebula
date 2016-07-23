@@ -37,6 +37,8 @@ main() {
   configure_nomad
   start_nomad
   join_cluster
+
+  nomad run -address="http://$DEFAULT_IPV4:4646" /etc/nebula/fabio.nomad
 }
 
 main
