@@ -1,6 +1,7 @@
 defmodule Nebula.Api.V1.DeployController do
   use Nebula.Web, :controller
   alias Nebula.Deploy
+  alias Nebula.Job
   alias Sluginator
   use Timex
 
@@ -12,18 +13,22 @@ defmodule Nebula.Api.V1.DeployController do
   end
 
   def create(conn, params) do
-    changeset = Deploy.changeset(%Deploy{}, filter_deploy_params(params))
+    deploy_changeset = Deploy.changeset(%Deploy{}, filter_deploy_params(params))
 
-    case Repo.insert(changeset) do
+    case Repo.insert(deploy_changeset) do
       {:ok, deploy} ->
+        Job.changeset(Ecto.build_assoc(deploy, :job), filter_job_params(params))
+        |> Repo.insert!
+        |> Nebula.Scheduler.Job.create
+
         conn
         |> put_status(:created)
         |> put_resp_header("location", api_v1_deploy_path(conn, :show, deploy))
         |> render("show.json", deploy: deploy)
-      {:error, changeset} ->
+      {:error, deploy_changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Nebula.ChangesetView, "error.json", changeset: changeset)
+        |> render(Nebula.ChangesetView, "error.json", changeset: deploy_changeset)
     end
   end
 
@@ -56,6 +61,12 @@ defmodule Nebula.Api.V1.DeployController do
       rev: Map.get(deploy_params, "rev"),
       slug: Sluginator.build,
       state: Deploy.states.accepted,
+    }
+  end
+
+  defp filter_job_params(%{"deploy" => deploy_params}) do
+    %{
+      spec: Map.get(deploy_params, "job")
     }
   end
 
