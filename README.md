@@ -6,13 +6,14 @@
 
 ### Install development toolchain
 
+If you’re on a Mac then go grab [Docker for Mac](https://docs.docker.com/engine/installation/mac/).
+
 - `brew update && brew install vagrant`
 
 ### Bootstrap
 
-- `make vm`
-- `make up`
-- `open nebula.dev:9999`
+- `make vm && make up`
+- `open http://nebula.dev:9999`
 
 #### Useful stuff that I’ve found...
 

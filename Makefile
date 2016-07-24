@@ -41,4 +41,4 @@ prepare:
 bootstrap: dev prepare
 
 up:
-	HOST_IP=$(HOST_IP) docker-compose up --remove-orphans
+	HOST_IP=$(HOST_IP) docker-compose up --force-recreate --remove-orphans
