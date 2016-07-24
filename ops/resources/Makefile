@@ -13,9 +13,10 @@ get:
 .DELETE_ON_ERROR:
 plan: get
 	terraform plan \
-		-var-file="images/base/image.json" \
-		-var-file="images/nat/image.json" \
-		-out=plan
+		-out=plan \
+		-var-file="images/_build/base_image.json" \
+		-var-file="images/_build/bastion_image.json" \
+		-var-file="images/_build/node_image.json"
 
 .DELETE_ON_ERROR:
 apply: plan
@@ -24,5 +25,6 @@ apply: plan
 
 destroy:
 	terraform destroy \
-		-var-file="images/base/image.json" \
-		-var-file="images/nat/image.json" \
+		-var-file="images/_build/base_image.json" \
+		-var-file="images/_build/bastion_image.json" \
+		-var-file="images/_build/node_image.json"

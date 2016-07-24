@@ -3,7 +3,7 @@
 set -euo pipefail
 IFS=' '
 
-sudo apt-get install -y linux-image-extra-$(uname -r)
+sudo apt-get install -y linux-image-extra-4.4.0-31-generic
 sudo curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker ubuntu
 sudo service docker start
@@ -17,6 +17,4 @@ sudo curl -o /etc/cron.hourly/docker-gc -L https://raw.githubusercontent.com/spo
 sudo chmod +x /etc/cron.hourly/docker-gc
 
 # Setup docker logging
-sudo mv /tmp/provision/conf/docker.rsyslog /etc/rsyslog.d/10-docker.conf
-sudo mv /tmp/provision/conf/docker.logrotate /etc/logrotate.d/docker
 sudo service rsyslog restart

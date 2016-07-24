@@ -15,10 +15,19 @@ variable "region_zone" {
   default = "us-central1-a"
 }
 
+# variable "host_domain" {
+#   description = "..."
+# }
+
 variable "base_image_name" {
   description = "..."
 }
 
-variable "nat_image_name" {
+variable "bastion_image_name" {
+  description = "..."
+}
+
+
+variable "node_image_name" {
   description = "..."
 }

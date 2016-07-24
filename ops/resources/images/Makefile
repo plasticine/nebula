@@ -1,32 +1,32 @@
 SHELL = /bin/bash -o pipefail
 NUMPROCS:=$(shell sysctl -n hw.ncpu)
+BUILD_DIR = _build
+IMAGES = base bastion node
 
-BASE_FILES = $(shell find base ! -name 'image.json' ! -name '.DS_Store')
-NAT_FILES = $(shell find nat ! -name 'image.json' ! -name '.DS_Store')
-
-.PHONY: all clean
-
-define build-image
-rm log/packer.image.$(1).log || true
-packer build -var-file=variables.json $(2) $(1)/main.json | tee log/packer.image.$(1).log
+define logfile_path
+$(BUILD_DIR)/log/$(1).packer.build.log
 endef
 
-define save-image-id
-$(eval $@_image_name := $(shell grep "A disk image was created:" log/packer.image.$(1).log | cut -d ' ' -f8))
-echo "{\"$(1)_image_name\":\"$($@_image_name)\"}" > $@
+define BUILD_IMAGE_TEMPLATE
+$(BUILD_DIR)/$(1)_image.json: $(shell find $(1) -type f ! -name '.DS_Store')
+	$(eval @$_logfile = $(call logfile_path,$(1)))
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)/log
+	@rm $(@$_logfile) || true
+	packer build \
+	  -var-file=variables.json \
+		$$(shell find $(BUILD_DIR) -type f -name "*_image.json" | sed 's/^/-var-file=/' | xargs) \
+		$(1)/main.json | tee $(@$_logfile)
+	@grep "A disk image was created:" $(call logfile_path,$(1)) | cut -d ' ' -f8 | sed 's/^/{\"$(1)_image_name\":\"/' | sed 's/$$$$/\"}/' > $$@
+	@cat $$@
 endef
 
-all:
-	make -j$(NUMPROCS) \
-		base/image.json \
-		nat/image.json
+$(foreach image,$(IMAGES), $(eval $(call BUILD_IMAGE_TEMPLATE,$(image))))
 
-.DELETE_ON_ERROR:
-base/image.json: $(BASE_FILES)
-	$(call build-image,base)
-	$(call save-image-id,base)
+all: $(IMAGES)
+base: $(BUILD_DIR)/base_image.json
+bastion: base $(BUILD_DIR)/bastion_image.json
+node: base $(BUILD_DIR)/node_image.json
 
-.DELETE_ON_ERROR:
-nat/image.json: base/image.json $(NAT_FILES)
-	$(call build-image,nat,-var-file=base/image.json)
-	$(call save-image-id,nat)
+.PHONY: all $(IMAGES)
+.DEFAULT_GOAL := all

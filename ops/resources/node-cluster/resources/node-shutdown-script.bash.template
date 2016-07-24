@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+main() {
+  consul leave
+  nomad node-drain -self -yes -enable
+}
+
+main

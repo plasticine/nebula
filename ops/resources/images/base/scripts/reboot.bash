@@ -5,4 +5,4 @@ IFS=' '
 
 echo "Rebooting the machine..."
 sudo reboot
-sleep 60
+sleep 30

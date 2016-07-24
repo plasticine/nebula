@@ -1,0 +1,20 @@
+[Unit]
+Description=nomad agent
+Requires=network-online.target setup-network-environment.service
+After=network-online.target setup-network-environment.service
+
+[Service]
+EnvironmentFile=/etc/network-environment
+EnvironmentFile=-/etc/systemd/system/nomad.d/nomad.env
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStart=/usr/local/bin/nomad agent \
+  $NOMAD_OPTIONS \
+  -bind=${DEFAULT_IPV4} \
+  -config=/etc/systemd/system/nomad.d \
+  -data-dir=/opt/nomad/data
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

@@ -4,29 +4,22 @@
   },
   "builders": [
     {
-      "name": "node",
+      "name": "bastion",
       "type": "googlecompute",
       "zone": "us-central1-a",
       "source_image": "{{user `base_image_name`}}",
       "project_id": "{{user `googlecompute_project_id`}}",
       "account_file": "{{user `config_path`}}/account.json",
       "ssh_username": "ubuntu",
-      "image_name": "nebula-node-{{timestamp}}",
-      "image_description": "Node instance image."
+      "image_name": "nebula-bastion-{{timestamp}}",
+      "image_description": "Bastion/NAT instance image."
     }
   ],
   "provisioners": [
     {
-      "type": "file",
-      "source": "{{template_dir}}/files",
-      "destination": "/tmp/provision"
-    },
-    {
       "type": "shell",
       "scripts": [
-        "{{template_dir}}/scripts/copy-files.bash",
-        "{{template_dir}}/scripts/consul.bash",
-        "{{template_dir}}/scripts/nomad.bash"
+        "{{template_dir}}/scripts/nat.bash"
       ]
     }
   ]

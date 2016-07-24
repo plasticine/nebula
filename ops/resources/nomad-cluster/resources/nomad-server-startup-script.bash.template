@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+readonly DEFAULT_IPV4="$(curl --silent -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)"
+
+configure_nomad() {
+  echo "Configuring Nomad options"
+  echo "NOMAD_OPTIONS=-server -bootstrap-expect=${nomad_bootstrap_expect}" | sudo tee /etc/systemd/system/nomad.d/nomad.env
+
+  sudo tee /etc/systemd/system/nomad.d/client.hcl <<EOF
+addresses {
+  http = "$DEFAULT_IPV4"
+  rpc = "$DEFAULT_IPV4"
+}
+
+advertise {
+  http = "$DEFAULT_IPV4:4646"
+  rpc = "$DEFAULT_IPV4:4647"
+}
+EOF
+}
+
+start_nomad() {
+  echo "Starting Nomad service"
+  sudo systemctl enable nomad.service
+  sudo systemctl start nomad.service
+}
+
+join_cluster() {
+  echo "Joining Nomad server peers"
+  nomad-join
+}
+
+main() {
+  configure_nomad
+  start_nomad
+  join_cluster
+
+  nomad run -address="http://$DEFAULT_IPV4:4646" /etc/nebula/fabio.nomad
+}
+
+main

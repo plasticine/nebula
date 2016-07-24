@@ -7,7 +7,6 @@ IFS=' '
 sudo mkdir -p /opt/bin
 sudo wget -N -P /opt/bin https://github.com/kelseyhightower/setup-network-environment/releases/download/1.0.1/setup-network-environment
 sudo chmod +x /opt/bin/setup-network-environment
-sudo chown root:root /tmp/provision/setup-network-environment.service
-sudo mv /tmp/provision/setup-network-environment.service /etc/systemd/system/setup-network-environment.service
+sudo chown root:root /etc/systemd/system/setup-network-environment.service
 sudo chmod 0644 /etc/systemd/system/setup-network-environment.service
 sudo systemctl daemon-reload
