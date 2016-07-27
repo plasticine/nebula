@@ -28,22 +28,27 @@ defmodule Nebula.Scheduler.Job do
     {:ok, output} = Nomad.Binary.validate!(pid)
     {:ok, job_spec} = Nomad.Binary.parse!(pid)
 
+    # Create Job and get allocations.
     nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, job.deploy.slug)
     nomad_job = Nomad.API.Jobs.create(nebula_job)
-    allocations = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
+    # allocations = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
 
-    IO.inspect nomad_job
-    IO.inspect allocations
+    # IO.inspect nomad_job
+    # IO.inspect allocations
 
-    Process.send(self(), :monitor) |> IO.inspect
-
+    # Start monitoring the job.
+    :ok = Process.send(self(), :monitor, [])
     {:noreply, job, job}
   end
 
+  @doc """
+  Here we check the status of the job and monitor it's allocation and status.
+  """
   def handle_info(:monitor, job) do
     Logger.info "[scheduler] [job:#{job.id}] Checking status of job..."
 
-    IO.inspect job
+    Nomad.API.Job.evaluations(job.deploy.slug) |> IO.inspect
+    Nomad.API.Job.allocations(job.deploy.slug) |> IO.inspect
 
     Process.send_after(self(), :monitor, 30_000)
     {:noreply, job}
@@ -53,6 +58,7 @@ defmodule Nebula.Scheduler.Job do
   Kill a job.
   """
   def handle_cast(:kill, job) do
+    raise "Not implemeted"
   end
 
   @doc """

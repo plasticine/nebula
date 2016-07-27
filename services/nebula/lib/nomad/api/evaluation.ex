@@ -18,7 +18,7 @@ defmodule Nomad.API.Evaluation do
   """
   def allocations(id) do
     case get!(Path.join([@endpoint, id, "allocations"])) |> parse_response do
-      {:ok, allocations} -> Enum.map(allocations, fn x -> Nomad.Model.Allocation.from_map(x) end)
+      {:ok, allocations} -> Nomad.Model.Allocation.from_list(allocations)
     end
   end
 end

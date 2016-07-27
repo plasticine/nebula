@@ -23,4 +23,18 @@ defmodule Nomad.API.Job do
   def delete(id) do
     delete!(Path.join([@endpoint, id]))
   end
+
+  # Get allocations for a job.
+  def allocations(id) do
+    case get!(Path.join([@endpoint, id, "allocations"])) |> parse_response do
+      {:ok, body} -> Nomad.Model.Allocation.from_list(body)
+    end
+  end
+
+  # Get evaluations for a job.
+  def evaluations(id) do
+    case get!(Path.join([@endpoint, id, "evaluations"]))  |> parse_response do
+      {:ok, body} -> Nomad.Model.Evaluation.from_list(body)
+    end
+  end
 end

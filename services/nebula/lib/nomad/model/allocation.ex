@@ -7,6 +7,10 @@ defmodule Nomad.Model.Allocation do
             desired_description: nil, client_status: nil, client_description: nil,
             create_index: nil, modify_index: nil
 
+  def from_list(list) do
+    Enum.map(list, &from_map/1)
+  end
+
   @spec from_map(%{String.t => any}) :: Nomad.Model.Allocation.t
   def from_map(map) do
     %__MODULE__{
