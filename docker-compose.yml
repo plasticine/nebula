@@ -46,7 +46,7 @@ services:
 
   nebula:
     build: "services/nebula"
-    command: "iex --name nebula@127.0.0.1 --erl -S mix phoenix.server"
+    command: "iex --name nebula@127.0.0.1 -S mix phoenix.server"
     restart: always
     tty: true
     expose:

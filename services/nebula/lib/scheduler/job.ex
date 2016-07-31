@@ -12,52 +12,51 @@ defmodule Nebula.Scheduler.Job do
 
   def init(id) do
     job = Nebula.Repo.get!(Nebula.Job, id) |> Nebula.Repo.preload(:deploy)
-    {:ok, job}
+    state = %{job: job, evaluations: nil, allocations: nil}
+
+    {:ok, state}
   end
 
   @doc """
   Register a new job to be scheduled.
   Saves the Job is a queue for later use.
   """
-  def handle_cast(:start, job) do
-    Logger.info "[scheduler] [job:#{job.id}] Starting new job '#{job.deploy.slug}'"
+  def handle_cast(:start, state) do
+    Logger.info "[scheduler] [job:#{state.job.id}] Starting new job '#{state.job.deploy.slug}'"
 
-    {:ok, pid} = GenServer.start_link(Nomad.Binary, job.spec)
-
-    # TODO Add error handling here...
+    # Parse nomad binary
+    {:ok, pid} = GenServer.start_link(Nomad.Binary, state.job.spec)
     {:ok, output} = Nomad.Binary.validate!(pid)
     {:ok, job_spec} = Nomad.Binary.parse!(pid)
 
     # Create Job and get allocations.
-    nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, job.deploy.slug)
+    nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, state.job.deploy.slug)
     nomad_job = Nomad.API.Jobs.create(nebula_job)
-    # allocations = Nomad.API.Evaluation.allocations(nomad_job.eval_id)
-
-    # IO.inspect nomad_job
-    # IO.inspect allocations
 
     # Start monitoring the job.
     :ok = Process.send(self(), :monitor, [])
-    {:noreply, job, job}
+    {:noreply, state, state}
   end
 
   @doc """
   Here we check the status of the job and monitor it's allocation and status.
   """
-  def handle_info(:monitor, job) do
-    Logger.info "[scheduler] [job:#{job.id}] Checking status of job..."
+  def handle_info(:monitor, state) do
+    Logger.info "[scheduler] [job:#{state.job.id}] Checking status of job..."
 
-    Nomad.API.Job.evaluations(job.deploy.slug) |> IO.inspect
-    Nomad.API.Job.allocations(job.deploy.slug) |> IO.inspect
+    state = %{state |
+      evaluations: Nomad.API.Job.evaluations(state.job.deploy.slug),
+      allocations: Nomad.API.Job.allocations(state.job.deploy.slug)
+    }
 
     Process.send_after(self(), :monitor, 30_000)
-    {:noreply, job}
+    {:noreply, state}
   end
 
   @doc """
   Kill a job.
   """
-  def handle_cast(:kill, job) do
+  def handle_cast(:kill, state) do
     raise "Not implemeted"
   end
 

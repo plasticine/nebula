@@ -8,7 +8,7 @@ job "simple-example" {
     }
 
     group "web" {
-        count = 3
+        count = 1
 
         task "http-in" {
             driver = "docker"

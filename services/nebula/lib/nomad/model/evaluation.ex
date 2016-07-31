@@ -1,9 +1,9 @@
 defmodule Nomad.Model.Evaluation do
-  alias Nomad.Model.TaskState
+  alias Nomad.Model.FailedTaskGroupAlloc
 
   @type t :: %__MODULE__{}
   defstruct annotate_plan: nil, blocked_eval: nil, class_eligibility: nil,
-            create_index: nil, escaped_computed_class: nil, failed_tg_allocs: nil,
+            create_index: nil, escaped_computed_class: nil, failed_task_group_allocs: nil,
             id: nil, job_id: nil, job_modify_index: nil, modify_index: nil,
             next_eval: nil, node_id: nil, node_modify_index: nil, previous_eval: nil,
             priority: nil, snapshot_index: nil, status: nil, status_description: nil,
@@ -21,7 +21,7 @@ defmodule Nomad.Model.Evaluation do
       class_eligibility: map["ClassEligibility"],
       create_index: map["CreateIndex"],
       escaped_computed_class: map["EscapedComputedClass"],
-      failed_tg_allocs: map["FailedTGAllocs"],
+      failed_task_group_allocs: failed_task_group_allocs(map["FailedTGAllocs"]),
       id: map["ID"],
       job_id: map["JobID"],
       job_modify_index: map["JobModifyIndex"],
@@ -38,5 +38,12 @@ defmodule Nomad.Model.Evaluation do
       type: map["Type"],
       wait: map["Wait"]
     }
+  end
+
+  defp failed_task_group_allocs(nil), do: nil
+  defp failed_task_group_allocs(map) do
+    Enum.reduce(map, %{}, fn ({key, val}, acc) ->
+      Map.put(acc, key, FailedTaskGroupAlloc.from_map(val))
+    end)
   end
 end
