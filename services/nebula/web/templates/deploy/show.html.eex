@@ -23,24 +23,18 @@
   </tbody>
 </table>
 
-<h3>Job Specification</h3>
+<h3>Job Status</h3>
+
+<code style="line-height: 9px; font-size: 10px;">
+  <pre>
+    <%= Poison.encode! evaluations(@deploy) %>
+    <%= Poison.encode! allocations(@deploy) %>
+  </pre>
+</code>
+
+<h4>Job Specification</h4>
 <code style="line-height: 9px; font-size: 10px;">
   <pre>
     <%= text_to_html @deploy.job.spec %>
   </pre>
 </code>
-
-<h3>Job Status</h3>
-
-TODO
-
-<ul>
-  <li>
-    list allocations:
-    <ul>
-      <li>${job_id}-${task_group}-${task}</li>
-      <li>status</li>
-      <li>events?</li>
-    </ul>
-  </li>
-</ul>

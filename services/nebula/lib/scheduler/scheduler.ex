@@ -11,7 +11,7 @@ defmodule Nebula.Scheduler do
     supervise([worker(Nebula.Scheduler.Job, [])], strategy: :simple_one_for_one)
   end
 
-  def register_job(id) do
+  def start_job(id) do
     Supervisor.start_child(:scheduler, [id])
   end
 

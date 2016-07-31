@@ -60,12 +60,15 @@ defmodule Nebula.Scheduler.Job do
     raise "Not implemeted"
   end
 
+  def handle_call(:get_allocations, _from, state), do: {:reply, state.allocations, state}
+  def handle_call(:get_evaluations, _from, state), do: {:reply, state.evaluations, state}
+
   @doc """
   Create new child process for the given Job, registering it's process with the
   scheduler process.
   """
   def create(job) do
-    case Nebula.Scheduler.register_job(job.id) do
+    case Nebula.Scheduler.start_job(job.id) do
       {:ok, child} ->
         GenServer.cast(child, :start)
         {:ok, child}
@@ -79,4 +82,14 @@ defmodule Nebula.Scheduler.Job do
   Find a job process by its Job id.
   """
   def get(id), do: :gproc.where({:n, :l, {:job, id}})
+
+  @doc """
+  Get allocation state for a job process by the Job ID.
+  """
+  def get_allocations(id), do: GenServer.call(get(id), :get_allocations)
+
+  @doc """
+  Get evvaluation state for a job process by the Job ID.
+  """
+  def get_evaluations(id), do: GenServer.call(get(id), :get_evaluations)
 end

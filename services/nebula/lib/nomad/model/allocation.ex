@@ -31,9 +31,9 @@ defmodule Nomad.Model.Allocation do
   end
 
   defp task_states(nil), do: nil
-  defp task_states(task_states) do
-    task_states
-    |> Enum.reject(&is_nil/1)
-    |> Enum.map(fn({k,v}) -> {k, TaskState.from_map(v)} end)
+  defp task_states(map) do
+    Enum.reduce(map, %{}, fn ({key, value}, acc) ->
+      Map.put(acc, key, TaskState.from_map(value))
+    end)
   end
 end
