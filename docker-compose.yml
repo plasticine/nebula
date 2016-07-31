@@ -46,8 +46,9 @@ services:
 
   nebula:
     build: "services/nebula"
-    command: "phoenix.server"
+    command: "iex --name nebula@127.0.0.1 --erl -S mix phoenix.server"
     restart: always
+    tty: true
     expose:
       - "4000"
     links:
@@ -55,7 +56,9 @@ services:
     extra_hosts:
       - nomad:172.20.10.10
     environment:
+      TERM: xterm
       MIX_ENV: dev
+      DISPLAY: ${HOST_IP}:0
       SERVICE_NAME: nebula
       SERVICE_TAGS: nebula
       DOMAIN_NAME: ${DOMAIN_NAME}

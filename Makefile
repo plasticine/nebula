@@ -34,11 +34,13 @@ prepare:
 	docker-compose down --remove-orphans
 	docker-compose rm -fva
 	docker-compose build
-	docker-compose run --rm nebula deps.get
-	docker-compose run --rm nebula ecto.setup
-	docker-compose run --rm nebula test.prepare
+	docker-compose run --rm nebula mix do deps.get, ecto.setup
 
 bootstrap: dev prepare
 
 up:
+	@killall epmd > /dev/null || true
 	HOST_IP=$(HOST_IP) docker-compose up --force-recreate --remove-orphans
+
+nebula_inspect:
+	docker-compose exec nebula iex --name debug@127.0.0.1 --hidden -e ":observer.start"

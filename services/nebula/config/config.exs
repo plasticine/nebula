@@ -5,8 +5,6 @@
 # is restricted to this project.
 use Mix.Config
 
-IO.inspect System.get_env("DOMAIN_NAME")
-
 # Configures the endpoint
 config :nebula, Nebula.Endpoint,
   url: [host: "localhost"],

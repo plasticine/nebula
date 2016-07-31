@@ -15,6 +15,12 @@ If you’re on a Mac then go grab [Docker for Mac](https://docs.docker.com/engin
 - `make vm && make up`
 - `open http://nebula.dev:9999`
 
+### Debugging API
+
+- Install & start XQuartz
+- `make up`
+- `make nebula_inspect`
+
 #### Useful stuff that I’ve found...
 
 - https://cloud.google.com/solutions/automated-build-images-with-jenkins-kubernetes
