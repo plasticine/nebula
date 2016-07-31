@@ -46,14 +46,11 @@ services:
 
   nebula:
     build: "services/nebula"
-    command: "iex --name nebula@127.0.0.1 --erl '-kernel inet_dist_listen_min 4001 inet_dist_listen_max 4001' -S mix phoenix.server"
+    command: "iex --name nebula@127.0.0.1 --erl -S mix phoenix.server"
     restart: always
     tty: true
     expose:
       - "4000"
-    ports:
-      - "4001:4001"
-      - "4369:4369"
     links:
       - postgres
     extra_hosts:
