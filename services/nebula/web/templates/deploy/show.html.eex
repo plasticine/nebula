@@ -24,13 +24,8 @@
 </table>
 
 <h3>Job Status</h3>
-
-<code style="line-height: 9px; font-size: 10px;">
-  <pre>
-    <%= Poison.encode! evaluations(@deploy) %>
-    <%= Poison.encode! allocations(@deploy) %>
-  </pre>
-</code>
+<%= render "_evaluations.html", evaluations: evaluations(@deploy) %>
+<%= render "_allocations.html", allocations: allocations(@deploy) %>
 
 <h4>Job Specification</h4>
 <code style="line-height: 9px; font-size: 10px;">
@@ -38,3 +33,4 @@
     <%= text_to_html @deploy.job.spec %>
   </pre>
 </code>
+
