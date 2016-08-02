@@ -42,7 +42,7 @@ defmodule Nebula.Scheduler.Job do
   Here we check the status of the job and monitor it's allocation and status.
   """
   def handle_info(:monitor, state) do
-    Logger.info "[scheduler] [job:#{state.job.id}] Checking status of job..."
+    Logger.debug "[scheduler] [job:#{state.job.id}] Checking status of job..."
 
     state = %{state |
       evaluations: Nomad.API.Job.evaluations(state.job.deploy.slug),
