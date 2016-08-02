@@ -5,7 +5,7 @@ defmodule Nebula.Deploy do
     defstruct accepted: "accepted",
               pending: "pending",
               running: "running",
-              dead: "dead"
+              complete: "complete"
   end
 
   schema "deploys" do
@@ -44,5 +44,10 @@ defmodule Nebula.Deploy do
       "http://",
       deploy.slug <> "." <> Application.get_env(:nebula, :domain_name)
     ])
+  end
+
+  def find_by_state(q, ""), do: q
+  def find_by_state(q, state) do
+    from deploy in q, where: deploy.state == ^state
   end
 end

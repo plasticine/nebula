@@ -34,7 +34,7 @@ defmodule Nomad.Binary do
   """
   @spec parse!(pid) :: {:ok, %{String.t => any}} | {:error, any}
   def parse!(pid) do
-    case GenServer.call(pid, :parse) do
+    case GenServer.call(pid, :parse, 10_000) do
       {:ok, json}      -> {:ok, json}
       {:error, output} -> {:error, output}
     end
