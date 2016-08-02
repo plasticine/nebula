@@ -42,5 +42,8 @@ up:
 	@killall epmd > /dev/null || true
 	HOST_IP=$(HOST_IP) docker-compose up --force-recreate --remove-orphans
 
-nebula_inspect:
+inspect:
 	docker-compose exec nebula iex --name debug@127.0.0.1 --hidden -e ":observer.start"
+
+console:
+	docker-compose exec nebula iex --name debug@127.0.0.1 --hidden --remsh "nebula@127.0.0.1"

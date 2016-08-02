@@ -67,13 +67,14 @@ defmodule Nebula.Scheduler.Job do
   Create new child process for the given Job, registering it's process with the
   scheduler process.
   """
-  def create(job) do
-    case Nebula.Scheduler.start_job(job.id) do
+  def create(job) when is_map(job), do: create(job.id)
+  def create(id) do
+    case Nebula.Scheduler.JobPool.start_job(id) do
       {:ok, child} ->
         GenServer.cast(child, :start)
         {:ok, child}
       {:error, error} ->
-        Logger.error "[scheduler] Failed to create job [id:#{job.id}]"
+        Logger.error "[scheduler] Failed to create job [id:#{id}]"
         {:error, error}
     end
   end

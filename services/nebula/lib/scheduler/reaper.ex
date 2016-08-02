@@ -8,7 +8,7 @@ defmodule Nebula.Scheduler.Reaper do
   alias Ecto.Changeset
 
   def start_link do
-    GenServer.start_link(__MODULE__, [], name: :reaper)
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
   def init(jobs) do
@@ -30,9 +30,10 @@ defmodule Nebula.Scheduler.Reaper do
   end
 
   defp expired_deploys do
-    query = from d in Nebula.Deploy,
-            where: d.expire_at < ^DateTime.now and d.state == ^Deploy.states.running,
-            select: d
-    Nebula.Repo.all(query)
+    Nebula.Repo.all(
+      from d in Nebula.Deploy,
+      where: d.expire_at < ^DateTime.now and d.state == ^Deploy.states.running,
+      select: d
+    )
   end
 end
