@@ -53,19 +53,11 @@ defmodule Nebula.Scheduler.Job do
     {:noreply, state}
   end
 
-  @doc """
-  Kill a job.
-  """
-  def handle_cast(:kill, state) do
-    raise "Not implemeted"
-  end
-
   def handle_call(:get_allocations, _from, state), do: {:reply, state.allocations, state}
   def handle_call(:get_evaluations, _from, state), do: {:reply, state.evaluations, state}
 
   @doc """
-  Create new child process for the given Job, registering it's process with the
-  scheduler process.
+  Create new Job process via the JobPool.
   """
   def create(job) when is_map(job), do: create(job.id)
   def create(id) do
@@ -77,6 +69,16 @@ defmodule Nebula.Scheduler.Job do
         Logger.error "[scheduler] Failed to create job [id:#{id}]"
         {:error, error}
     end
+  end
+
+  @doc """
+  Stop a existing Job process
+  """
+  def stop(job) when is_map(job), do: stop(job.id)
+  def stop(id) do
+    get(id)
+    |> Nebula.Scheduler.JobPool.stop_job
+    |> IO.inspect
   end
 
   @doc """

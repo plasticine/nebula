@@ -14,6 +14,10 @@ defmodule Nebula.Scheduler.JobPool do
     Supervisor.start_child(__MODULE__, [id])
   end
 
+  def stop_job(pid) do
+    Supervisor.terminate_child(__MODULE__, pid)
+  end
+
   def jobs do
     # TODO this does not work
     Supervisor.count_children(__MODULE__)

@@ -28,7 +28,7 @@
         <td>
           <%= button "Destroy",
               to: deploy_path(@conn, :delete, deploy),
-              disabled: deploy.state == "dead",
+              disabled: deploy.state == "complete",
               method: 'delete' %>
         </td>
       </tr>
