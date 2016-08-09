@@ -8,7 +8,7 @@ steps:
   - wait
 
   - name: ":docker:"
-    command: ".buildkite/steps/01_docker.bash"
+    command: ".buildkite/steps/docker.bash"
     timeout_in_minutes: 10
     agents:
       docker: true
