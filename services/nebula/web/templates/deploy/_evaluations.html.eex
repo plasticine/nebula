@@ -1,23 +1,26 @@
-<h5>Evaluations</h5>
-<table style="text-align: left; width: 100%;">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Job ID</th>
-      <th>Type</th>
-      <th>Status</th>
-      <th>Status Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for evaluation <- @evaluations do %>
+<%= if @evaluations do %>
+  <h5>Evaluations</h5>
+  <table style="text-align: left; width: 100%;">
+    <thead>
       <tr>
-        <td><%= evaluation.id %></td>
-        <td><%= evaluation.job_id %></td>
-        <td><%= evaluation.type %></td>
-        <td><%= evaluation.status %></td>
-        <td><%= evaluation.status_description %></td>
+        <th>ID</th>
+        <th>Job ID</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Status Description</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <%= for evaluation <- @evaluations do %>
+        <tr>
+          <td><%= evaluation.id %></td>
+          <td><%= evaluation.job_id %></td>
+          <td><%= evaluation.type %></td>
+          <td><%= evaluation.status %></td>
+          <td><%= evaluation.status_description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= end %>
+

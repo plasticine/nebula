@@ -5,10 +5,16 @@ defmodule Nebula.DeployView do
   def web_url(deploy), do: Deploy.web_url(deploy)
 
   def allocations(deploy) do
-    Nebula.Scheduler.Job.get_allocations(deploy.id)
+    case Nebula.Scheduler.Job.get_allocations(deploy.id) do
+      {:ok, allocations} -> allocations
+      {:error, _}        -> nil
+    end
   end
 
   def evaluations(deploy) do
-    Nebula.Scheduler.Job.get_evaluations(deploy.id)
+    case Nebula.Scheduler.Job.get_evaluations(deploy.id) do
+      {:ok, evaluations} -> evaluations
+      {:error, _}        -> nil
+    end
   end
 end

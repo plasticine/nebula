@@ -89,10 +89,20 @@ defmodule Nebula.Scheduler.Job do
   @doc """
   Get allocation state for a job process by the Job ID.
   """
-  def get_allocations(id), do: GenServer.call(get(id), :get_allocations)
+  def get_allocations(id) do
+    case get(id) do
+      :undefined -> {:error, "Process does not exist"}
+      pid        -> {:ok, GenServer.call(pid, :get_allocations)}
+    end
+  end
 
   @doc """
   Get evvaluation state for a job process by the Job ID.
   """
-  def get_evaluations(id), do: GenServer.call(get(id), :get_evaluations)
+  def get_evaluations(id) do
+    case get(id) do
+      :undefined -> {:error, "Process does not exist"}
+      pid        -> {:ok, GenServer.call(pid, :get_evaluations)}
+    end
+  end
 end
