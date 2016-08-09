@@ -1,0 +1,17 @@
+env:
+  REGISTRY_PATH: "docker.ferocia.com.au/"
+  RAILS_ENV: test
+  RACK_ENV: test
+  NODE_ENV: test
+
+steps:
+  - wait
+
+  - name: ":docker:"
+    command: ".buildkite/steps/01_docker.bash"
+    timeout_in_minutes: 10
+    agents:
+      docker: true
+      capacity: low
+
+  - wait
