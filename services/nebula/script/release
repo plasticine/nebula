@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# make a new release.
+
+set -eo pipefail
+
+docker run \
+

@@ -32,7 +32,7 @@ defmodule Nebula.Scheduler.Reaper do
   defp expired_deploys do
     Nebula.Repo.all(
       from d in Nebula.Deploy,
-      where: d.expire_at < ^DateTime.now and d.state == ^Deploy.states.running,
+      where: d.expire_at < ^DateTime.utc_now and d.state == ^Deploy.states.running,
       select: d
     )
   end

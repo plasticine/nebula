@@ -71,5 +71,5 @@ defmodule Nebula.Api.V1.DeployController do
   end
 
   # TODO: will want to make this come from config at some point...
-  defp default_expire_at, do: Timex.shift(DateTime.now, hours: 2)
+  defp default_expire_at, do: Timex.shift(DateTime.utc_now, hours: 2)
 end

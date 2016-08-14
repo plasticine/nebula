@@ -4,6 +4,8 @@ defmodule Nebula.DashboardView do
   alias Nebula.Repo
 
   def deploys do
-    Deploy |> Repo.all |> Repo.preload([:project])
+    Deploy
+    |> Repo.all
+    |> Repo.preload([:project])
   end
 end
