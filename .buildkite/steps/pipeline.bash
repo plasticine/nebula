@@ -29,8 +29,9 @@ pipeline_upload() {
 }
 
 main() {
+  echo ':pipeline: loading pipeline'
+
   pipeline_create | pipeline_upload
 }
 
-echo ':pipeline: loading pipeline'
 main

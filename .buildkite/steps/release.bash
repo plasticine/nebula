@@ -8,6 +8,8 @@ export NOMAD_VERSION="$NOMAD_VERSION"
 export MIX_ENV="$MIX_ENV"
 
 main() {
+  echo '+++ :elixir: Building release...'
+
   services/nebula/script/build
   services/nebula/script/release
   services/web/script/build
