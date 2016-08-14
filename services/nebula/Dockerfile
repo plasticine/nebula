@@ -38,6 +38,5 @@ RUN mix deps.get deps.compile
 RUN epmd -daemon
 
 ADD ./ $ROOT
-RUN mix compile
 
 CMD ["iex -S phoenix.server"]

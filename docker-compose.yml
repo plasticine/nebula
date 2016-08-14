@@ -45,7 +45,11 @@ services:
       - "./services/git/root/etc/git/hooks:/etc/git/hooks"
 
   nebula:
-    build: "services/nebula"
+    build:
+      context: "services/nebula"
+      args:
+        MIX_ENV: dev
+        NOMAD_VERSION: 0.4.0
     command: "iex --name nebula@127.0.0.1 -S mix phoenix.server"
     restart: always
     tty: true
@@ -57,7 +61,6 @@ services:
       - nomad:172.20.10.10
     environment:
       TERM: xterm
-      MIX_ENV: dev
       DISPLAY: ${HOST_IP}:0
       SERVICE_NAME: nebula
       SERVICE_TAGS: nebula

@@ -5,11 +5,22 @@ env:
   NODE_ENV: test
 
 steps:
+
   - wait
 
-  - name: ":docker:"
-    command: ".buildkite/steps/docker.bash"
+  # - name: ":docker:"
+  #   command: ".buildkite/steps/docker.bash"
+  #   timeout_in_minutes: 10
+  #   agents:
+  #     docker: true
+  #     capacity: low
+
+  - name: ":elixir:"
+    command: ".buildkite/steps/release.bash"
     timeout_in_minutes: 10
+    env:
+      MIX_ENV: prod
+      NOMAD_VERSION: 0.4.0
     agents:
       docker: true
       capacity: low

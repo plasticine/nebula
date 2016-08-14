@@ -2,7 +2,44 @@
 #
 # make a new release.
 
-set -eo pipefail
+set -euo pipefail
+IFS=$'\n\t'
 
-docker run \
+readonly ENVIRONMENT="$1"
+readonly NOMAD_VERSION="0.4.0"
+readonly BUILD_IMAGE_NAME="nebula_build_container"
+readonly TEMP_DIR="$(mktemp -d)"
+readonly CID_DIR="$TEMP_DIR/release_container_cid"
 
+build_image() {
+  docker build \
+    --build-arg "NOMAD_VERSION=${NOMAD_VERSION}" \
+    --build-arg "MIX_ENV=${ENVIRONMENT}" \
+    --tag="${BUILD_IMAGE_NAME}" \
+    .
+}
+
+make_release() {
+  docker run \
+    --rm \
+    --cidfile "$CID_DIR" \
+    --env "MIX_ENV=prod" \
+    --env "MIX_ENV=${ENVIRONMENT}" \
+    --volume "$(pwd)/rel:/container/app/rel" \
+    "${BUILD_IMAGE_NAME}" \
+    mix release
+}
+
+cleanup() {
+  rm -rf "$TEMP_DIR"
+}
+
+main() {
+  build_image
+  make_release
+
+  cat "$CID_DIR"
+}
+
+trap cleanup EXIT
+main
