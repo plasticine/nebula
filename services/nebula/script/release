@@ -12,7 +12,7 @@ readonly CID_DIR="$TEMP_DIR/release_container_cid"
 build_image() {
   docker build \
     --build-arg "NOMAD_VERSION=${NOMAD_VERSION}" \
-    --build-arg "MIX_ENV=${ENVIRONMENT}" \
+    --build-arg "MIX_ENV=${MIX_ENV}" \
     --tag="${BUILD_IMAGE_NAME}" \
     .
 }
@@ -21,8 +21,7 @@ make_release() {
   docker run \
     --rm \
     --cidfile "$CID_DIR" \
-    --env "MIX_ENV=prod" \
-    --env "MIX_ENV=${ENVIRONMENT}" \
+    --env "MIX_ENV=${MIX_ENV}" \
     --volume "$(pwd)/rel:/container/app/rel" \
     "${BUILD_IMAGE_NAME}" \
     mix release
