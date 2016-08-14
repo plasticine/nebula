@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Build image.
+
+set -euo pipefail
+IFS=$'\n\t'
+
+main() {
+  docker build \
+    --build-arg NOMAD_VERSION=${NOMAD_VERSION} \
+    --build-arg MIX_ENV={$MIX_ENV} \
+    --tag "nabula_app_${RELEASE_BUILD_TAG}:latest" \
+    services/nebula
+}
+
+main
