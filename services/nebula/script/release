@@ -5,8 +5,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-readonly ENVIRONMENT="$1"
-readonly NOMAD_VERSION="0.4.0"
 readonly BUILD_IMAGE_NAME="nebula_build_container"
 readonly TEMP_DIR="$(mktemp -d)"
 readonly CID_DIR="$TEMP_DIR/release_container_cid"
