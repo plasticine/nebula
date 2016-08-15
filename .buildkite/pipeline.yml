@@ -15,7 +15,7 @@ steps:
   #     docker: true
   #     capacity: low
 
-  - name: ":elixir:"
+  - name: ":package:"
     command: ".buildkite/steps/release.bash"
     timeout_in_minutes: 10
     env:
