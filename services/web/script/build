@@ -8,7 +8,7 @@ IFS=$'\n\t'
 main() {
   docker build \
     --tag "nabula_web_${RELEASE_BUILD_TAG}:latest" \
-    services/web
+    .
 }
 
 main
