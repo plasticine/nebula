@@ -6,9 +6,10 @@ set -euo pipefail
 IFS=$'\n\t'
 
 main() {
-  docker build \
-    --tag "nabula_web_${RELEASE_BUILD_TAG}:latest" \
-    .
+  local tag;
+  tag="$1"
+
+  docker build --tag "${tag}" .
 }
 
-main
+main "$1"
