@@ -10,9 +10,14 @@ export MIX_ENV="$MIX_ENV"
 main() {
   echo '+++ :elixir: Building release...'
 
+  pushd "services/nebula" > /dev/null
   services/nebula/script/build
   services/nebula/script/release
+  popd > /dev/null
+
+  pushd "services/web" > /dev/null
   services/web/script/build
+  popd > /dev/null
 }
 
 main
