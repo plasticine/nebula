@@ -6,6 +6,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 readonly RELEASE_BUILD_VERSION="$(echo $BUILDKITE_COMMIT | head -c 8)"
+readonly REGISTRY_URL="${REGISTRY_ADDRESS}/${GCP_PROJECT_NAME}"
 
 main() {
   pushd "services/nebula" > /dev/null
@@ -22,10 +23,10 @@ main() {
   popd > /dev/null
 
   echo '--- :crystal_ball: :docker: Pushing built images...'
-  docker tag "nebula/web:${RELEASE_BUILD_VERSION}" "${REGISTRY_PATH}/nebula/web:${RELEASE_BUILD_VERSION}"
-  docker tag "nebula/app:${RELEASE_BUILD_VERSION}" "${REGISTRY_PATH}/nebula/app:${RELEASE_BUILD_VERSION}"
-  docker push "${REGISTRY_PATH}/nebula/web:${RELEASE_BUILD_VERSION}"
-  docker push "${REGISTRY_PATH}/nebula/app:${RELEASE_BUILD_VERSION}"
+  docker tag "nebula/web:${RELEASE_BUILD_VERSION}" "${REGISTRY_URL}/nebula/web:${RELEASE_BUILD_VERSION}"
+  docker tag "nebula/app:${RELEASE_BUILD_VERSION}" "${REGISTRY_URL}/nebula/app:${RELEASE_BUILD_VERSION}"
+  docker push "${REGISTRY_URL}/nebula/web:${RELEASE_BUILD_VERSION}"
+  docker push "${REGISTRY_URL}/nebula/app:${RELEASE_BUILD_VERSION}"
 }
 
 main

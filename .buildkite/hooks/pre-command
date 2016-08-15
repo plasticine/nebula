@@ -5,11 +5,12 @@ IFS=$'\n\t'
 
 main() {
   echo '--- Preparing...'
-  pwd
-  gcloud --quiet components update
+  mkdir -p bin
+  curl -sSL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-121.0.0-linux-x86_64.tar.gz | tar xfz - -C bin
+  bin/gcloud --quiet components update
   echo "$GCLOUD_SERVICE_KEY" | base64 --decode -i > "${HOME}/gcloud-service-key.json"
-  gcloud auth activate-service-account --key-file "${HOME}/gcloud-service-key.json"
-  gcloud config set project "$PROJECT_NAME"
+  bin/gcloud auth activate-service-account --key-file "${HOME}/gcloud-service-key.json"
+  bin/gcloud config set project "$PROJECT_NAME"
 }
 
 main
