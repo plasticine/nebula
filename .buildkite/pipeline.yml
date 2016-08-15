@@ -1,5 +1,5 @@
 env:
-  REGISTRY_PATH: "docker.ferocia.com.au"
+  REGISTRY_PATH: "gcr.io/nebula-1338"
   RAILS_ENV: test
   RACK_ENV: test
   NODE_ENV: test
