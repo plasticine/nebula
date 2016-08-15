@@ -8,14 +8,16 @@ export NOMAD_VERSION="$NOMAD_VERSION"
 export MIX_ENV="$MIX_ENV"
 
 main() {
-  echo '--- :elixir: Building app service...'
   pushd "services/nebula" > /dev/null
+  echo '--- :elixir: :docker: Building app image...'
   script/build
+
+  echo '--- :elixir: :truck: Making release artifact for app...'
   script/release
   popd > /dev/null
 
-  echo '--- :nginx: Building web service release...'
   pushd "services/web" > /dev/null
+  echo '--- :nginx: :docker: Building web image...'
   script/build
   popd > /dev/null
 }
