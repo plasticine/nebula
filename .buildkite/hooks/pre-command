@@ -8,7 +8,7 @@ main() {
   mkdir -p bin
   curl -sSL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-121.0.0-linux-x86_64.tar.gz | tar xfz - -C bin
 
-  ls -al bin
+  ls -al bin/google-cloud-sdk
 
   bin/gcloud --quiet components update
   # echo "$GCLOUD_SERVICE_KEY" | base64 --decode -i > "${HOME}/gcloud-service-key.json"
