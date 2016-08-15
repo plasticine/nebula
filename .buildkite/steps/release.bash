@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
+#
+# Build and package a release.
 
 set -euo pipefail
 IFS=$'\n\t'
 
 readonly RELEASE_BUILD_VERSION="$(echo $BUILDKITE_COMMIT | head -c 8)"
-
-export NOMAD_VERSION="$NOMAD_VERSION"
-export MIX_ENV="$MIX_ENV"
 
 main() {
   pushd "services/nebula" > /dev/null
