@@ -11,12 +11,12 @@ main() {
   echo '+++ :elixir: Building release...'
 
   pushd "services/nebula" > /dev/null
-  services/nebula/script/build
-  services/nebula/script/release
+  script/build
+  script/release
   popd > /dev/null
 
   pushd "services/web" > /dev/null
-  services/web/script/build
+  script/build
   popd > /dev/null
 }
 
