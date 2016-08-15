@@ -25,8 +25,8 @@ main() {
   echo '--- :crystal_ball: :docker: Pushing built images...'
   docker tag "nebula/web:${RELEASE_BUILD_VERSION}" "${REGISTRY_URL}/nebula/web:${RELEASE_BUILD_VERSION}"
   docker tag "nebula/app:${RELEASE_BUILD_VERSION}" "${REGISTRY_URL}/nebula/app:${RELEASE_BUILD_VERSION}"
-  docker push "${REGISTRY_URL}/nebula/web:${RELEASE_BUILD_VERSION}"
-  docker push "${REGISTRY_URL}/nebula/app:${RELEASE_BUILD_VERSION}"
+  gcloud docker push "${REGISTRY_URL}/nebula/web:${RELEASE_BUILD_VERSION}"
+  gcloud docker push "${REGISTRY_URL}/nebula/app:${RELEASE_BUILD_VERSION}"
 }
 
 main
