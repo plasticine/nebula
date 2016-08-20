@@ -17,7 +17,7 @@ steps:
       docker: true
       capacity: low
 
-  - block: ":rocket:"
+  # - block: ":rocket:"
 
   - name: ":rocket: Deploy"
     command: ".buildkite/steps/deploy.bash"

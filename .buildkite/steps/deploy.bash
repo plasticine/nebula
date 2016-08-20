@@ -5,8 +5,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+readonly BASTION_ADDRESS="${BASTION_ADDRESS}"
+
 main() {
-  exit 0
+  ssh "ubuntu@${BASTION_ADDRESS}" la -al
 }
 
 main
