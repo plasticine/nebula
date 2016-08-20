@@ -7,7 +7,7 @@ steps:
 
   - wait
 
-  - name: ":package: Package Release"
+  - name: ":package: Package"
     command: ".buildkite/steps/release.bash"
     timeout_in_minutes: 10
     env:
@@ -19,7 +19,7 @@ steps:
 
   - block: ":rocket:"
 
-  - name: ":rocket: Deploy Release"
+  - name: ":rocket: Deploy"
     command: ".buildkite/steps/deploy.bash"
     timeout_in_minutes: 10
     agents:
