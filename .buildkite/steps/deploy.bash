@@ -5,10 +5,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-readonly BASTION_ADDRESS="${BASTION_ADDRESS}"
+readonly DEPLOY_MACHINE_NAME="${DEPLOY_MACHINE_NAME}"
 
 main() {
-  ssh "ubuntu@${BASTION_ADDRESS}" la -al
+  gcloud compute ssh "${DEPLOY_MACHINE_NAME}" --command="ls -al"
 }
 
 main

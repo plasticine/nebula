@@ -17,6 +17,8 @@ steps:
       docker: true
       capacity: low
 
+  - wait
+
   # - block: ":rocket:"
 
   - name: ":rocket: Deploy"
