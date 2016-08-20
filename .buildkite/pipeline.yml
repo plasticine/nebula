@@ -18,3 +18,10 @@ steps:
       capacity: low
 
   - block: ":rocket:"
+
+  - name: ":rocket: Deploy Release"
+    command: ".buildkite/steps/deploy.bash"
+    timeout_in_minutes: 5
+    agents:
+      docker: true
+      capacity: low
