@@ -14,7 +14,7 @@ prepare:
 	docker-compose build
 	docker-compose run --rm nebula mix do deps.get, ecto.setup
 
-bootstrap: dev prepare
+bootstrap: vm prepare
 
 up:
 	@killall epmd > /dev/null || true
