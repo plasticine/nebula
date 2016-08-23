@@ -13,3 +13,13 @@ variable "node_machine_type" {
   type = "string"
   default = "g1-small"
 }
+
+variable "node_min_replicas" {
+  type = "string"
+  default = "1"
+}
+
+variable "node_max_replicas" {
+  type = "string"
+  default = "1"
+}
