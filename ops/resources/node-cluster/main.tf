@@ -23,7 +23,7 @@ resource "google_compute_instance_template" "node-cluster-template" {
   lifecycle { create_before_destroy = true }
 
   name_prefix = "node-cluster-template-"
-  machine_type = "g1-small"
+  machine_type = "${var.node_machine_type}"
   can_ip_forward = true
 
   metadata = {
@@ -81,8 +81,8 @@ resource "google_compute_autoscaler" "node-cluster-autoscaler" {
   target = "${google_compute_instance_group_manager.node-cluster-group-manager.self_link}"
 
   autoscaling_policy = {
-    min_replicas    = "3"
-    max_replicas    = "3"
+    min_replicas    = "${var.node_min_replicas}"
+    max_replicas    = "${var.node_max_replicas}"
     cooldown_period = "240"
 
     cpu_utilization {

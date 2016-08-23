@@ -19,6 +19,7 @@
     {
       "type": "shell",
       "scripts": [
+        "{{template_dir}}/scripts/install-nomad.bash",
         "{{template_dir}}/scripts/nat.bash"
       ]
     }

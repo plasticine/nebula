@@ -6,4 +6,5 @@ module "node-cluster" {
   # Actual vars here...
   nomad_image_name = "${var.node_image_name}"
   nomad_bootstrap_expect = "1"
+  node_machine_type = "f1-micro"
 }
