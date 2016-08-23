@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+source /etc/network-environment
+readonly SERVERS="$(consul-servers | xargs)"
+export CONSUL_HTTP_ADDR="$DEFAULT_IPV4:8500"
+export CONSUL_RPC_ADDR="$DEFAULT_IPV4:8400"
+export AGENT_MODE="$1"
+
+local_agent_http_address() {
+  if [[ "$AGENT_MODE" == "server" ]]; then
+    echo "${DEFAULT_IPV4}"
+  else
+    echo "127.0.0.1"
+  fi
+}
+
+wait_for_local_agent() {
+  echo "[consul-join]" "Waiting for local agent to come online..."
+  for attempt in {1..30}; do
+    echo "[consul-join]" "Connection attempt #$attempt..."
+    set +e
+    nc -zv "$(local_agent_http_address)" 8500
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 5
+  done
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[consul-join]" "Timed out waiting for local agent to come online..."
+    exit $exit_code
+  fi
+}
+
+wait_for_peers() {
+  local exit_code;
+
+  echo "[consul-join]" "Waiting for remote server agents to come online..."
+  for attempt in {1..30}; do
+    echo "[consul-join]" "Connection attempt #$attempt..."
+    set +e
+    for server in $SERVERS; do
+      nc -zv "$server" 8500
+    done
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 5
+  done
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[consul-join]" "Timed out waiting for servers to come online..."
+    exit $exit_code
+  fi
+}
+
+join_cluster() {
+  local exit_code;
+
+  echo "[consul-join]" "Attempting join servers: ${SERVERS}"
+  consul join "$SERVERS"
+  exit_code="$?"
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[consul-join]" "There was a problem joining the servers: ${SERVERS}"
+    exit $exit_code
+  fi
+
+  consul members
+}
+
+wait_until_server_becomes_peer() {
+  while ! curl -s "http://$(local_agent_http_address):8500/v1/status/peers" | grep -q "$DEFAULT_IPV4":;
+  do
+    echo "[consul-join]" "Waiting for current node to be a peer..."
+    sleep 1
+  done
+}
+
+main() {
+  echo "[consul-join]" "DEFAULT_IPV4: ${DEFAULT_IPV4}"
+  echo "[consul-join]" "SERVERS:      ${SERVERS}"
+  echo "[consul-join]" "AGENT_MODE:   ${AGENT_MODE}"
+
+  wait_for_local_agent
+  wait_for_peers
+  join_cluster
+
+  if [[ "$AGENT_MODE" == "server" ]]; then
+    wait_until_server_becomes_peer
+  fi
+}
+
+main

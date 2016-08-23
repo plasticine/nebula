@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=' '
+
+source /etc/network-environment
+readonly SERVERS="$(nomad-servers | xargs)"
+readonly SERVER_ARRAY=($SERVERS)
+readonly SERVER_COUNT=${#SERVER_ARRAY[@]}
+export NOMAD_ADDR="http://$DEFAULT_IPV4:4646"
+
+nomad_server_addresses() {
+  local server_ips;
+  server_ips="$1"
+
+  SERVER_ADDRESSES=()
+  set -x
+  for server_ip in $server_ips; do
+    SERVER_ADDRESSES+=("$server_ip:4646");
+  done
+  set +x
+  echo "${SERVER_ADDRESSES[@]}"
+}
+
+wait_for_local_agent() {
+  echo "[nomad-join]" "Waiting for local agent to come online..."
+  for attempt in {1..30}; do
+    echo "[nomad-join]" "Connection attempt #$attempt..."
+    set +e
+    nc -zv "${DEFAULT_IPV4}" 4646
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 5
+  done
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[nomad-join]" "Timed out waiting for local agent to come online..."
+    exit $exit_code
+  fi
+}
+
+wait_for_peers() {
+  local exit_code;
+
+  echo "[nomad-join]" "Waiting for remote server agents to come online..."
+  for attempt in {1..30}; do
+    echo "[nomad-join]" "Connection attempt #$attempt..."
+    set +e
+    for server in $SERVERS; do
+      nc -zv "$server" 4646
+    done
+    exit_code="$?"
+    set -e
+    [ $exit_code -eq 0 ] && break
+    sleep 5
+  done
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[nomad-join]" "Timed out waiting for servers to come online..."
+    exit $exit_code
+  fi
+}
+
+join_cluster() {
+  local exit_code;
+
+  echo "[nomad-join]" "Attempting join servers: ${SERVERS}"
+  nomad server-join $(nomad_server_addresses $SERVERS)
+  exit_code="$?"
+
+  if [[ "$exit_code" != "0" ]]; then
+    echo "[nomad-join]" "There was a problem joining the servers: ${SERVERS}"
+    exit $exit_code
+  fi
+
+  nomad server-members
+}
+
+wait_for_peer() {
+  while ! curl -s "http://${DEFAULT_IPV4}:4646/v1/status/peers" | grep -q "$DEFAULT_IPV4":;
+  do
+    echo "[nomad-join]" "Waiting for current node to be a peer..."
+    sleep 1
+  done
+}
+
+main() {
+  echo "[nomad-join]" "DEFAULT_IPV4: ${DEFAULT_IPV4}"
+  echo "[nomad-join]" "SERVERS:      ${SERVERS}"
+  echo "[nomad-join]" "SERVER COUNT: ${SERVER_COUNT}"
+
+
+  wait_for_local_agent
+
+  if [[ ${SERVER_COUNT} -gt "1" ]]; then
+    wait_for_peers
+    join_cluster
+    wait_for_peer
+  fi
+}
+
+main
