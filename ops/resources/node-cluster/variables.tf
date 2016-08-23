@@ -8,3 +8,8 @@ variable "nomad_bootstrap_expect" {
   type = "string"
   default = "3"
 }
+
+variable "node_machine_type" {
+  type = "string"
+  default = "g1-small"
+}

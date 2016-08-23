@@ -23,7 +23,7 @@ resource "google_compute_instance_template" "node-cluster-template" {
   lifecycle { create_before_destroy = true }
 
   name_prefix = "node-cluster-template-"
-  machine_type = "g1-small"
+  machine_type = "${var.node_machine_type}"
   can_ip_forward = true
 
   metadata = {
