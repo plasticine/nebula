@@ -13,12 +13,23 @@ nomad status
 EOF
 )
 
+upload_job() {
+  echo '--- Uploading Nomad job file'
+  gcloud compute copy-files --quiet job.nomad "${DEPLOY_MACHINE_NAME}:~/job.nomad"
+}
+
+run_job() {
+  echo '--- Running Nomad job'
+  gcloud compute ssh "${DEPLOY_MACHINE_NAME}" --quiet --command="${REMOTE_COMMAND}"
+}
+
 main() {
-  echo '--- :rocket: Deploying...'
+  echo '+++ :googlecloud: Deploying...'
   gcloud config set compute/region us-central1
   gcloud config set compute/zone us-central1-a
-  gcloud compute copy-files --quiet job.nomad "${DEPLOY_MACHINE_NAME}:~/job.nomad"
-  gcloud compute ssh "${DEPLOY_MACHINE_NAME}" --quiet --command="${REMOTE_COMMAND}"
+
+  upload_job
+  run_job
 }
 
 main
