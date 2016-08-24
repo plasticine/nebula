@@ -10,16 +10,17 @@ readonly DEPLOY_MACHINE_NAME="${DEPLOY_MACHINE_NAME}"
 readonly REMOTE_COMMAND=$(cat <<EOF
 export NOMAD_ADDR="http://10.128.0.4:4646"
 nomad status
+nomad run ~/job.nomad
 EOF
 )
 
 upload_job() {
-  echo '--- Uploading Nomad job file'
+  echo '+++ Uploading Nomad job file'
   gcloud compute copy-files --quiet job.nomad "${DEPLOY_MACHINE_NAME}:~/job.nomad"
 }
 
 run_job() {
-  echo '--- Running Nomad job'
+  echo '+++ Running Nomad job'
   gcloud compute ssh "${DEPLOY_MACHINE_NAME}" --quiet --command="${REMOTE_COMMAND}"
 }
 

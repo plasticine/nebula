@@ -5,7 +5,7 @@ env:
 
 steps:
 
-  # - wait
+  - block: ":rocket:"
 
   # - name: ":package: Package"
   #   command: ".buildkite/steps/release.bash"
@@ -18,8 +18,6 @@ steps:
   #     capacity: low
 
   # - wait
-
-  - block: ":rocket:"
 
   - name: ":googlecloud: Deploy"
     command: ".buildkite/steps/deploy.bash"
