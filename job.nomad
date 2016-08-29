@@ -38,7 +38,6 @@ job "nebula" {
     }
 
     task "nebula" {
-        count = 3
         driver = "docker"
         config {
             image = "nebula/nebula"
