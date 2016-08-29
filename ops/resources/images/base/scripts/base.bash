@@ -20,4 +20,3 @@ sudo apt-get install -y \
   unzip \
   zip \
   traceroute
-sudo gcloud components update

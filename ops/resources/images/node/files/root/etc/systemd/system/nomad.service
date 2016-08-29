@@ -1,5 +1,5 @@
 [Unit]
-Description=nomad agent
+Description=Nomad Agent
 Requires=network-online.target setup-network-environment.service
 After=network-online.target setup-network-environment.service
 
