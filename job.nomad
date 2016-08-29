@@ -27,7 +27,7 @@ job "nebula" {
             }
         }
         resources {
-            cpu = 256
+            cpu = 128
             memory = 128
             network {
                 mbits = 1
@@ -57,8 +57,8 @@ job "nebula" {
             }
         }
         resources {
-            cpu = 512
-            memory = 512
+            cpu = 128
+            memory = 128
             network {
                 mbits = 1
                 port "http" {}
