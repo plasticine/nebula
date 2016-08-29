@@ -2,10 +2,6 @@ job "nebula" {
     type = "service"
     datacenters = ["dc1"]
 
-    meta {
-        DEPLOYMENT_ID = ""
-    }
-
     update {
         stagger = "10s"
         max_parallel = 1
@@ -14,7 +10,7 @@ job "nebula" {
     task "web" {
         driver = "docker"
         config {
-            image = "gcr.io/nebula-1338/nebula/web:${NOMAD_META_DEPLOYMENT_ID}"
+            image = "gcr.io/nebula-1338/nebula/web"
             port_map {
                 http = 80
                 https = 443
@@ -44,7 +40,7 @@ job "nebula" {
     task "app" {
         driver = "docker"
         config {
-            image = "gcr.io/nebula-1338/nebula/app:${NOMAD_META_DEPLOYMENT_ID}"
+            image = "gcr.io/nebula-1338/nebula/app"
             port_map {
                 http = 80
                 https = 443

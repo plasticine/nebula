@@ -49,12 +49,24 @@ start_nomad_agent() {
   sudo systemctl start nomad.service
 }
 
+ensure_system_jobs_started() {
+  echo "Starting Nomad system jobs"
+  sleep 10
+  if [ -d "/etc/nomad.d/jobs" ]; then
+    for job in "/etc/nomad.d/jobs/*.system.nomad"; do
+      nomad run "$job"
+      sleep 5
+    done
+  fi
+}
+
 main() {
   configure_consul
   start_consul_agent
   join_consul_cluster
   configure_nomad
   start_nomad_agent
+  ensure_system_jobs_started
 }
 
 main

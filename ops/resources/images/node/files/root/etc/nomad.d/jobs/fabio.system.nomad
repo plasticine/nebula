@@ -20,7 +20,7 @@ job "fabio" {
       }
 
       resources {
-        cpu = 500
+        cpu = 256
         memory = 64
 
         network {
