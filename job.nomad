@@ -40,7 +40,7 @@ job "nebula" {
     task "app" {
         driver = "docker"
         config {
-            image = "gcr.io/nebula-1338/nebula/app:11832c69"
+            image = "gcr.io/nebula-1338/nebula/app:fa1ae37b"
             port_map {
                 http = 80
                 https = 443
