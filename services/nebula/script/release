@@ -34,8 +34,6 @@ cleanup() {
 main() {
   build_image
   make_release
-
-  # cat "$CID_DIR"
 }
 
 trap cleanup EXIT

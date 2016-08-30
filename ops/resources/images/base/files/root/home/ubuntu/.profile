@@ -9,5 +9,3 @@ export DEFAULT_IPV4="$(curl --silent -H 'Metadata-Flavor: Google' http://metadat
 if [ -d "$HOME/.profile_config" ]; then
   for f in "$HOME/.profile_config/*.bash"; do source $f; done
 fi
-
-nomad node-status

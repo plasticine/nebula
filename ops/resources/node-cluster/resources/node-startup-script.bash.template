@@ -61,9 +61,9 @@ ensure_system_jobs_started() {
   echo "Starting Nomad system jobs"
   sleep 30
   if [ -d "/etc/nomad.d/jobs" ]; then
-    for job in /etc/nomad.d/jobs/*.system.nomad; do
+    for job in /etc/nomad.d/jobs/*.nomad; do
       nomad run "$job"
-      sleep 5
+      sleep 2
     done
   fi
 }
