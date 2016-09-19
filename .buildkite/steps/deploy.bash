@@ -8,7 +8,7 @@ IFS=$'\n\t'
 readonly DEPLOY_MACHINE_NAME="${DEPLOY_MACHINE_NAME}"
 
 readonly REMOTE_COMMAND=$(cat <<EOF
-export NOMAD_ADDR="http://10.128.0.4:4646"
+export NOMAD_ADDR="http://$(nomad-servers | head -n 1):4646"
 nomad status
 nomad run ~/job.nomad
 EOF
