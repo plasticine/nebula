@@ -19,4 +19,4 @@ sudo apt-get install -y \
   jq \
   unzip \
   zip \
-  traceroute \
+  traceroute

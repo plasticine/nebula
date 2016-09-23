@@ -1,0 +1,8 @@
+[Unit]
+Description=Docker GCR auth
+Requires=network-online.target setup-network-environment.service docker.service
+After=network-online.target setup-network-environment.service docker.service
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/local/bin/docker-gcr-auth

@@ -5,6 +5,14 @@ IFS=' '
 
 readonly DEFAULT_IPV4="$(curl --silent -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)"
 
+start_docker_auth_service() {
+  echo "Starting Docker GCR auth service & timer"
+  sudo systemctl enable docker-gcr-auth.service
+  sudo systemctl start docker-gcr-auth.service
+  sudo systemctl enable docker-gcr-auth.timer
+  sudo systemctl start docker-gcr-auth.timer
+}
+
 configure_consul() {
   echo "Configuring Consul options"
   sudo tee /etc/systemd/system/consul.d/client.json <<EOF
@@ -15,7 +23,7 @@ configure_consul() {
 EOF
 }
 
-start_consul_agent() {
+start_consul_agent_service() {
   echo "Starting Consul service"
   sudo systemctl enable consul.service
   sudo systemctl start consul.service
@@ -43,18 +51,31 @@ advertise {
 EOF
 }
 
-start_nomad_agent() {
+start_nomad_agent_service() {
   echo "Starting Nomad service"
   sudo systemctl enable nomad.service
   sudo systemctl start nomad.service
 }
 
+ensure_system_jobs_started() {
+  echo "Starting Nomad system jobs"
+  sleep 30
+  if [ -d "/etc/nomad.d/jobs" ]; then
+    for job in /etc/nomad.d/jobs/*.nomad; do
+      nomad run "$job"
+      sleep 2
+    done
+  fi
+}
+
 main() {
+  start_docker_auth_service
   configure_consul
-  start_consul_agent
+  start_consul_agent_service
   join_consul_cluster
   configure_nomad
-  start_nomad_agent
+  start_nomad_agent_service
+  ensure_system_jobs_started
 }
 
 main

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+setup_gcloud() {
+  curl -sSL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-121.0.0-linux-x86_64.tar.gz | tar xfz - -C environ
+  export PATH="environ/google-cloud-sdk/bin:$PATH"
+  gcloud --quiet components update
+  echo "$GCP_SERVICE_KEY" | base64 --decode -i > "environ/gcloud-service-key.json"
+  gcloud auth activate-service-account --key-file "environ/gcloud-service-key.json"
+  gcloud config set project "$GCP_PROJECT_NAME"
+  gcloud info
+  gcloud config list
+}
+
+main() {
+  echo '--- :sparkles: Preparing command environment...'
+  mkdir -p environ
+  setup_gcloud
+}
+
+main

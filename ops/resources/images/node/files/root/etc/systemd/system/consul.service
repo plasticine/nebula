@@ -1,5 +1,5 @@
 [Unit]
-Description=consul agent
+Description=Consul Agent
 Requires=network-online.target setup-network-environment.service
 After=network-online.target setup-network-environment.service
 

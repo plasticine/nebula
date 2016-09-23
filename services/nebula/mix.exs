@@ -4,8 +4,8 @@ defmodule Nebula.Mixfile do
   def project do
     [
       app: :nebula,
-      version: "0.0.1",
-      elixir: "~> 1.0",
+      version: "1.0.0",
+      elixir: "~> 1.3",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       test_coverage: [tool: ExCoveralls],
@@ -58,26 +58,27 @@ defmodule Nebula.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:consul, "~> 1.0.0", git: "https://github.com/plasticine/consul-ex.git", branch: "upgrade-deps"},
+      {:consul, "~> 1.0.0", git: "https://github.com/plasticine/consul-ex.git", ref: "326b689"},
       {:cowboy, "~> 1.0"},
+      {:distillery, "~> 0.9"},
       {:excoveralls, "~> 0.5", only: [:test, :dev]},
-      {:exsentry, "~> 0.3.0"},
+      {:exsentry, "~> 0.6.2"},
       {:gettext, "~> 0.9"},
       {:gproc, "~> 0.5.0"},
       {:graphql, "~> 0.3"},
-      {:httpoison, "~> 0.8.3"},
-      {:phoenix, "~> 1.1.4"},
-      {:phoenix_ecto, "~> 2.0"},
+      {:httpoison, "~> 0.9.0"},
+      {:httpotion, "~> 3.0.1"},
+      {:phoenix, "~> 1.2.1"},
+      {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.4"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:phoenix_pubsub_redis, "~> 2.0.0"},
-      {:phoenix_timex, "~> 1.0.0"},
+      {:phoenix_pubsub_redis, "~> 2.1"},
       {:plug_graphql, "~> 0.3"},
       {:poolboy, "~> 1.5.1"},
       {:postgrex, ">= 0.0.0"},
-      {:temp, "~> 0.4"},
-      {:timex, "~> 2.2.1"},
-      {:timex_ecto, "~> 1.1.3"},
+      {:temp, "~> 0.1"},
+      {:timex, "~> 3.0", override: true},
+      {:timex_ecto, "~> 3.0"},
     ]
   end
 

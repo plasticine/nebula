@@ -21,6 +21,12 @@ If you’re on a Mac then go grab [Docker for Mac](https://docs.docker.com/engin
 - `make up`
 - `make nebula_inspect`
 
+
+### Stuff
+
+- GraphQL endpoint is here:
+    - http://nebula.dev:9999/graphql
+
 #### Useful stuff that I’ve found...
 
 - https://cloud.google.com/solutions/automated-build-images-with-jenkins-kubernetes

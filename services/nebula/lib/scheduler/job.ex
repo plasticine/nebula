@@ -76,9 +76,7 @@ defmodule Nebula.Scheduler.Job do
   """
   def stop(job) when is_map(job), do: stop(job.id)
   def stop(id) do
-    get(id)
-    |> Nebula.Scheduler.JobPool.stop_job
-    |> IO.inspect
+    get(id) |> Nebula.Scheduler.JobPool.stop_job
   end
 
   @doc """

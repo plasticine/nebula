@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# Build image.
+
+set -euo pipefail
+IFS=$'\n\t'
+
+main() {
+  local tag;
+  tag="$1"
+
+  docker build --tag "${tag}" .
+}
+
+main "$1"
