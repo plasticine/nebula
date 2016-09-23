@@ -9,7 +9,6 @@ steps:
 
   - name: ":package: Package"
     command: ".buildkite/steps/release.bash"
-    timeout_in_minutes: 10
     env:
       MIX_ENV: prod
       NOMAD_VERSION: 0.4.0
