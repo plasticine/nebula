@@ -34,7 +34,7 @@ ADD ./mix.exs ./mix.exs
 ADD ./mix.lock ./mix.lock
 RUN mix local.rebar --force
 RUN mix local.hex --force
-RUN mix deps.get deps.compile
+RUN mix deps.get deps.compile 1>&1
 RUN epmd -daemon
 
 ADD ./ $ROOT
