@@ -26,6 +26,10 @@ defmodule Nebula.Api.Web do
     quote do
       use Phoenix.Controller, namespace: Nebula.Api
 
+      alias Nebula.Repo
+      import Ecto
+      import Ecto.Query, only: [from: 1, from: 2]
+
       import Nebula.Api.Router.Helpers
       import Nebula.Api.Gettext
     end
