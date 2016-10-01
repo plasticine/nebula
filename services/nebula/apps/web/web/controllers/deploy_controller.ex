@@ -1,6 +1,6 @@
-defmodule Nebula.DeployController do
+defmodule Nebula.Db.DeployController do
   use Nebula.Web, :controller
-  alias Nebula.Deploy
+  alias Nebula.Db.Deploy
   alias Ecto.Changeset
 
   def show(conn, %{"id" => id}) do

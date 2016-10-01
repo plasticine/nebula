@@ -3,7 +3,7 @@ defmodule Nebula.Scheduler do
   require Logger
 
   def start_link do
-    Logger.info "[scheduler] Started scheduler process"
+    Logger.info "Started scheduler process"
     Supervisor.start_link(__MODULE__, [], name: __MODULE__)
   end
 

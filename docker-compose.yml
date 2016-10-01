@@ -28,31 +28,17 @@ services:
     links:
       - nebula
 
-  git:
-    build: "services/git"
-    restart: always
-    ports:
-      - "80"
-    environment:
-      SERVICE_80_NAME: git
-      SERVICE_80_CHECK_HTTP: /health
-      SERVICE_80_CHECK_INTERVAL: 5s
-      SERVICE_80_CHECK_TIMEOUT: 1s
-      SERVICE_80_TAGS: urlprefix-${DOMAIN_NAME}/git
-    volumes_from:
-      - project_data
-    volumes:
-      - "./services/git/root/etc/git/hooks:/etc/git/hooks"
-
   nebula:
     build:
       context: "services/nebula"
       args:
         MIX_ENV: dev
         NOMAD_VERSION: 0.4.0
-    command: "iex --name nebula@127.0.0.1 -S mix phoenix.server"
+    command: "iex --name nebula@127.0.0.1 -S mix app.start"
     restart: always
     tty: true
+    ports:
+      - "4000:4000"
     expose:
       - "4000"
     links:
@@ -65,13 +51,11 @@ services:
       SERVICE_NAME: nebula
       SERVICE_TAGS: nebula
       DOMAIN_NAME: ${DOMAIN_NAME}
-      # SERVICE_80_CHECK_HTTP: /health
-      # SERVICE_80_CHECK_INTERVAL: 5s
-      # SERVICE_80_CHECK_TIMEOUT: 1s
+      SERVICE_80_CHECK_HTTP: /health
+      SERVICE_80_CHECK_INTERVAL: 5s
+      SERVICE_80_CHECK_TIMEOUT: 1s
     volumes:
       - "./services/nebula:/container/app"
-    volumes_from:
-      - project_data
 
   postgres:
     build: "services/postgres"
@@ -100,12 +84,6 @@ services:
     command: "true"
     volumes:
       - "/container/postgresql/data"
-
-  project_data:
-    image: gliderlabs/alpine:3.4
-    command: "true"
-    volumes:
-      - "./data/projects:/data/projects"
 
   registrator:
     image: gliderlabs/registrator:v7

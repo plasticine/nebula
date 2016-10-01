@@ -1,7 +1,7 @@
 defmodule Nebula.Api.V1.DeployController do
   use Nebula.Web, :controller
-  alias Nebula.Deploy
-  alias Nebula.Job
+  alias Nebula.Db.Deploy
+  alias Nebula.Db.Job
   alias Sluginator
   use Timex
 
@@ -52,7 +52,7 @@ defmodule Nebula.Api.V1.DeployController do
   end
 
   defp filter_deploy_params(%{"deploy" => deploy_params}) do
-    project = Repo.get!(Nebula.Project, Map.get(deploy_params, "project_id"))
+    project = Repo.get!(Nebula.Db.Project, Map.get(deploy_params, "project_id"))
 
     %{
       expire_at: default_expire_at,

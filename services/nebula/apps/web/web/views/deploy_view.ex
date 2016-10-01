@@ -1,6 +1,6 @@
-defmodule Nebula.DeployView do
+defmodule Nebula.Db.DeployView do
   use Nebula.Web, :view
-  alias Nebula.Deploy
+  alias Nebula.Db.Deploy
 
   def web_url(deploy), do: Deploy.web_url(deploy)
 

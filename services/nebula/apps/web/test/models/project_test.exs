@@ -1,7 +1,7 @@
-defmodule Nebula.ProjectTest do
+defmodule Nebula.Db.ProjectTest do
   use Nebula.ModelCase
 
-  alias Nebula.Project
+  alias Nebula.Db.Project
 
   @valid_attrs %{description: "some content", name: "some content"}
   @invalid_attrs %{}

@@ -2,7 +2,7 @@ defmodule Nebula.LogTest do
   use Nebula.ModelCase
 
   alias Nebula.Log
-  alias Nebula.Project
+  alias Nebula.Db.Project
 
   @valid_attrs %{body: "some content"}
   @invalid_attrs %{}

@@ -42,7 +42,7 @@ defmodule NebulaJob do
   end
 
   defp update_service_tags(slug), do: &update_service_tags(&1, slug)
-  defp update_service_tags(nil, slug), do: nil
+  defp update_service_tags(nil, _slug), do: nil
   defp update_service_tags(tags, slug) when is_list(tags) do
     if Enum.member?(tags, "nebula-entrypoint") do
       [urlprefix_for_slug(slug) | tags]

@@ -14,7 +14,7 @@ defmodule Nebula.Scheduler.Loader do
   end
 
   def handle_info(:started, []) do
-    start_missing_jobs
+    # start_missing_jobs
     {:noreply, []}
   end
 
@@ -26,9 +26,9 @@ defmodule Nebula.Scheduler.Loader do
   """
   def start_missing_jobs do
     Logger.info "[scheduler] Checking for missing Job processes after start..."
-    Nebula.Job
+    Nebula.Db.Job
     |> join(:left, [job], deploy in assoc(job, :deploy))
-    |> where([_, deploy], deploy.state != ^Nebula.Deploy.states.complete)
+    |> where([_, deploy], deploy.state != ^Nebula.Db.Deploy.states.complete)
     |> select([job, _], job.id)
     |> Nebula.Repo.all
     |> Enum.filter(fn(id) -> Job.get(id) == :undefined end)

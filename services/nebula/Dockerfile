@@ -1,4 +1,4 @@
-FROM trenpixster/elixir:1.3.2
+FROM elixir:1.3.3
 MAINTAINER Justin Morris <desk@pixelbloom.com>
 
 ARG MIX_ENV

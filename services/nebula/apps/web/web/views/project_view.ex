@@ -1,6 +1,6 @@
-defmodule Nebula.ProjectView do
+defmodule Nebula.Db.ProjectView do
   use Nebula.Web, :view
-  alias Nebula.Project
+  alias Nebula.Db.Project
 
   def push_url(project), do: Project.push_url(project)
 end

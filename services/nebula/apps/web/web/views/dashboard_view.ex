@@ -1,6 +1,6 @@
 defmodule Nebula.DashboardView do
   use Nebula.Web, :view
-  alias Nebula.Deploy
+  alias Nebula.Db.Deploy
   alias Nebula.Repo
 
   def deploys do

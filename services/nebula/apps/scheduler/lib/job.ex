@@ -11,7 +11,7 @@ defmodule Nebula.Scheduler.Job do
   end
 
   def init(id) do
-    job = Nebula.Repo.get!(Nebula.Job, id) |> Nebula.Repo.preload(:deploy)
+    job = Nebula.Repo.get!(Nebula.Db.Job, id) |> Nebula.Repo.preload(:deploy)
     state = %{job: job, evaluations: nil, allocations: nil}
 
     {:ok, state}
@@ -26,12 +26,12 @@ defmodule Nebula.Scheduler.Job do
 
     # Parse nomad binary
     {:ok, pid} = GenServer.start_link(Nomad.Binary, state.job.spec)
-    {:ok, output} = Nomad.Binary.validate!(pid)
+    {:ok, _output} = Nomad.Binary.validate!(pid)
     {:ok, job_spec} = Nomad.Binary.parse!(pid)
 
     # Create Job and get allocations.
     nebula_job = NebulaJob.rewrite_nomad_job!(job_spec, state.job.deploy.slug)
-    nomad_job = Nomad.API.Jobs.create(nebula_job)
+    _nomad_job = Nomad.API.Jobs.create(nebula_job)
 
     # Start monitoring the job.
     :ok = Process.send(self(), :monitor, [])

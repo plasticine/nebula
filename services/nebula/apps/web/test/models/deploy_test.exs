@@ -1,8 +1,8 @@
-defmodule Nebula.DeployTest do
+defmodule Nebula.Db.DeployTest do
   use Nebula.ModelCase
 
-  alias Nebula.Deploy
-  alias Nebula.Project
+  alias Nebula.Db.Deploy
+  alias Nebula.Db.Project
 
   @valid_attrs %{
     ref: "master",

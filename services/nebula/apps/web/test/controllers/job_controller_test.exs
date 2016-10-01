@@ -1,7 +1,7 @@
-defmodule Nebula.JobControllerTest do
+defmodule Nebula.Db.JobControllerTest do
   use Nebula.ConnCase
 
-  alias Nebula.Job
+  alias Nebula.Db.Job
   @valid_attrs %{spec: "some content"}
   @invalid_attrs %{}
 
